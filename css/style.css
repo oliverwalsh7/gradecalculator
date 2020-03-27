@@ -1,0 +1,18 @@
+.grid-container{
+	display:flex;
+	align-items: flex-start;
+	
+}
+.grade{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.p-colm{
+	display: flex;
+	flex-direction: column;
+}
+.credits-colm{
+	display: flex;
+	flex-direction: column;
+}
