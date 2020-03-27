@@ -1,12 +1,20 @@
+body{
+	margin:0;
+}
+header{
+	background-color: saddlebrown;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: 35px;
+	color: white;
+}
 .grid-container{
 	display:flex;
 	align-items: flex-start;
-	
+	justify-content: space-evenly;	
 }
-.grade{
+.grade-colm{
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
 }
 .p-colm{
 	display: flex;
