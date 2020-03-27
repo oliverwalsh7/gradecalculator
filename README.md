@@ -1,14 +1,13 @@
 
 # Grade Calculator
-Grade calculator helps lehigh students figure out pass fail option due to the recent pandemic called Rona virus. 
+Grade calculator to help Lehigh students project their GPA's with the new pass fail option. 
 
 ## Contributors:
 - Oliver Walsh
 - Nicholas Silva
 - Ryan McGuinnes
 
-### Dedicated to Lehigh Students seeking wisdom for academic success.
-
+### Dedicated to Lehigh Students seeking academic wisdom
 
 
 
