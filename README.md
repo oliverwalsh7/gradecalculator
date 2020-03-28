@@ -5,7 +5,8 @@ Grade calculator to help Lehigh students project their GPA's with the new pass f
 ## Contributors:
 - Oliver Walsh
 - Nicholas Silva
-- Ryan McGuinnes
+- Ryan McGuinness
+- Maxim Vezenov
 
 ### Dedicated to Lehigh Students seeking academic wisdom
 
