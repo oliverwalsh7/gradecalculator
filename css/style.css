@@ -1,18 +1,29 @@
+body{
+    margin:0;
+}
+header{
+    background-color: saddlebrown;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 35px;
+    color: white;
+}
 .grid-container{
-	display:flex;
-	align-items: flex-start;
-	
+    display:flex;
+    align-items: flex-start;
+    justify-content: space-evenly;  
 }
-.grade{
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+.grade-colm{
+    display: flex;
+    flex-direction: column;
 }
-.p-colm{
-	display: flex;
-	flex-direction: column;
+.course-colm{
+    display: flex;
+    flex-direction: column;
 }
 .credits-colm{
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
+}
+button{
+	align-self: flex-end;
 }
