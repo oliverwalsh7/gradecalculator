@@ -20,6 +20,10 @@ header {
     margin: 0px;
 }
 
+html * {
+   font-family: 'Roboto Mono', monospace !important;
+}
+
 .footer {
     background-color: var(--ocean);
     font-family: Georgia, 'Times New Roman', Times, serif;
