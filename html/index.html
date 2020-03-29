@@ -9,26 +9,57 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 </head>
 <body>
+
     <header>Lehigh University</header>
-    <label for ="curr-GPA">Current GPA</label>
-    <input type="text" id="curr-GPA" placeholder="4.0">
-    <label for ="curr-GPA">Total Quality Points</label>
-    <input type="text" id="curr-QP" placeholder="4.0">
-    <div class= "grid-container">
-        <div class = "grid-grade-col">
-            <label for="grade">Choose Grade:</label>
-            <div class = "grade-colm" id = "grade">
-                <!--GRADES COLUMN-->
+
+    <div class="view-container">
+      
+        <!--INSTRUCTIONS BOX-->
+        <div class="instruct-wrap">
+            <div class="instructions">
+                <div class="step-box">
+                    <div class="header"> Step One </div>
+                    <div class="sub-text"> Obtain your unofficial academic transcript at: </div>
+                    <a href="https://ssbp.lehigh.edu/ssb/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu"> Banner </a>
+                </div>
+                <div class="step-box">
+                    <div class="header"> Step Two </div>
+                    <div class="sub-text"> Retrieve your total credit hours & total quality points: </div>
+                </div>
+                <div class="step-box">
+                    <div class="header"> Step Three </div>
+                    <div class="sub-text"> Input your hypothetical / projected semesterly grades in the box below: </div>
+                </div>
             </div>
         </div>
-        <div class = "grid-pf-col">
-            <label for="credits">Enter Credits:</label>
-            <div class = "credits-colm" id="credits">
-                <!--CREDITS COLUMN-->
-			</div>
-			<button type="submit" id="submit-btn">Submit</button>
-		</div>
-		
-    </div>  
+
+        <!--INPUT BOX-->
+        <div class="input-wrap">
+            <div class="input-box">
+                <label for ="curr-GPA">Total Credit Hours:</label>
+                <input type="text" id="curr-GPA" placeholder="100">
+                <label for ="curr-GPA">Total Quality Points:</label>
+                <input type="text" id="curr-QP" placeholder="4.0">
+
+                <div class= "grid-container">
+                    <div class = "grid-grade-col">
+                        <label for="grade">Choose Grade:</label>
+                        <div class="grade-colm" id="grades">
+                            <!--GRADES COLUMN-->
+                        </div>
+                    </div>
+                    <div class="grid-pf-col">
+                        <label for="credits">Enter Credits:</label>
+                        <div class="credits-colm" id="credits">
+                            <!--CREDITS COLUMN-->
+                        </div>
+                        <button type="submit" id="submit-btn">Submit</button>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+    </div>
+
 </body>
 </html>

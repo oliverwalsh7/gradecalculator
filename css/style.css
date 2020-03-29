@@ -1,29 +1,100 @@
-body{
-    margin:0;
+body {
+    --lugray: #50483C;
+    --lugold1: #FECC54;
+    --lugold2: #E8B74B;
+    --lugold3: #BF8617;
+    --lubrown: #4E2A1C;
+    width: 100%;
 }
-header{
-    background-color: saddlebrown;
+
+header {
+    background-color: var(--lubrown);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 35px;
     color: white;
+    text-align: center;
+    width: 100%;
+    height: 55px;
+    margin: 0px;
 }
-.grid-container{
-    display:flex;
+
+.view-container {
+    margin: 0px;
+    position: relative;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.instruct-wrap {
+    margin: 0px;
+    background:var(--lugold2);
+    width: 25vw;
+    height: 90vh;
+}
+
+.instructions {
+    margin: 10px;
+    margin-left: 0px;
+    display: block;
+    line-height: 1;
+    width: 100%;
+    align-items: center;
+}
+
+.step-box {
+    display: inline-block;
+    line-height: 1;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+    color: var(--lubrown);
+}
+
+.input-wrap {
+    margin: 0px;
+    background: ivory;
+    width: 75vw;
+    height: 90vh;
+
+}
+
+.input-box {
+    display: block;
+    line-height: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    font-size: 20px;
+}
+
+.sub-text {
+    font-size: 10px
+}
+
+.grid-container {
     align-items: flex-start;
-    justify-content: space-evenly;  
+    justify-content: space-evenly; 
+    width: 100%;
 }
-.grade-colm{
+
+.grade-colm {
     display: flex;
     flex-direction: column;
 }
-.course-colm{
+
+.course-colm {
     display: flex;
     flex-direction: column;
 }
-.credits-colm{
+
+.credits-colm {
     display: flex;
     flex-direction: column;
 }
-button{
+
+button {
 	align-self: flex-end;
 }
