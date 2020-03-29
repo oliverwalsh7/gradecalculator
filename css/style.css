@@ -1,14 +1,16 @@
 body {
-    --lugray: #50483C;
-    --lugold1: #FECC54;
-    --lugold2: #E8B74B;
-    --lugold3: #BF8617;
-    --lubrown: #4E2A1C;
+    --pearl: #D4E7EE;
+    --silver: #7f9295;
+    --slate: #dcebf2;
+    --pale: #668097;
+    --ocean: #1A1B25;
+    --ocean2: #2f3142;
+    --ocean3: #43465c;
     width: 100%;
 }
 
 header {
-    background-color: var(--lubrown);
+    background-color: var(--ocean);
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 35px;
     color: white;
@@ -16,6 +18,34 @@ header {
     width: 100%;
     height: 55px;
     margin: 0px;
+}
+
+.footer {
+    background-color: var(--ocean);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 35px;
+    margin: 0px;
+}
+
+.topbar-text {
+    font-size: 90%;
+    letter-spacing: .5vw;
+
+}
+
+.footer-text{
+    position: block;
+    font-size: 12.5px;
+    letter-spacing: .2vw;
+    padding-top: 1vh;
+}
+
+#link {
+    font-size: 15px;
 }
 
 .view-container {
@@ -28,14 +58,15 @@ header {
 
 .instruct-wrap {
     margin: 0px;
-    background:var(--lugold2);
+    background: var(--ocean2);
     width: 25vw;
-    height: 90vh;
+    min-height: calc(100vh - 90px);
 }
 
 .instructions {
-    margin: 10px;
-    margin-left: 0px;
+    margin-top: 0px;
+    margin-left: 1vw;
+    margin-right: 1vw;
     display: block;
     line-height: 1;
     width: 100%;
@@ -48,15 +79,14 @@ header {
     width: 100%;
     align-content: center;
     align-items: center;
-    color: var(--lubrown);
+    color: var(--pearl);
 }
 
 .input-wrap {
     margin: 0px;
-    background: ivory;
+    background: var(--ocean3);
     width: 75vw;
-    height: 90vh;
-
+    height: calc(100vh - 90px);
 }
 
 .input-box {
@@ -64,14 +94,31 @@ header {
     line-height: 1;
     width: 100%;
     height: 100%;
+    color: ivory;
 }
 
 .header {
-    font-size: 20px;
+    font-size: 12.5px;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
 }
 
 .sub-text {
-    font-size: 10px
+    font-size: 20px;
+    margin-bottom: 1.5vh;
+    margin-right: 2vw;
+}
+
+label {
+    margin-left: 1vw;
+    margin-top: 5vh;
+}
+
+a {
+    font-size: 12.5px;
+    color: ivory;
+    align-items: center;
+    margin-bottom: 2vh;
 }
 
 .grid-container {
@@ -96,5 +143,10 @@ header {
 }
 
 button {
-	align-self: flex-end;
+    align-self: flex-end;
+}
+
+#submit-btn {
+    margin-top: 3vh;
+    margin-left: 2.5vw;
 }
