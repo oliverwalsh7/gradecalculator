@@ -59,7 +59,7 @@ function submit() {
     }
     var gpaHours = $('#curr-GPA').val();
     var qualityPoints = $('#curr-QP').val();
-    calculateOptimalPassFail(gpaHours, qualityPoints);
+    //calculateOptimalPassFail(gpaHours, qualityPoints);
     console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
 }
 

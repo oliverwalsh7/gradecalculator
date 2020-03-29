@@ -38,8 +38,7 @@ html * {
 
 .topbar-text {
     font-size: 90%;
-    letter-spacing: .5vw;
-
+    letter-spacing: .75vw;
 }
 
 .footer-text{
@@ -105,8 +104,8 @@ html * {
 }
 
 select {
-    background: rgb(199, 173, 107, .7);
-    width: 50vw;
+    background: rgb(199, 173, 107, .5);
+    width: 10vw;
 }
 
 .input-box {
@@ -115,6 +114,7 @@ select {
     width: 100%;
     height: 100%;
     color: ivory;
+    margin-left: 2.5vw;
 }
 
 .header {
