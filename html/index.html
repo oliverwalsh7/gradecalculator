@@ -42,28 +42,35 @@
                 <label for ="curr-QP">Total Quality Points:</label>
                 <input type="text" id="curr-QP" placeholder="400">
 
-                <div class= "grid-container">
 
-                    <table>
-
-                        <div class = "grid-grade-col">
-                            <label for="grade">Choose Grade:</label>
-                            <div class="grade-colm" id="grades">
+                    
+                    <table style="width:100%">
+                        <tr>
+                            <th>Course</th>
+                            <th>Grade</th>
+                            <th>Credits</th>
+                        </tr>
+                        <tr >
+                            <td>
+                                <div class="course-colm" id="courses">
+                                <!--Course COLUMN-->
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-colm" id="grades">
                                 <!--GRADES COLUMN-->
-                            </div>
-                        </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="credits-colm" id="credits">
+                                    <!--CREDITS COLUMN-->
+                                </div>
+                            </td>
+                        </tr>
 
-                        <div class="grid-pf-col">
-                            <label for="credits">Enter Credits:</label>
-                            <div class="credits-colm" id="credits">
-                                <!--CREDITS COLUMN-->
-                            </div>
-                            <button type="submit" id="submit-btn">Submit</button>
-                        </div>
-
-                     </table>
-
-                </div>
+                      
+                    </table> 
+                    <button type="submit" id="submit-btn">Submit</button>
             </div>  
         </div>
     </div>
@@ -78,3 +85,19 @@
     <script src = "../js/script.js"></script>
 </body>
 </html>
+
+
+<!-- <div class="grade-colm">
+    <label for="grade">Choose Grade:</label>
+    <div class="grade-colm" id="grades">
+        
+    </div>
+</div>
+
+<div class="credit-colm">
+    <label for="credits">Enter Credits:</label>
+    <div class="credits-colm" id="credits">
+      
+    </div>
+    <button type="submit" id="submit-btn">Submit</button>
+</div> -->

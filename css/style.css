@@ -44,7 +44,7 @@ header {
     width: 100%;
     height: 5.5vh;
     margin: 0px;
-    margin-top: calc(100vh - 8vh);
+    margin-top: 86.5vh;
     position: relative;
     bottom: 0;
 }
@@ -52,14 +52,14 @@ header {
 .topbar-text {
     font-size: 90%;
     letter-spacing: .75vw;
-    padding-top: .35vh;
+    padding-top: 1.25vh;
 }
 
 .footer-text{
     position: block;
     font-size: 12.5px;
     letter-spacing: .2vw;
-    padding-top: 1vh;
+    padding-top: 1.65vh;
 }
 
 #link {
@@ -77,7 +77,7 @@ header {
     margin: 0px;
     background: var(--ocean2);
     width: 25vw;
-    min-height: calc(100vh - 4vh);
+    height: 100%;
 }
 
 .instructions {
@@ -101,13 +101,14 @@ header {
 
 .input-wrap {
     margin: 0px;
+    margin-bottom: 5.5vh;
     background: var(--ocean3);
     width: 75vw;
-    height: 96vh;
+    height: 94.5vh;
     background-image: url("../assets/wizardhat.png");
     background-repeat: no-repeat, repeat;
     background-position: center; /* Center the image */
-    background-size: 50% cover; /* Resize the background image to cover the entire container */
+    background-size: 50vw cover; /* Resize the background image to cover the entire container */
 
 }
 
@@ -138,7 +139,6 @@ select {
 }
 
 label {
-    margin-left: 1vw;
     margin-top: 5vh;
 }
 
@@ -149,25 +149,36 @@ a {
     margin-bottom: 2vh;
 }
 
-.grid-container {
-    align-items: flex-start;
-    justify-content: space-evenly; 
-    width: 100%;
+table {
+    margin-top: 50px;
+}
+
+.rows {
+    display: inline-block;
+    width:100%;
+    background-color: black;
+    margin-top: 10px;
 }
 
 .grade-colm {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
+    width: 100px;
 }
 
 .course-colm {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
+    width: 100px;
 }
 
 .credits-colm {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
+    width: 100px;
 }
 
 button {

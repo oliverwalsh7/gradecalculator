@@ -22,10 +22,28 @@ var currentCourses = [];
 
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
-        addRow();
+        //addRow();
+        newAddRow();
     }
+}
 
-    console.log("hi");
+function newAddRow() {
+    var course = $('<input />').attr("id","course-"+classCount).appendTo('#courses');
+    var newLine = $('<div>\n</div>').appendTo('#courses');
+    $('#course').append(course);
+    $('#course').append(newLine);
+
+    var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
+    grades.map(function(val, index) {
+        gradeDropDown.append($('<option>').attr('val',val).text(val));
+    })
+    $('#grade').append(gradeDropDown);
+
+    var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
+    credits.map(function(val, index) {
+        creditDropDown.append($('<option>').attr('val',val).text(val));
+    })
+    $('#credits').append(creditDropDown);
 }
 
 function addNewGradeRow() {
