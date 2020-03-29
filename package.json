@@ -1,0 +1,23 @@
+{
+  "name": "gradecalculator",
+  "version": "1.0.0",
+  "description": "Grade calculator to help Lehigh students project their GPA's with the new pass fail option.",
+  "main": "js/script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node js/script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliverwalsh7/gradecalculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oliverwalsh7/gradecalculator/issues"
+  },
+  "homepage": "https://github.com/oliverwalsh7/gradecalculator#readme",
+  "dependencies": {
+    "node": "^13.12.0"
+  }
+}

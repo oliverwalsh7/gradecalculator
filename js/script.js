@@ -24,6 +24,8 @@ function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
         addRow();
     }
+
+    console.log("hi");
 }
 
 function addNewGradeRow() {
@@ -173,3 +175,9 @@ function convertGrade(grade) {
         return newGrade;
     }
 }
+
+$(() => {
+
+    initializeRows();
+
+}); 

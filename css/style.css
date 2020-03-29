@@ -49,7 +49,12 @@ html * {
 }
 
 #link {
-    font-size: 15px;
+    font-size: 20px;
+    color: rgb(199, 173, 107);
+    text-align: center;
+    align-items: center;
+    margin-left: 8vw;
+    margin-top: 5vh;
 }
 
 .view-container {
