@@ -3,8 +3,9 @@ body {
     --silver: #7f9295;
     --slate: #dcebf2;
     --pale: #668097;
-    --ocean: #1A1B25;
-    --ocean2: #2f3142;
+    
+    --ocean: #0b0c11;
+    --ocean2: #1d1f2b;
     --ocean3: #43465c;
     width: 100%;
 }
@@ -96,6 +97,16 @@ html * {
     background: var(--ocean3);
     width: 75vw;
     height: calc(100vh - 90px);
+    background-image: url("../assets/wizardhat.png");
+    background-repeat: no-repeat, repeat;
+    background-position: center; /* Center the image */
+    background-size: 50% cover; /* Resize the background image to cover the entire container */
+
+}
+
+select {
+    background: rgb(199, 173, 107, .7);
+    width: 50vw;
 }
 
 .input-box {
