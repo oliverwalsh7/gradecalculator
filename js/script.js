@@ -94,6 +94,7 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
     var countLowerClassesForGrade = false;
     var tempGPAHours;
     var tempQualityPoints;
+    var upperClassesToNotCount = 0;
     for (var i = 1; i <= classCount; i++) {
         console.log("i: " + i);
         for (var j = 0; j < i; j++) {
@@ -125,16 +126,19 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
                 console.log("Max GPA: " + maxGPA);
                 if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
                     maxGPA = newQualityPoints / newGPAHours; 
-                    setPassFailStatuses(k, classCount, countLowerClassesForGrade, j);
+                    setPassFailStatuses(k, classCount-upperClassesToNotCount, countLowerClassesForGrade, j);
                 }
                 else {
                     if (countLowerClassesForGrade) {
                         newGPAHours = tempGPAHours;
                         newQualityPoints = tempQualityPoints;
                     }
+                    upperClassesToNotCount++;
+                    console.log("Upper classes to not count: " + upperClassesToNotCount);
                 }
             }
             countLowerClassesForGrade = false;
+            upperClassesToNotCount = 0;
         }  
         newGPAHours = gpaHours;
         newQualityPoints = qualityPoints;
