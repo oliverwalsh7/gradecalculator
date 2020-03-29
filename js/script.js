@@ -55,11 +55,15 @@ function submit() {
     var convertedGrade;
     for (var i = 1; i <= classCount; i++) {
         convertedGrade = convertGrade($('#grade-'+i).val());
-        currentCourses.push({ name: ["class"+i], grade: convertedGrade, credits: $('#credit-'+i).val() });
+        console.log("Converted Grade: " + convertedGrade);
+        convertedCredit = convertGrade($('#credit-'+i).val());
+        console.log('Converted Credit: ' + convertedCredit);
+        currentCourses.push({ name: ["class"+i], grade: convertedGrade, credits: convertedCredit });
+        console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
     }
-    var gpaHours = $('#curr-GPA').val();
-    var qualityPoints = $('#curr-QP').val();
-    //calculateOptimalPassFail(gpaHours, qualityPoints);
+    var gpaHours = parseInt($('#curr-GPA').val());
+    var qualityPoints = parseInt($('#curr-QP').val());
+    calculateOptimalPassFail(gpaHours, qualityPoints);
     console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
 }
 
@@ -68,23 +72,35 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
     var maxGPA = qualityPoints / gpaHours;
     var newGPAHours = gpaHours;
     var newQualityPoints = qualityPoints;
-    for (var i = 1; i <= classCount+1; i++) {
+    for (var i = 1; i <= classCount; i++) {
+        console.log("i: " + i);
         for (var j = 0; j < i; j++) {
+            console.log("j: " + j);
             newGPAHours += currentCourses[j].credits;
-            newQualityPoints += (currentCourses[j].grade * newGPAHours);
+            console.log("New GPA Hours: " + newGPAHours);
+            newQualityPoints += (currentCourses[j].grade * currentCourses[j].credits);
+            console.log("New QP: " + newQualityPoints);
+            console.log("New GPA: " + (newQualityPoints / newGPAHours));
+            console.log("Max GPA: " + maxGPA);
             if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
-                maxGPA = newGPAHours / newQualityPoints; 
+                maxGPA = newQualityPoints / newGPAHours; 
                 setPassFailStatuses(j, i);
             } 
             for (var k = i-j-1; k < i; k++) { 
                 if (k === (i-j-1)) {     
                     newGPAHours = gpaHours;
                     newQualityPoints = qualityPoints;
-                } 
+                }
+                console.log("K Loop new GPA Hours: " + newGPAHours);
+                console.log("K Loop new QP: " + newQualityPoints);
+                console.log("k: " + k);
+                console.log("Current Courses for k: " + currentCourses[k]);
                 newGPAHours += currentCourses[k].credits;
-                newQualityPoints += (currentCourses[k].grade * newGPAHours);
+                newQualityPoints += (currentCourses[k].grade * currentCourses[k].credits);
+                console.log("New GPA: " + (newQualityPoints / newGPAHours));
+                console.log("Max GPA: " + maxGPA);
                 if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
-                    maxGPA = newGPAHours / newQualityPoints; 
+                    maxGPA = newQualityPoints / newQualityPoints; 
                     setPassFailStatuses(k, i);
                 } 
             }
@@ -92,6 +108,7 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
         newGPAHours = gpaHours;
         newQualityPoints = qualityPoints;
     }
+    console.log("Max GPA: " + maxGPA);
 }
 
 function setPassFailStatuses(startIndex, endIndex) {
@@ -111,9 +128,9 @@ function constructInitialPassFailStatuses() {
     }
 }
 
-function isNewGPAGreater(currentGPA, newGPAHours, newQualityPoints) {
+function isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints) {
     var newGPA = newQualityPoints / newGPAHours;
-    if (newGPA > currentGPA) {
+    if (newGPA > maxGPA) {
         return true;
     }
     return false;
@@ -173,8 +190,8 @@ function convertGrade(grade) {
             break;
         default:
             newGrade = -1;
-        return newGrade;
-    }
+    } 
+    return newGrade;
 }
 
 $(() => {
