@@ -60,6 +60,7 @@ function submit() {
     var gpaHours = $('#curr-GPA').val();
     var qualityPoints = $('#curr-QP').val();
     calculateOptimalPassFail(gpaHours, qualityPoints);
+    console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
 }
 
 function calculateOptimalPassFail(gpaHours, qualityPoints) {
@@ -180,4 +181,8 @@ $(() => {
 
     initializeRows();
 
-}); 
+    $('#submit-btn').click(function() {
+        submit();
+    });
+
+});
