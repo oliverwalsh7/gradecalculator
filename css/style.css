@@ -6,7 +6,7 @@ body {
     
     --ocean: #0b0c11;
     --ocean2: #1d1f2b;
-    --ocean3: #43465c;
+    --ocean3: #36384b;
     width: 100%;
 }
 
@@ -52,7 +52,7 @@ header {
 .topbar-text {
     font-size: 90%;
     letter-spacing: .75vw;
-    padding-top: 1.25vh;
+    padding-top: .5vh;
 }
 
 .footer-text{
@@ -62,22 +62,12 @@ header {
     padding-top: 1.65vh;
 }
 
-#link {
-    font-size: 20px;
-    color: rgb(199, 173, 107);
-    text-align: center;
-    align-items: center;
-    margin-left: 8vw;
-    margin-top: 5vh;
-}
-
-
-
 .instruct-wrap {
     margin: 0px;
     background: var(--ocean2);
     width: 25vw;
     height: 100%;
+    align-items: center;
 }
 
 .instructions {
@@ -87,7 +77,6 @@ header {
     display: block;
     line-height: 1;
     width: 100%;
-    align-items: center;
 }
 
 .step-box {
@@ -97,6 +86,33 @@ header {
     align-content: center;
     align-items: center;
     color: var(--pearl);
+}
+
+
+.header {
+    font-size: 15px;
+    margin-top: 4vh;
+    margin-bottom: 1vh;
+    text-decoration: underline;
+}
+
+.sub-text {
+    font-size: 18px;
+    margin-bottom: 1.5vh;
+    margin-right: 2vw;
+    line-height: 1.25em;
+    margin-left: 1vw;
+
+}
+
+#link {
+    font-size: 18px;
+    color: rgb(199, 173, 107);
+    margin-bottom: 1.5vh;
+    margin-right: 2vw;
+    line-height: 1.25em;
+    letter-spacing: .5vh;
+    font-style: italic;
 }
 
 .input-wrap {
@@ -109,12 +125,24 @@ header {
     background-repeat: no-repeat, repeat;
     background-position: center; /* Center the image */
     background-size: 50vw cover; /* Resize the background image to cover the entire container */
-
 }
 
-select {
-    background: rgb(199, 173, 107, .5);
+.select-btn {
+    background: rgb(199, 173, 107, .8);
     width: 10vw;
+    margin-top: 2.5vh;
+    border: 2px solid;
+    border-color: ivory;
+}
+
+.input-form {
+    background: rgb(199, 173, 107, .8);
+    width: 15vw;
+    margin-top: 2.5vh;
+}
+
+.input-form2 {
+    color: ivory;
 }
 
 .input-box {
@@ -124,18 +152,7 @@ select {
     height: 100%;
     color: ivory;
     margin-left: 2.5vw;
-}
-
-.header {
-    font-size: 12.5px;
-    margin-top: 5vh;
-    margin-bottom: 1vh;
-}
-
-.sub-text {
-    font-size: 20px;
-    margin-bottom: 1.5vh;
-    margin-right: 2vw;
+    
 }
 
 label {
@@ -147,45 +164,49 @@ a {
     color: ivory;
     align-items: center;
     margin-bottom: 2vh;
+    letter-spacing: .5vh;
 }
 
 table {
-    margin-top: 50px;
+    margin-top: 3vh;
+}
+
+th {
+    font-size: 1.25em;
+    text-decoration: underline;
 }
 
 .rows {
     display: inline-block;
     width:100%;
     background-color: black;
-    margin-top: 10px;
-}
-
-.grade-colm {
-    /* display: flex;
-    flex-direction: column; */
-    display: block;
-    width: 100px;
 }
 
 .course-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
-    width: 100px;
+    width: 2.5vw;
+}
+
+.grade-colm {
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
+    width: 2.5vw;
 }
 
 .credits-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
-    width: 100px;
+    width: 2.5vw;
 }
 
 button {
-    align-self: flex-end;
+    margin-left: 0;
 }
 
 #submit-btn {
     margin-top: 3vh;
-    margin-left: 2.5vw;
 }
