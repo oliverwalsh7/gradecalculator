@@ -23,11 +23,12 @@ var currentCourses = [];
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
         //addRow();
-        newAddRow();
+        addNewRow();
     }
 }
 
-function newAddRow() {
+function addNewRow() {
+    classCount++;
     var course = $('<input />').attr("id","course-"+classCount).appendTo('#courses');
     var newLine = $('<div>\n</div>').appendTo('#courses');
     $('#course').append(course);
@@ -46,28 +47,28 @@ function newAddRow() {
     $('#credits').append(creditDropDown);
 }
 
-function addNewGradeRow() {
-    var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
-    grades.map(function(val, index) {
-        gradeDropDown.append($('<option>').attr('val',val).text(val));
-    })
-    $('#grade').append(gradeDropDown);
-}
+// function addNewGradeRow() {
+//     var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
+//     grades.map(function(val, index) {
+//         gradeDropDown.append($('<option>').attr('val',val).text(val));
+//     })
+//     $('#grade').append(gradeDropDown);
+// }
 
-function addNewCreditRow() {
-    var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
-    credits.map(function(val, index) {
-        creditDropDown.append($('<option>').attr('val',val).text(val));
-    })
-    $('#credits').append(creditDropDown);
-}
+// function addNewCreditRow() {
+//     var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
+//     credits.map(function(val, index) {
+//         creditDropDown.append($('<option>').attr('val',val).text(val));
+//     })
+//     $('#credits').append(creditDropDown);
+// }
 
-function addRow() {
-    classCount++;
-    //currentCourses.push(["class"+classCount, 0, 0]);
-    addNewGradeRow();
-    addNewCreditRow();
-}
+// function addRow() {
+//     classCount++;
+//     //currentCourses.push(["class"+classCount, 0, 0]);
+//     addNewGradeRow();
+//     addNewCreditRow();
+// }
 
 function submit() {
     var convertedGrade;
