@@ -1,17 +1,14 @@
 
 # Grade Calculator
-Grade calculator to help Lehigh students project their GPA's with the new pass fail option. 
+GPA optimizer to help Lehigh students project their GPA's with the new pass fail option. 
+Algorithm returns which classes you should pass/fail this upcoming semester in order to maximize your cumulative GPA.
 
-## Contributors:
+## Developers:
 - Oliver Walsh
-- Nicholas Silva
-- Ryan McGuinness
 - Maxim Vezenov
 - Jimmy Johnson
 
-### Dedicated to Lehigh Students seeking academic wisdom
+## Contributers:
+- Ryan McGuinness
 
-
-
-
-
+### Dedicated to Lehigh students seeking academic wisdom
