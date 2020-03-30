@@ -13,10 +13,10 @@ var newQualityPoints = 0;
 // class, grade value, credits
 // var currentCourses = [ 
 //     [name: "class1", grade: 0, credits: 0],
-//     ["class2", 0, 0],
-//     ["class3", 0, 0],
-//     ["class4", 0, 0],
-//     ["class5", 0, 0]
+//     [name: "class2", grade: 0, credits: 0],
+//     [name: "class3", grade: 0, credits: 0],
+//     [name: "class4", grade: 0, credits: 0],
+//     [name: "class5", grade: 0, credits: 0]
 //   ];
   
 // append new value to the array
@@ -26,23 +26,24 @@ var newQualityPoints = 0;
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
         //addRow();
-        newAddRow();
+        addNewRow();
     }
 }
 
-function newAddRow() {
-    var course = $('<input class="input-form"/>').attr("id","course-"+classCount).appendTo('#courses');
+function addNewRow() {
+    classCount++;
+    var course = $('<input />').attr("id","course-"+classCount).appendTo('#courses');
     var newLine = $('<div>\n</div>').appendTo('#courses');
     $('#course').append(course);
     $('#course').append(newLine);
 
-    var gradeDropDown = $('<select class="select-btn">').attr("id","grade-"+classCount).appendTo('#grades');
+    var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
     grades.map(function(val, index) {
         gradeDropDown.append($('<option>').attr('val',val).text(val));
     })
     $('#grade').append(gradeDropDown);
 
-    var creditDropDown = $('<select class="select-btn">').attr("id","credit-"+classCount).appendTo('#credits');
+    var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
     credits.map(function(val, index) {
         creditDropDown.append($('<option>').attr('val',val).text(val));
     })
@@ -76,54 +77,38 @@ function submit() {
     var convertedGrade;
     for (var i = 1; i <= classCount; i++) {
         convertedGrade = convertGrade($('#grade-'+i).val());
-        currentCourses.push({ name: ["class"+i], grade: convertedGrade, credits: $('#credit-'+i).val() });
+        console.log("Converted Grade: " + convertedGrade);
+        convertedCredit = parseInt($('#credit-'+i).val());
+        console.log('Converted Credit: ' + convertedCredit);
+        currentCourses.push({ name: ["class"+i], grade: convertedGrade, credits: convertedCredit });
+        console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
     }
-    var gpaHours = $('#curr-GPA').val();
-    var qualityPoints = $('#curr-QP').val();
-    //calculateOptimalPassFail(gpaHours, qualityPoints);
+    var gpaHours = parseInt($('#curr-GPA').val());
+    var qualityPoints = parseInt($('#curr-QP').val());
+    var classStatusesAndNewGPA = calculateOptimalPassFail(gpaHours, qualityPoints);
     console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
 }
 
 function calculateOptimalPassFail(gpaHours, qualityPoints) {
-    constructInitialPassFailStatuses();
+    currentCourses.sort(function(a, b) {
+        return b.grade - a.grade;
+    });
+    for (var i = 0; i < currentCourses.length; i++) {
+        console.log("Current Course " + i + ": " + currentCourses[i].grade);
+    }
     var maxGPA = qualityPoints / gpaHours;
-    newGPAHours = gpaHours;
-    newQualityPoints = qualityPoints;
-    for (var i = 1; i <= classCount+1; i++) {
-        for (var j = 0; j < i; j++) {
-            newGPAHours += currentCourses[j].credits;
-            newQualityPoints += (currentCourses[j].grade * newGPAHours);
-            if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
-                maxGPA = newGPAHours / newQualityPoints; 
-                setPassFailStatuses(j, i);
-            } 
-            for (var k = i-j-1; k < i; k++) { 
-                if (k === (i-j-1)) {     
-                    newGPAHours = gpaHours;
-                    newQualityPoints = qualityPoints;
-                } 
-                newGPAHours += currentCourses[k].credits;
-                newQualityPoints += (currentCourses[k].grade * newGPAHours);
-                if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
-                    maxGPA = newGPAHours / newQualityPoints; 
-                    setPassFailStatuses(k, i);
-                } 
-            }
-        }  
-        newGPAHours = gpaHours;
-        newQualityPoints = qualityPoints;
-    }
-}
-
-function setPassFailStatuses(startIndex, endIndex) {
-    for (var i = 0; i <= classCount; i++) {
-        if ((i >= startIndex) && (i < endIndex)) { 
-            passFailStatuses[i+1] = 1;
-        }
-        else {
-            passFailStatuses[i+1] = 0;
+    var newGPAHours = gpaHours;
+    var newQualityPoints = qualityPoints;
+    var upperBoundForClassesToTake;
+    for (var i = 0; i < classCount; i++) {
+        newGPAHours += currentCourses[i].credits;
+        newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+        maxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
+        if (maxGPA !== (newQualityPoints / newGPAHours)) {
+            upperBoundForClassesToTake = i;
         }
     }
+    return { gpa: maxGPA, upperBoundForClassesToTake: upperBoundForClassesToTake };
 }
 
 function constructInitialPassFailStatuses() {
@@ -132,9 +117,9 @@ function constructInitialPassFailStatuses() {
     }
 }
 
-function isNewGPAGreater(currentGPA, newGPAHours, newQualityPoints) {
+function isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints) {
     var newGPA = newQualityPoints / newGPAHours;
-    if (newGPA > currentGPA) {
+    if (newGPA > maxGPA) {
         return true;
     }
     return false;
@@ -154,54 +139,42 @@ function convertGrade(grade) {
             newGrade = 4; 
             break;
         case 'A-': 
-            newGrade = 3.75; 
+            newGrade = 3.7; 
             break;
         case 'B+': 
-            newGrade = 3.25; 
+            newGrade = 3.3; 
             break;
         case 'B': 
             newGrade = 3; 
             break;
         case 'B-': 
-            newGrade = 2.75; 
+            newGrade = 2.7; 
             break;
         case 'C+': 
-            newGrade = 2.25; 
+            newGrade = 2.3; 
             break;
         case 'C': 
             newGrade = 2; 
             break;
         case 'C-': 
-            newGrade = 1.75; 
+            newGrade = 1.7; 
             break;
         case 'D+': 
-            newGrade = 1.25; 
+            newGrade = 1.3; 
             break;
         case 'D': 
             newGrade = 1; 
             break;
         case 'D-': 
-            newGrade = .75; 
+            newGrade = .7; 
             break;
         case 'F': 
             newGrade = 0; 
             break;
-        case '1': 
-            newGrade = 1; 
-            break;
-        case '2': 
-            newGrade = 2; 
-            break;
-        case '3': 
-            newGrade = 3; 
-            break;
-        case '4': 
-            newGrade = 4; 
-            break;
         default:
             newGrade = -1;
-        return newGrade;
-    }
+    } 
+    return newGrade;
 }
 
 $(() => {
@@ -214,3 +187,91 @@ $(() => {
     });
 
 });
+
+/*
+*
+*   OG Unnecessarily Hard Algorithm. It almost worked. RIP
+*
+*/
+// function calculateOptimalPassFail(gpaHours, qualityPoints) {
+//     constructInitialPassFailStatuses();
+//     var maxGPA = qualityPoints / gpaHours;
+//     var tempMaxGPA = qualityPoints / gpaHours;
+//     var newGPAHours = gpaHours;
+//     var newQualityPoints = qualityPoints;
+//     var countLowerClassForGrade = false;
+//     var countAllLowerClassesForGrade = false;
+//     var tempGPAHours;
+//     var tempQualityPoints;
+//     var upperClassesToNotCount = 0;
+//     for (var i = 1; i <= classCount; i++) {
+//         console.log("i: " + i);
+//         for (var j = 0; j < i; j++) {
+//             console.log("j: " + j);
+//             newGPAHours += currentCourses[j].credits;
+//             console.log("New GPA Hours: " + newGPAHours);
+//             newQualityPoints += (currentCourses[j].grade * currentCourses[j].credits);
+//             console.log("New QP: " + newQualityPoints);
+//             console.log("New GPA: " + (newQualityPoints / newGPAHours));
+//             console.log("Max GPA: " + maxGPA);
+//             if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
+//                 maxGPA = newQualityPoints / newGPAHours; 
+//                 countLowerClassForGrade = true;
+//                 setPassFailStatuses(0, j, countLowerClassForGrade, j);
+//             } 
+//             tempGPAHours += currentCourses[j].credits;
+//             tempQualityPoints += (currentCourses[j].grade * currentCourses[j].credits);
+//             if (isNewGPAGreater(maxGPA, tempGPAHours, tempQualityPoints)) {
+//                 tempMaxGPA = tempQualityPoints / tempGPAHours; 
+//                 countAllLowerClassesForGrade = true;
+//                 setPassFailStatuses(0, j, countAllLowerClassesForGrade, j);
+//             }
+//             for (var k = classCount-1; k >= i-j-1; k--) { 
+//                 if (k === (classCount-1) && (!countAllLowerClassesForGrade || !countLowerClassForGrade)) {     
+//                     newGPAHours = gpaHours;
+//                     newQualityPoints = qualityPoints;
+//                 }
+//                 tempGPAHours += currentCourses[k].credits;
+//                 tempQualityPoints += (currentCourses[k].grade * currentCourses[k].credits);
+//                 console.log("K: " + k);
+//                 if (isNewGPAGreater(tempMaxGPA, tempGPAHours, tempQualityPoints)) {
+//                     tempMaxGPA = tempQualityPoints / tempGPAHours; 
+//                     setPassFailStatuses(k, classCount-upperClassesToNotCount, countAllLowerClassesForGrade, j);
+//                 }
+//                 newGPAHours += currentCourses[k].credits;
+//                 newQualityPoints += (currentCourses[k].grade * currentCourses[k].credits);
+//                 if (isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints)) {
+//                     maxGPA = newQualityPoints / newGPAHours; 
+//                     setPassFailStatuses(k, classCount-upperClassesToNotCount, countLowerClassForGrade, j);
+//                 }
+//                 upperClassesToNotCount++;
+//                 console.log("Upper classes to not count: " + upperClassesToNotCount);
+//             }  
+//             newGPAHours = gpaHours;
+//             newQualityPoints = qualityPoints;
+//         }
+//         tempGPAHours = gpaHours;
+//         tempQualityPoints = qualityPoints;
+//         countAllLowerClassesForGrade = false;
+//         countLowerClassForGrade = false;
+//         upperClassesToNotCount = 0;
+//     }
+//     console.log("Max GPA: " + maxGPA + ", Temp Max GPA: " + tempMaxGPA);
+//     for (var i = 1; i <= classCount; i++) {
+//         console.log("Pass Fail Status Class " + i + ": " + passFailStatuses[i]);
+//     }
+// }
+
+// function setPassFailStatuses(startIndex, endIndex, countLowerClassesForGrade, lowerClassesBound) {
+//     for (var i = 0; i < classCount; i++) {
+//         if ((i >= startIndex) && (i < endIndex)) { 
+//             passFailStatuses[i+1] = 1;
+//         }
+//         if (countLowerClassesForGrade && i <= lowerClassesBound) {
+//             passFailStatuses[i+1] = 1;
+//         }
+//         else if (countLowerClassesForGrade && i > lowerClassesBound && i < endIndex) {
+//             passFailStatuses[i+1] = 0;
+//         }
+//     }
+// }
