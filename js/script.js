@@ -9,22 +9,8 @@ var currentCourses = [];
 var newMaxGPA;
 var maxClass = 8;
 
-// class, grade value, credits
-// var currentCourses = [ 
-//     [name: "class1", grade: 0, credits: 0],
-//     [name: "class2", grade: 0, credits: 0],
-//     [name: "class3", grade: 0, credits: 0],
-//     [name: "class4", grade: 0, credits: 0],
-//     [name: "class5", grade: 0, credits: 0]
-//   ];
-  
-// append new value to the array
-//arr.push(["class6", 6]);
-
-
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
-        //addRow();
         addNewRow();
     }
 }
