@@ -112,6 +112,9 @@ function displayOut(upperBoundForClassesToTake) {
     
     var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
                   " and you should keep credit for these classes: \n";
+    if (upperBoundForClassesToTake == 0) { 
+        outText += "none"; 
+    }
     for (var i = 0; i < upperBoundForClassesToTake; i++) {
         if (i === (upperBoundForClassesToTake - 1)) {
             outText += currentCourses[i].name
