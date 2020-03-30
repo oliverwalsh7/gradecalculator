@@ -181,7 +181,10 @@ header {
     height: 100%;
     color: ivory;
     margin-left: 2.5vw;
-    
+}
+
+::placeholder {
+    color: black;
 }
 
 label {

@@ -7,6 +7,7 @@ const startingClassCount = 5;
 var classCount = 0;
 var currentCourses = [];
 var newMaxGPA;
+var maxClass = 8;
 
 // class, grade value, credits
 // var currentCourses = [ 
@@ -30,7 +31,7 @@ function initializeRows() {
 
 function addNewRow() {
     classCount++;
-    var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + '/>').attr("id","course-"+classCount).appendTo('#courses');
+    var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + ' />').attr("id","course-"+classCount).appendTo('#courses');
     var newLine = $('<div>\n</div>').appendTo('#courses');
     $('#course').append(course);
     $('#course').append(newLine);
@@ -107,11 +108,12 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
 }
 
 function displayOut(upperBoundForClassesToTake) {
-    $('#out').text("");
+    $('#out').empty();
+    
     var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
-                  " and you should pass these classes: ";
+                  " and you should keep credit for these classes: \n";
     for (var i = 0; i < upperBoundForClassesToTake; i++) {
-        if (i === (upperBoundForClassesToTake-1)) {
+        if (i === (upperBoundForClassesToTake - 1)) {
             outText += currentCourses[i].name
         }
         else {
@@ -119,6 +121,7 @@ function displayOut(upperBoundForClassesToTake) {
         }
     }
     $('#out').append(outText);
+
 }
 
 function truncateDecimals (num, digits) {
@@ -186,7 +189,9 @@ $(() => {
     });
 
     $('#addRow-btn').click(function() {
-        addNewRow();
+        
+        if (classCount < maxClass) addNewRow();
+    
     });
 
     $('#removeRow-btn').click(function() {
