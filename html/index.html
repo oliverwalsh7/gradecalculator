@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>GPA Optimizer</title>
-    <link rel="stylesheet" type = "text/css" href="../css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-</head>
-<body>
+    <head>
+        <title>GPA Optimizer</title>
+        <link rel="stylesheet" type = "text/css" href="../css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <div class="topbar-text">◐ grade wizard ◑</div>
+        </header>
 
-    <header><div class="topbar-text">◐ grade wizard ◑</div></header>
-
-    <div class="view-container">
-      
-        <!--INSTRUCTIONS BOX-->
-        <div class="instruct-wrap">
-            <div class="instructions">
-                <div class="step-box">
-                    <div class="header"> Step One </div>
-                    <div class="sub-text"> Obtain your unofficial academic transcript from <a id="link" target="_blank" rel="noopener noreferrer" href="https://ssbp.lehigh.edu/ssb/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu"> Banner </a></div>
-                    
-                </div>
-                <div class="step-box">
-                    <div class="header"> Step Two </div>
-                    <div class="sub-text"> Retrieve your total credit hours & total quality points </div>
-                </div>
-                <div class="step-box">
-                    <div class="header"> Step Three </div>
-                    <div class="sub-text"> Input your hypothetical / projected semesterly grades in the input section → </div>
-                </div>
-
-                <div class="about-section">
-                    <div class="about-header">
-                        About the Project
+        <div class="view-container">
+            <!--INSTRUCTIONS BOX-->
+            <div class="instruct-wrap">
+                <div class="instructions">
+                    <div class="step-box">
+                        <div class="header"> Step One </div>
+                        <div class="sub-text"> Obtain your unofficial academic transcript from 
+                            <a id="link" target="_blank" rel="noopener noreferrer" href="https://ssbp.lehigh.edu/ssb/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu"> Banner </a>
+                        </div>
                     </div>
-                    <div class="about-text">
-                        This is an algorithm dedicated to optimizing one's cumulative GPA with consideration
-                        of the new pass/fail option offered at many universities nationwide.
+                    <div class="step-box">
+                        <div class="header"> Step Two </div>
+                        <div class="sub-text"> Retrieve your total credit hours & total quality points </div>
+                    </div>
+                    <div class="step-box">
+                        <div class="header"> Step Three </div>
+                        <div class="sub-text"> Input your hypothetical / projected semesterly grades in the input section → </div>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-header">
+                            About the Project
+                        </div>
+                        <div class="about-text">
+                            This is an algorithm dedicated to optimizing one's cumulative GPA with consideration
+                            of the new pass/fail option offered at many universities nationwide.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!--INPUT BOX-->
-        <div class="input-wrap">
-            <div class="input-box">
-
-                <div class="input-form2">
-                    <label for ="curr-GPA">Total Credit Hours:</label>
-                    <input type="text" id="curr-GPA" placeholder="100">
-                </div>
-
-                <div class="input-form2">
-                    <label for ="curr-QP">Total Quality Points:</label>
-                    <input type="text" id="curr-QP" placeholder="400">
-                </div>
-                
-
+            <!--INPUT BOX-->
+            <div class="input-wrap">
+                <div class="input-box">
+                    <div class="input-form2">
+                        <label for ="curr-GPA">Total Credit Hours:</label>
+                        <input type="text" id="curr-GPA" placeholder="100">
+                    </div>
+                    <div class="input-form2">
+                        <label for ="curr-QP">Total Quality Points:</label>
+                        <input type="text" id="curr-QP" placeholder="400">
+                    </div>
                     <table style="width:100%">
                         <tr>
                             <th class="th-class">Course</th>
@@ -68,12 +65,12 @@
                         <tr>
                             <td>
                                 <div class="course-colm" id="courses">
-                                <!--Course COLUMN-->
+                                    <!--Course COLUMN-->
                                 </div>
                             </td>
                             <td>
                                 <div class="grade-colm" id="grades">
-                                <!--GRADES COLUMN-->
+                                    <!--GRADES COLUMN-->
                                 </div>
                             </td>
                             <td>
@@ -82,47 +79,21 @@
                                 </div>
                             </td>
                         </tr>
-
-                      
                     </table> 
-
-                <button type="submit" id="submit-btn">Submit</button>
-
-                <button type="submit" id="addRow-btn">Add Row</button>
-
-                <button type="submit" id="removeRow-btn">Remove Row</button>
-
-                <div class="output-box" id="out">
-                    <!--DISPLAY OUTPUTS-->
-                </div>
-
-            </div>  
+                    <button type="submit" id="submit-btn">Submit</button>
+                    <button type="submit" id="addRow-btn">Add Row</button>
+                    <button type="submit" id="removeRow-btn">Remove Row</button>
+                    <div class="output-box" id="out">
+                        <!--DISPLAY OUTPUTS-->
+                    </div>
+                </div>  
+            </div>
         </div>
-    </div>
-
-    <div class="footer">
-        <div class="footer-text">
-            brought to you by oliver walsh, maxim vezenov, & jimmy johnson
+        <div class="footer">
+            <div class="footer-text">
+                brought to you by oliver walsh, maxim vezenov, & jimmy johnson
+            </div>
         </div>
-    </div>
-   
-    <!--Script Swaaaagggggg-->
-    <script src = "../js/script.js"></script>
-</body>
+        <script src = "../js/script.js"></script>
+    </body>
 </html>
-
-
-<!-- <div class="grade-colm">
-    <label for="grade">Choose Grade:</label>
-    <div class="grade-colm" id="grades">
-        
-    </div>
-</div>
-
-<div class="credit-colm">
-    <label for="credits">Enter Credits:</label>
-    <div class="credits-colm" id="credits">
-      
-    </div>
-    <button type="submit" id="submit-btn">Submit</button>
-</div> -->
