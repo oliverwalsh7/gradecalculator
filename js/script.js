@@ -5,10 +5,8 @@ const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D
 const credits = ['N/A','1','2','3','4'];
 const startingClassCount = 5;
 var classCount = 0;
-var passFailStatuses = {};
 var currentCourses = [];
-var newGPAHours = 0;
-var newQualityPoints = 0;
+var newMaxGPA;
 
 // class, grade value, credits
 // var currentCourses = [ 
@@ -32,7 +30,7 @@ function initializeRows() {
 
 function addNewRow() {
     classCount++;
-    var course = $('<input class="input-form"/>').attr("id","course-"+classCount).appendTo('#courses');
+    var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + '/>').attr("id","course-"+classCount).appendTo('#courses');
     var newLine = $('<div>\n</div>').appendTo('#courses');
     $('#course').append(course);
     $('#course').append(newLine);
@@ -75,17 +73,24 @@ function addNewRow() {
 
 function submit() {
     var convertedGrade;
+    var convertedCredit;
+    var courseName;
     for (var i = 1; i <= classCount; i++) {
         convertedGrade = convertGrade($('#grade-'+i).val());
-        console.log("Converted Grade: " + convertedGrade);
         convertedCredit = parseInt($('#credit-'+i).val());
-        console.log('Converted Credit: ' + convertedCredit);
-        currentCourses.push({ name: ["class"+i], grade: convertedGrade, credits: convertedCredit });
+        if ($('#course-'+i).val() === '') {
+            courseName = $('#course-'+i).attr('placeholder');
+        }
+        else {
+            courseName = $('#course-'+i).val();
+        }
+        currentCourses.push({ name: courseName, grade: convertedGrade, credits: convertedCredit });
         console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
     }
     var gpaHours = parseInt($('#curr-GPA').val());
     var qualityPoints = parseInt($('#curr-QP').val());
-    var classStatusesAndNewGPA = calculateOptimalPassFail(gpaHours, qualityPoints);
+    var upperBoundForClassesToTake = calculateOptimalPassFail(gpaHours, qualityPoints);
+    displayOut(upperBoundForClassesToTake);
     console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
 }
 
@@ -106,29 +111,36 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
         maxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
         if (maxGPA !== (newQualityPoints / newGPAHours)) {
             upperBoundForClassesToTake = i;
+            break;
         }
     }
-    return { gpa: maxGPA, upperBoundForClassesToTake: upperBoundForClassesToTake };
+    newMaxGPA = maxGPA;
+    console.log(upperBoundForClassesToTake);
+    return upperBoundForClassesToTake;
 }
 
-function constructInitialPassFailStatuses() {
-    for (var i = 1; i <= classCount; i++) {
-        passFailStatuses[i] = 0;
-    }
-}
-
-function isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints) {
-    var newGPA = newQualityPoints / newGPAHours;
-    if (newGPA > maxGPA) {
-        return true;
-    }
-    return false;
-}
-
-function displayOut () {
-    var outText = "Your new GPA is " + maxGPA + 
+function displayOut(upperBoundForClassesToTake) {
+    var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
                   " and you should pass these classes: ";
+    for (var i = 0; i < upperBoundForClassesToTake; i++) {
+        if (i === (upperBoundForClassesToTake-1)) {
+            outText += currentCourses[i].name
+        }
+        else {
+            outText += currentCourses[i].name + ", "
+        }
+    }
     $('#out').append(outText);
+}
+
+function truncateDecimals (num, digits) {
+    var numS = num.toString(),
+        decPos = numS.indexOf('.'),
+        substrLength = decPos == -1 ? numS.length : 1 + decPos + digits,
+        trimmedResult = numS.substr(0, substrLength),
+        finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
+
+    return parseFloat(finalResult);
 }
 
 // Converts the dropdown select options into integers 
@@ -183,7 +195,6 @@ $(() => {
 
     $('#submit-btn').click(function() {
         submit();
-        displayOut();
     });
 
 });
@@ -274,4 +285,18 @@ $(() => {
 //             passFailStatuses[i+1] = 0;
 //         }
 //     }
+// }
+
+// function constructInitialPassFailStatuses() {
+//     for (var i = 1; i <= classCount; i++) {
+//         passFailStatuses[i] = 0;
+//     }
+// }
+
+// function isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints) {
+//     var newGPA = newQualityPoints / newGPAHours;
+//     if (newGPA > maxGPA) {
+//         return true;
+//     }
+//     return false;
 // }
