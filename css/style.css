@@ -92,6 +92,7 @@ header {
 .header {
     font-size: 15px;
     margin-top: 4vh;
+    margin-left: 1vw;
     margin-bottom: 1vh;
     text-decoration: underline;
 }
@@ -102,7 +103,6 @@ header {
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 1vw;
-
 }
 
 #link {
@@ -115,6 +115,31 @@ header {
     font-style: italic;
 }
 
+.about-section {
+    margin-top: 5vh;
+    margin-right: 2vw;
+    border-color: var(--pearl);
+}
+
+.about-header {
+    font-size: 17px;
+    font-style: italic;
+    margin-bottom: 1.5vh;
+    margin-right: 2vw;
+    line-height: 1.25em;
+    margin-left: 2.5vw;
+    color: var(--pearl);
+}
+
+.about-text {
+    font-size: 15px;
+    margin-bottom: 1.5vh;
+    margin-right: 2vw;
+    line-height: 1.25em;
+    margin-left: 2.5vw;
+    color: var(--pearl);
+}
+
 .input-wrap {
     margin: 0px;
     margin-bottom: 5.5vh;
@@ -125,6 +150,7 @@ header {
     background-repeat: no-repeat, repeat;
     background-position: center; /* Center the image */
     background-size: 50vw cover; /* Resize the background image to cover the entire container */
+    justify-content: center;
 }
 
 .select-btn {
@@ -139,6 +165,9 @@ header {
     background: rgb(199, 173, 107, .8);
     width: 15vw;
     margin-top: 2.5vh;
+    border: 2px solid rounded;
+    border-color: ivory;
+    border-radius: 3px;
 }
 
 .input-form2 {
@@ -171,7 +200,7 @@ table {
     margin-top: 3vh;
 }
 
-th {
+.th-class {
     font-size: 1.25em;
     text-decoration: underline;
 }
@@ -186,25 +215,39 @@ th {
     /* display: flex;
     flex-direction: column; */
     display: block;
-    width: 2.5vw;
+    width: 15vw;
 }
 
 .grade-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
-    width: 2.5vw;
+    width: 15vw;
 }
 
 .credits-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
-    width: 2.5vw;
+    width: 15vw;
 }
 
 button {
     margin-left: 0;
+}
+
+.output-box {
+    font-size: 1em;
+    color: var(--pearl);
+    margin-top: 3vh;
+    background-color: #131831;
+    border: 1px solid;
+    border-color: ivory;
+    width: 92%;
+}
+
+#out {
+    padding: 1vw 5vh;
 }
 
 #submit-btn {

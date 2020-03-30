@@ -7,6 +7,9 @@ const startingClassCount = 5;
 var classCount = 0;
 var passFailStatuses = {};
 var currentCourses = [];
+var newGPAHours = 0;
+var newQualityPoints = 0;
+
 // class, grade value, credits
 // var currentCourses = [ 
 //     [name: "class1", grade: 0, credits: 0],
@@ -28,46 +31,46 @@ function initializeRows() {
 }
 
 function newAddRow() {
-    var course = $('<input />').attr("id","course-"+classCount).appendTo('#courses');
+    var course = $('<input class="input-form"/>').attr("id","course-"+classCount).appendTo('#courses');
     var newLine = $('<div>\n</div>').appendTo('#courses');
     $('#course').append(course);
     $('#course').append(newLine);
 
-    var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
+    var gradeDropDown = $('<select class="select-btn">').attr("id","grade-"+classCount).appendTo('#grades');
     grades.map(function(val, index) {
         gradeDropDown.append($('<option>').attr('val',val).text(val));
     })
     $('#grade').append(gradeDropDown);
 
-    var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
+    var creditDropDown = $('<select class="select-btn">').attr("id","credit-"+classCount).appendTo('#credits');
     credits.map(function(val, index) {
         creditDropDown.append($('<option>').attr('val',val).text(val));
     })
     $('#credits').append(creditDropDown);
 }
 
-function addNewGradeRow() {
-    var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
-    grades.map(function(val, index) {
-        gradeDropDown.append($('<option>').attr('val',val).text(val));
-    })
-    $('#grade').append(gradeDropDown);
-}
+// function addNewGradeRow() {
+//     var gradeDropDown = $('<select>').attr("id","grade-"+classCount).appendTo('#grades');
+//     grades.map(function(val, index) {
+//         gradeDropDown.append($('<option>').attr('val',val).text(val));
+//     })
+//     $('#grade').append(gradeDropDown);
+// }
 
-function addNewCreditRow() {
-    var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
-    credits.map(function(val, index) {
-        creditDropDown.append($('<option>').attr('val',val).text(val));
-    })
-    $('#credits').append(creditDropDown);
-}
+// function addNewCreditRow() {
+//     var creditDropDown = $('<select>').attr("id","credit-"+classCount).appendTo('#credits');
+//     credits.map(function(val, index) {
+//         creditDropDown.append($('<option>').attr('val',val).text(val));
+//     })
+//     $('#credits').append(creditDropDown);
+// }
 
-function addRow() {
-    classCount++;
-    //currentCourses.push(["class"+classCount, 0, 0]);
-    addNewGradeRow();
-    addNewCreditRow();
-}
+// function addRow() {
+//     classCount++;
+//     //currentCourses.push(["class"+classCount, 0, 0]);
+//     addNewGradeRow();
+//     addNewCreditRow();
+// }
 
 function submit() {
     var convertedGrade;
@@ -84,8 +87,8 @@ function submit() {
 function calculateOptimalPassFail(gpaHours, qualityPoints) {
     constructInitialPassFailStatuses();
     var maxGPA = qualityPoints / gpaHours;
-    var newGPAHours = gpaHours;
-    var newQualityPoints = qualityPoints;
+    newGPAHours = gpaHours;
+    newQualityPoints = qualityPoints;
     for (var i = 1; i <= classCount+1; i++) {
         for (var j = 0; j < i; j++) {
             newGPAHours += currentCourses[j].credits;
@@ -135,6 +138,12 @@ function isNewGPAGreater(currentGPA, newGPAHours, newQualityPoints) {
         return true;
     }
     return false;
+}
+
+function displayOut () {
+    var outText = "Your new GPA is " + newGPAHours + 
+                  " and your new number of quality points is " + newQualityPoints;
+    $('#out').append(outText);
 }
 
 // Converts the dropdown select options into integers 
@@ -201,6 +210,7 @@ $(() => {
 
     $('#submit-btn').click(function() {
         submit();
+        displayOut();
     });
 
 });

@@ -31,6 +31,16 @@
                     <div class="header"> Step Three </div>
                     <div class="sub-text"> Input your hypothetical / projected semesterly grades in the input section → </div>
                 </div>
+
+                <div class="about-section">
+                    <div class="about-header">
+                        About the Project
+                    </div>
+                    <div class="about-text">
+                        This is an algorithm dedicated to optimizing one's cumulative GPA with consideration
+                        of the new pass/fail option offered at many universities nationwide.
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -47,13 +57,13 @@
                     <label for ="curr-QP">Total Quality Points:</label>
                     <input type="text" id="curr-QP" placeholder="400">
                 </div>
+                
 
-                    
                     <table style="width:100%">
                         <tr>
-                            <th>Course</th>
-                            <th>Grade</th>
-                            <th>Credits</th>
+                            <th class="th-class">Course</th>
+                            <th class="th-class">Grade</th>
+                            <th class="th-class">Credits</th>
                         </tr>
                         <tr>
                             <td>
@@ -75,7 +85,13 @@
 
                       
                     </table> 
-                    <button type="submit" id="submit-btn">Submit</button>
+
+                <button type="submit" id="submit-btn">Submit</button>
+
+                <div class="output-box" id="out">
+                    <!--DISPLAY OUTPUTS-->
+                </div>
+
             </div>  
         </div>
     </div>
