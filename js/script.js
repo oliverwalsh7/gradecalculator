@@ -126,8 +126,8 @@ function isNewGPAGreater(maxGPA, newGPAHours, newQualityPoints) {
 }
 
 function displayOut () {
-    var outText = "Your new GPA is " + newGPAHours + 
-                  " and your new number of quality points is " + newQualityPoints;
+    var outText = "Your new GPA is " + maxGPA + 
+                  " and you should pass these classes: ";
     $('#out').append(outText);
 }
 
