@@ -78,15 +78,22 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
     var maxGPA = qualityPoints / gpaHours;
     var newGPAHours = gpaHours;
     var newQualityPoints = qualityPoints;
-    var upperBoundForClassesToTake;
+    var upperBoundForClassesToTake = 0;
     for (var i = 0; i < classCount; i++) {
         newGPAHours += currentCourses[i].credits;
         newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
-        maxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
-        if (maxGPA !== (newQualityPoints / newGPAHours)) {
+        console.log("maxGPA1 " + maxGPA);
+        newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
+        console.log("maxGPA2 " + newMaxGPA);
+        console.log("(newQualityPoints / newGPAHours) " + (newQualityPoints / newGPAHours));
+        if (newMaxGPA !== maxGPA) {
+            maxGPA = newMaxGPA;
+            console.log("upperBound1 " + upperBoundForClassesToTake);
             upperBoundForClassesToTake = i;
-            break;
+            console.log("upperBound1 " + upperBoundForClassesToTake);
+            continue;
         }
+        break;
     }
     newMaxGPA = maxGPA;
     console.log(upperBoundForClassesToTake);
@@ -101,8 +108,8 @@ function displayOut(upperBoundForClassesToTake) {
     if (upperBoundForClassesToTake == 0) { 
         outText += "none"; 
     }
-    for (var i = 0; i < upperBoundForClassesToTake; i++) {
-        if (i === (upperBoundForClassesToTake - 1)) {
+    for (var i = 0; i <= upperBoundForClassesToTake; i++) {
+        if (i === (upperBoundForClassesToTake)) {
             outText += currentCourses[i].name
         }
         else {
