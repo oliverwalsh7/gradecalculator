@@ -52,6 +52,11 @@ function submit() {
     for (var i = 1; i <= classCount; i++) {
         convertedGrade = convertGrade($('#grade-'+i).val());
         convertedCredit = parseInt($('#credit-'+i).val());
+        console.log("Converted credit: " + convertedCredit);
+        if (convertedGrade === -1 || isNaN(convertedCredit)) {
+            errorDisplay();
+            return;
+        }
         if ($('#course-'+i).val() === '') {
             courseName = $('#course-'+i).attr('placeholder');
         }
@@ -67,6 +72,8 @@ function submit() {
     displayOut(upperBoundForClassesToTake);
     console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
 }
+
+
 
 function calculateOptimalPassFail(gpaHours, qualityPoints) {
     currentCourses.sort(function(a, b) {
@@ -100,14 +107,20 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
     return upperBoundForClassesToTake;
 }
 
+function errorDisplay() {
+    $('#out').empty();
+    $('#out').append("Please fill in all required options");
+}
+
 function displayOut(upperBoundForClassesToTake) {
     $('#out').empty();
-    
+
     var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
                   " and you should keep credit for these classes: \n";
+                  
     if (upperBoundForClassesToTake == 0) { 
         outText += "none"; 
-    }
+    } 
     for (var i = 0; i <= upperBoundForClassesToTake; i++) {
         if (i === (upperBoundForClassesToTake)) {
             outText += currentCourses[i].name
