@@ -3,6 +3,7 @@ const HOST = `localhost:${PORT}`;
 
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1','2','3','4'];
+const retakes = ['No','Yes'];
 const startingClassCount = 5;
 var classCount = 0;
 var currentCourses = [];
@@ -33,6 +34,14 @@ function addNewRow() {
         creditDropDown.append($('<option>').attr('val',val).text(val));
     })
     $('#credits').append(creditDropDown);
+
+    var retakeDropDown = $('<select class="input-form">').attr("id","retake-"+classCount).appendTo('#retakes');
+    retakes.map(function(val, index) {
+        retakeDropDown.append($('<option>').attr('val',val).text(val));
+    })
+    $('#retakes').append(retakeDropDown);
+
+
     console.log("Class Count after adding row: " + classCount);
 }
 
