@@ -50,6 +50,7 @@ function removeRow() {
     $('#course-'+classCount).remove();
     $('#grade-'+classCount).remove();
     $('#credit-'+classCount).remove();
+    $("#retake-"+classCount).remove();
     classCount--;
     console.log("After hiding: " + classCount);
 }
