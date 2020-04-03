@@ -35,11 +35,11 @@ function addNewRow() {
     })
     $('#credits').append(creditDropDown);
 
-    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked()">').attr("id","retake-"+classCount).appendTo('#retakes');
+    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id",classCount).appendTo('#retakes');
     $('#retakes').append(retakeDropDown);
     $('#retakes').append(newLine);
 
-    var oldGradeDropDown = $('<select class="input-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
+    var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
     grades.map(function(val, index) {
         oldGradeDropDown.append($('<option>').attr('val',val).text(val));
     })
@@ -159,11 +159,16 @@ function truncateDecimals (num, digits) {
     return parseFloat(finalResult);
 }
 
-function isChecked() {
+function isChecked(id) {
+    if (id == undefined) {
+        console.log("it is undefined");
+        return;
+    }
+    console.log("id is: " + id);
     // Get the checkbox
-    var checkBox = document.getElementById("retake-"+...classCount);
+    var checkBox = document.getElementById(id);
     // Get the output text
-    var text = document.getElementById("oldGrade-"+classCount);
+    var text = document.getElementById("oldGrade-"+ id);
 
     // If the checkbox is checked, display the output text
     if (checkBox.checked == true){
