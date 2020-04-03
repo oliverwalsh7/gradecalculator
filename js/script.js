@@ -12,6 +12,7 @@ var maxClass = 8;
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
         addNewRow();
+        isChecked();
     }
 }
 
@@ -34,9 +35,15 @@ function addNewRow() {
     })
     $('#credits').append(creditDropDown);
 
-    var retakeDropDown = $('<input class="input-button" type="checkbox">').attr("id","retake-"+classCount).appendTo('#retakes');
+    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked()">').attr("id","retake-"+classCount).appendTo('#retakes');
     $('#retakes').append(retakeDropDown);
     $('#retakes').append(newLine);
+
+    var oldGradeDropDown = $('<select class="input-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
+    grades.map(function(val, index) {
+        oldGradeDropDown.append($('<option>').attr('val',val).text(val));
+    })
+    $('#oldGrade').append(oldGradeDropDown);
 
 
 
@@ -150,6 +157,22 @@ function truncateDecimals (num, digits) {
         finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
 
     return parseFloat(finalResult);
+}
+
+function isChecked() {
+    // Get the checkbox
+    var checkBox = document.getElementById("retake-"+classCount);
+    // Get the output text
+    var text = document.getElementById("oldGrade-"+classCount);
+
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true){
+        console.log("Checkbox is checked");
+        text.style.display = "block";
+    } else {
+        console.log("Checkbox is unchecked");
+        text.style.display = "none";
+    }
 }
 
 // Converts the dropdown select options into integers 

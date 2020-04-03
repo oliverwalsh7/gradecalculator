@@ -278,6 +278,13 @@ table {
     width: 15vw;
 }
 
+.oldGrade-colm {
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
+    width: 15vw;
+}
+
 button {
     margin-left: 0;
 }
