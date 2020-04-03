@@ -41,7 +41,7 @@ function addNewRow() {
 
     var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
     grades.map(function(val, index) {
-        oldGradeDropDown.append($('<option>').attr('val',val).text(val));
+        oldGradeDropDown.append($('<option>').attr('val',val).text("Old class " + classCount + " grade: " + val));
     })
     $('#oldGrade').append(oldGradeDropDown);
 
@@ -160,23 +160,34 @@ function truncateDecimals (num, digits) {
 }
 
 function isChecked(id) {
-    if (id == undefined) {
-        console.log("it is undefined");
-        return;
-    }
     console.log("id is: " + id);
     // Get the checkbox
     var checkBox = document.getElementById(id);
     // Get the output text
     var text = document.getElementById("oldGrade-"+ id);
+    var col = document.getElementById("th");
+
+    if (id == undefined) {
+        console.log("it is undefined");
+        //col.style.display = "none";
+        return;
+    }
+
+    // if (col.style.display == 'none') {
+    //     col.style.display = "block";
+    // } else {
+    //     col.style.display = "none";
+    // }
 
     // If the checkbox is checked, display the output text
     if (checkBox.checked == true){
         console.log("Checkbox is checked");
         text.style.display = "block";
+        //col.style.display = "block";
     } else {
         console.log("Checkbox is unchecked");
         text.style.display = "none";
+        // /col.style.display = "none";
     }
 }
 
