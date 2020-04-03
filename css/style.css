@@ -21,7 +21,7 @@ header {
     color: white;
     text-align: center;
     width: 100%;
-    height: 8vh;
+    height: 61px;
     margin: 0px;
 }
 
@@ -298,7 +298,9 @@ button {
 
 #submit-btn {
     margin-top: 3vh;
+    margin-right: 1vw;
 }
 
-.output-box {
+#addRow-btn {
+    margin-right: 1vw;
 }

@@ -4,7 +4,7 @@ const HOST = `localhost:${PORT}`;
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1','2','3','4'];
 const retakes = ['No','Yes'];
-const startingClassCount = 5;
+const startingClassCount = 3;
 var classCount = 0;
 var currentCourses = [];
 var newMaxGPA;
@@ -95,9 +95,9 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
     var newGPAHours = gpaHours;
     var newQualityPoints = qualityPoints;
     var upperBoundForClassesToTake = 0;
-    for (var i = 0; i < classCount; i++) {
-        newGPAHours += currentCourses[i].credits;
-        newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+    for (var i = 1; i <= classCount; i++) {
+        newGPAHours += currentCourses[i - 1].credits;
+        newQualityPoints += (currentCourses[i - 1].credits * currentCourses[i - 1].grade);
         console.log("maxGPA1 " + maxGPA);
         newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
         console.log("maxGPA2 " + newMaxGPA);
@@ -130,12 +130,12 @@ function displayOut(upperBoundForClassesToTake) {
     if (upperBoundForClassesToTake == 0) { 
         outText += "none"; 
     } 
-    for (var i = 0; i <= upperBoundForClassesToTake; i++) {
+    for (var i = 1; i <= upperBoundForClassesToTake; i++) {
         if (i === (upperBoundForClassesToTake)) {
-            outText += currentCourses[i].name
+            outText += currentCourses[i - 1].name
         }
         else {
-            outText += currentCourses[i].name + ", "
+            outText += currentCourses[i - 1].name + ", "
         }
     }
     $('#out').append(outText);
