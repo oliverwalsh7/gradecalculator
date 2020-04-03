@@ -3,7 +3,6 @@ const HOST = `localhost:${PORT}`;
 
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1','2','3','4'];
-const retakes = ['No','Yes'];
 const startingClassCount = 3;
 var classCount = 0;
 var currentCourses = [];
@@ -123,6 +122,7 @@ function errorDisplay() {
 
 function displayOut(upperBoundForClassesToTake) {
     $('#out').empty();
+    $('#out').hide();
 
     var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
                   " and you should keep credit for these classes: \n";
@@ -138,6 +138,7 @@ function displayOut(upperBoundForClassesToTake) {
             outText += currentCourses[i - 1].name + ", "
         }
     }
+    $('#out').show();
     $('#out').append(outText);
 
 }
@@ -201,6 +202,7 @@ function convertGrade(grade) {
 $(() => {
 
     initializeRows();
+    $('#out').hide();
 
     $('#submit-btn').click(function() {
         submit();
