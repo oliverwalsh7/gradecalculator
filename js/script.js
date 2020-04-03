@@ -161,7 +161,7 @@ function truncateDecimals (num, digits) {
 
 function isChecked() {
     // Get the checkbox
-    var checkBox = document.getElementById("retake-"+classCount);
+    var checkBox = document.getElementById("retake-"+...classCount);
     // Get the output text
     var text = document.getElementById("oldGrade-"+classCount);
 
