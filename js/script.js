@@ -35,11 +35,10 @@ function addNewRow() {
     })
     $('#credits').append(creditDropDown);
 
-    var retakeDropDown = $('<select class="input-form">').attr("id","retake-"+classCount).appendTo('#retakes');
-    retakes.map(function(val, index) {
-        retakeDropDown.append($('<option>').attr('val',val).text(val));
-    })
+    var retakeDropDown = $('<input class="input-button" type="checkbox">').attr("id","retake-"+classCount).appendTo('#retakes');
     $('#retakes').append(retakeDropDown);
+    $('#retakes').append(newLine);
+
 
 
     console.log("Class Count after adding row: " + classCount);

@@ -115,6 +115,10 @@ header {
     font-style: italic;
 }
 
+#curr-GPA {
+    margin-right: 2vw;
+}
+
 .about-section {
     margin-top: 5vh;
     margin-right: 2vw;
@@ -208,8 +212,36 @@ table {
 }
 
 .th-class {
-    font-size: 1.25em;
+    font-size: 1em;
     text-decoration: underline;
+}
+
+.input-button {
+    -webkit-appearance: none;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+    position: relative;
+    border-color: rgb(199, 173, 107, .8);
+    background: var(--ocean2);
+    margin-top: 2.75vh;
+    width: 25px;
+    height: 25px;
+    margin-left: 1.75vw;
+}
+
+.input-button:active, .input-button:checked:active {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.input-button:checked:after {
+    content: '\2714';
+	font-size: 20px;
+	position: relative;
+	top: 0px;
+	left: 3px;
+	color: ivory;
 }
 
 .rows {
