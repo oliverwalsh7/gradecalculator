@@ -26,7 +26,7 @@ function addNewRow() {
     grades.map(function(val, index) {
         gradeDropDown.append($('<option>').attr('val',val).text(val));
     })
-    $('#grade').append(gradeDropDown);
+    $('#grades').append(gradeDropDown);
 
     var creditDropDown = $('<select class="input-form">').attr("id","credit-"+classCount).appendTo('#credits');
     credits.map(function(val, index) {
@@ -122,7 +122,6 @@ function errorDisplay() {
 
 function displayOut(upperBoundForClassesToTake) {
     $('#out').empty();
-    $('#out').hide();
 
     var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
                   " and you should keep credit for these classes: \n";
@@ -138,7 +137,7 @@ function displayOut(upperBoundForClassesToTake) {
             outText += currentCourses[i - 1].name + ", "
         }
     }
-    $('#out').show();
+    //$('#out').addClass(".output-box-view");
     $('#out').append(outText);
 
 }
@@ -202,7 +201,7 @@ function convertGrade(grade) {
 $(() => {
 
     initializeRows();
-    $('#out').hide();
+    // $('.output-box').hide();
 
     $('#submit-btn').click(function() {
         submit();

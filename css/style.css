@@ -283,6 +283,11 @@ button {
 }
 
 .output-box {
+
+}
+
+
+.output-box-view {
     font-size: 1em;
     color: var(--pearl);
     margin-top: 3vh;
@@ -290,11 +295,11 @@ button {
     border: 1px solid;
     border-color: ivory;
     width: 92%;
-    display: block !important;
+    display: block;
 }
 
 #out {
-    padding: 1vw 5vh;
+    padding: 2.5vh 0vh;
 }
 
 #submit-btn {
