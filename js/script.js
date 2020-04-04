@@ -1,13 +1,15 @@
 const PORT = 3000;
 const HOST = `localhost:${PORT}`;
 
+import GradeCalculator from './GradeCalculator.js';
+
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1','2','3','4'];
 const startingClassCount = 5;
 var classCount = 0;
 var currentCourses = [];
 var newMaxGPA;
-var maxClass = 8;
+const maxClass = 8;
 
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
@@ -189,8 +191,9 @@ function convertGrade(grade) {
     return newGrade;
 }
 
-$(() => {
+$(document).ready(function() {
 
+    
     initializeRows();
 
     $('#submit-btn').click(function() {
@@ -205,6 +208,18 @@ $(() => {
 
     $('#removeRow-btn').click(function() {
         removeRow();
+    });
+
+    let classGradeCalcPage = new GradeCalculator();
+
+    $('#passFailCalc-page-btn').click(function () {
+        classGradeCalcPage.hide();
+        $('passFailCalc-container').show();
+    });
+
+    $('#classGradeCalc-page-btn').click(function () {
+        $('passFailCalc-container').hide();
+        classGradeCalcPage.show();
     });
 
 });

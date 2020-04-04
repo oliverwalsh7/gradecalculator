@@ -11,89 +11,129 @@
     </head>
     <body>
         <header>
+            <button type="button" id="passFailCalc-page-btn">Pass/Fail</button>
+            <button type="button" id="classGradeCalc-page-btn">Course Grade</button>
             <div class="topbar-text">◐ grade wizard ◑</div>
         </header>
-
-        <div class="view-container">
-            <!--INSTRUCTIONS BOX-->
-            <div class="instruct-wrap">
-                <div class="instructions">
-                    <div class="step-box">
-                        <div class="header"> Step One </div>
-                        <div class="sub-text"> Obtain your unofficial academic transcript from 
-                            <a id="link" target="_blank" rel="noopener noreferrer" href="https://ssbp.lehigh.edu/ssb/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu"> Banner </a>
+        <div id="passFailCalc-container">
+            <div class="view-container">
+                <!--INSTRUCTIONS BOX-->
+                <div class="instruct-wrap">
+                    <div class="instructions">
+                        <div class="step-box">
+                            <div class="header"> Step One </div>
+                            <div class="sub-text"> Obtain your unofficial academic transcript from 
+                                <a id="link" target="_blank" rel="noopener noreferrer" href="https://ssbp.lehigh.edu/ssb/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu"> Banner </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="step-box">
-                        <div class="header"> Step Two </div>
-                        <div class="sub-text"> Retrieve your total credit hours & total quality points </div>
-                    </div>
-                    <div class="step-box">
-                        <div class="header"> Step Three </div>
-                        <div class="sub-text"> Input your hypothetical / projected semesterly grades in the input section → </div>
-                    </div>
-
-                    <div class="about-section">
-                        <div class="about-header">
-                            About the Project
+                        <div class="step-box">
+                            <div class="header"> Step Two </div>
+                            <div class="sub-text"> Retrieve your total credit hours & total quality points </div>
                         </div>
-                        <div class="about-text">
-                            This is an algorithm dedicated to optimizing one's cumulative GPA with consideration
-                            of the new pass/fail option offered at many universities nationwide.
+                        <div class="step-box">
+                            <div class="header"> Step Three </div>
+                            <div class="sub-text"> Input your hypothetical / projected semesterly grades in the input section → </div>
+                        </div>
+
+                        <div class="about-section">
+                            <div class="about-header">
+                                About the Project
+                            </div>
+                            <div class="about-text">
+                                This is an algorithm dedicated to optimizing one's cumulative GPA with consideration
+                                of the new pass/fail option offered at many universities nationwide.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!--INPUT BOX-->
-            <div class="input-wrap">
-                <div class="input-box">
-                    <div class="input-form2">
-                        <label for ="curr-GPA">Total Credit Hours:</label>
-                        <input type="text" id="curr-GPA" placeholder="100">
-                    </div>
-                    <div class="input-form2">
-                        <label for ="curr-QP">Total Quality Points:</label>
-                        <input type="text" id="curr-QP" placeholder="400">
-                    </div>
-                    <table style="width:100%">
-                        <tr>
-                            <th class="th-class">Course</th>
-                            <th class="th-class">Grade</th>
-                            <th class="th-class">Credits</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="course-colm" id="courses">
-                                    <!--Course COLUMN-->
-                                </div>
-                            </td>
-                            <td>
-                                <div class="grade-colm" id="grades">
-                                    <!--GRADES COLUMN-->
-                                </div>
-                            </td>
-                            <td>
-                                <div class="credits-colm" id="credits">
-                                    <!--CREDITS COLUMN-->
-                                </div>
-                            </td>
-                        </tr>
-                    </table> 
-                    <button type="submit" id="submit-btn">Submit</button>
-                    <button type="submit" id="addRow-btn">Add Row</button>
-                    <button type="submit" id="removeRow-btn">Remove Row</button>
-                    <div class="output-box" id="out">
-                        <!--DISPLAY OUTPUTS-->
-                    </div>
-                </div>  
+                <!--INPUT BOX-->
+                <div class="input-wrap">
+                    <div class="input-box">
+                        <div class="input-form2">
+                            <label for ="curr-GPA">Total Credit Hours:</label>
+                            <input type="text" id="curr-GPA" placeholder="100">
+                        </div>
+                        <div class="input-form2">
+                            <label for ="curr-QP">Total Quality Points:</label>
+                            <input type="text" id="curr-QP" placeholder="400">
+                        </div>
+                        <table style="width:100%">
+                            <tr>
+                                <th class="th-class">Course</th>
+                                <th class="th-class">Grade</th>
+                                <th class="th-class">Credits</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="course-colm" id="courses">
+                                        <!--Course COLUMN-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="grade-colm" id="grades">
+                                        <!--GRADES COLUMN-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="credits-colm" id="credits">
+                                        <!--CREDITS COLUMN-->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table> 
+                        <button type="submit" id="submit-btn">Submit</button>
+                        <button type="submit" id="addRow-btn">Add Row</button>
+                        <button type="submit" id="removeRow-btn">Remove Row</button>
+                        <div class="output-box" id="out">
+                            <!--DISPLAY OUTPUTS-->
+                        </div>
+                    </div>  
+                </div>
             </div>
         </div>
+
+        <div id="classGradeCalc-container">
+            <div class="view-container">
+
+                <div class="input-wrap">
+                    <div class="input-box">
+                        
+                        <table style="width:100%">
+                            <tr>
+                                <th class="th-class">Grade</th>
+                                <th class="th-class">Weight</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="grade-colm" id="classGradeCalc-grades">
+                                        <!--Course COLUMN-->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="weight-colm" id="classGradeCalc-weights">
+                                        <!--GRADES COLUMN-->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table> 
+                        <button type="submit" id="classGradeCalc-submit-btn">Submit</button>
+                        <button type="submit" id="classGradeCalc-addRow-btn">Add Row</button>
+                        <button type="submit" id="classGradeCalc-removeRow-btn">Remove Row</button>
+                        <div class="output-box" id="classGradeCalc-out">
+                            <!--DISPLAY OUTPUTS-->
+                        </div>
+                    </div>  
+                </div>
+
+            </div>
+        </div>
+
         <div class="footer">
             <div class="footer-text">
                 brought to you by oliver walsh, maxim vezenov, & jimmy johnson
             </div>
         </div>
-        <script src = "../js/script.js"></script>
+        <script type="module" src = "../js/script.js"></script>
     </body>
 </html>
