@@ -172,16 +172,11 @@ function isChecked(id) {
         return;
     }
 
-    // if (col.style.display == 'none') {
-    //     col.style.display = "block";
-    // } else {
-    //     col.style.display = "none";
-    // }
-
     // If the checkbox is checked, display the output text
     if (checkBox.checked == true){
         console.log("Checkbox is checked");
         text.style.display = "block";
+        text.style.position = "inherit";
         //col.style.display = "block";
     } else {
         console.log("Checkbox is unchecked");
