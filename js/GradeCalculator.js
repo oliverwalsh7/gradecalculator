@@ -23,7 +23,7 @@ export default class GradeCalculator {
         console.log("Row Count after adding row: " + this.rowCount);
     }
     
-    removeRow() {
+    removeRow(){
         console.log("Before hiding: " + this.rowCount);
         $('#classGradeCalc-grade-'+this.rowCount).remove();
         $('#classGradeCalc-weight-'+this.rowCount).remove();
@@ -32,6 +32,9 @@ export default class GradeCalculator {
     }
     
     init() {
+
+        console.log(this);
+        this.addNewRow();
 
         if (!this.isInit) {
             this.isInit = true;
@@ -44,14 +47,16 @@ export default class GradeCalculator {
     
         $('#classGradeCalc-addRow-btn').click(function() {
             console.log("Got into add row event handler");
+            console.log("Current row count: " + this.rowCount);
             if (this.rowCount < this.maxRows) {
-                this.addNewRow()
+                this.addNewRow();
                 console.log("Add Row Click works");
             };
         
         });
-    
-        $('#classGradeCalc-removeRow-btn').click(function() {
+        
+        document.getElementById('#classGradeCalc-removeRow-btn').addEventListener("click", function() {
+            this.errorDisplay();
             console.log("Got into the remove row event handler");
             this.removeRow();
         });
@@ -88,14 +93,14 @@ export default class GradeCalculator {
             this.gradesWithWeights.push({ grade: gradePercentage, weight: weight });
             console.log("Grade With Weight " + i + ": " + this.gradesWithWeights[i-1].grade + " " + this.gradesWithWeights[i-1].weight);
         }
-        var totalCourseGrade = calculateTotalCourseGrade();
-        displayOut(totalCourseGrade);
+        var totalCourseGrade = this.calculateTotalCourseGrade();
+        this.displayOut(totalCourseGrade);
     }
 
     displayOut(totalCourseGrade) {
         $('#classGradeCalc-out').empty();
     
-        var outText = "Your grade in this course is " + this.truncateDecimals(totalCourseGrade) +"\n";
+        var outText = "Your grade in this course is " + this.truncateDecimals(totalCourseGrade, 2) +"\n";
                     
         $('#classGradeCalc-out').append(outText);
     }

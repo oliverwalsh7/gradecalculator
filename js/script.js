@@ -212,14 +212,14 @@ $(document).ready(function() {
 
     let classGradeCalcPage = new GradeCalculator();
 
-    $('#passFailCalc-page-btn').click(function () {
-        classGradeCalcPage.hide();
-        $('passFailCalc-container').show();
+    $('#classGradeCalc-page-btn').click(function () {
+        $('#passFailCalc-container').hide();
+        classGradeCalcPage.show();
     });
 
-    $('#classGradeCalc-page-btn').click(function () {
-        $('passFailCalc-container').hide();
-        classGradeCalcPage.show();
+    $('#passFailCalc-page-btn').click(function () {
+        classGradeCalcPage.hide();
+        $('#passFailCalc-container').show();
     });
 
 });
