@@ -42,10 +42,9 @@ header {
     color: white;
     text-align: center;
     width: 100%;
-    height: 5.5vh;
+    height: 45px;
     margin: 0px;
-    margin-top: 86.5vh;
-    position: relative;
+    position: absolute;
     bottom: 0;
 }
 
@@ -180,7 +179,7 @@ header {
 
 .grade-form {
     background: rgb(199, 173, 107, .8);
-    width: 15vw;
+    width: 9.5vw;
     margin-top: 2.5vh;
     border: 2px solid rounded;
     border-color: ivory;
@@ -255,7 +254,7 @@ table {
 	position: relative;
 	top: 0px;
 	left: 3px;
-	color: ivory;
+    color: ivory;
 }
 
 .rows {
@@ -289,7 +288,7 @@ table {
     /* display: flex;
     flex-direction: column; */
     display: block;
-    width: 15vw;
+    width: 6.5vw;
 }
 
 .oldGrade-colm {
@@ -302,11 +301,6 @@ table {
 button {
     margin-left: 0;
 }
-
-.output-box {
-
-}
-
 
 .output-box-view {
     font-size: 1em;

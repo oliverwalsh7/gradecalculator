@@ -35,7 +35,7 @@ function addNewRow() {
     })
     $('#credits').append(creditDropDown);
 
-    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id",classCount).appendTo('#retakes');
+    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", classCount).appendTo('#retakes');
     $('#retakes').append(retakeDropDown);
     $('#retakes').append(newLine);
 
@@ -45,8 +45,6 @@ function addNewRow() {
     })
     $('#oldGrade').append(oldGradeDropDown);
 
-
-
     console.log("Class Count after adding row: " + classCount);
 }
 
@@ -55,7 +53,8 @@ function removeRow() {
     $('#course-'+classCount).remove();
     $('#grade-'+classCount).remove();
     $('#credit-'+classCount).remove();
-    $("#retake-"+classCount).remove();
+    $("#"+classCount).remove(); // retake
+    $("#oldGrade-"+classCount).remove();
     classCount--;
     console.log("After hiding: " + classCount);
 }
