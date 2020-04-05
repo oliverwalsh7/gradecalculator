@@ -49,6 +49,7 @@ function addNewRow() {
 }
 
 function removeRow() {
+    if (classCount == 0) {return; }
     console.log("Before hiding: " + classCount);
     $('#course-'+classCount).remove();
     $('#grade-'+classCount).remove();
