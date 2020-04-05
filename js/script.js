@@ -3,7 +3,7 @@ const HOST = `localhost:${PORT}`;
 
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1','2','3','4'];
-const startingClassCount = 5;
+const startingClassCount = 3;
 var classCount = 0;
 var currentCourses = [];
 var newMaxGPA;
@@ -12,6 +12,7 @@ var maxClass = 8;
 function initializeRows() {
     for (var i = 1; i <= startingClassCount; i++) {
         addNewRow();
+        isChecked();
     }
 }
 
@@ -26,21 +27,35 @@ function addNewRow() {
     grades.map(function(val, index) {
         gradeDropDown.append($('<option>').attr('val',val).text(val));
     })
-    $('#grade').append(gradeDropDown);
+    $('#grades').append(gradeDropDown);
 
     var creditDropDown = $('<select class="input-form">').attr("id","credit-"+classCount).appendTo('#credits');
     credits.map(function(val, index) {
         creditDropDown.append($('<option>').attr('val',val).text(val));
     })
     $('#credits').append(creditDropDown);
+
+    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", classCount).appendTo('#retakes');
+    $('#retakes').append(retakeDropDown);
+    $('#retakes').append(newLine);
+
+    var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
+    grades.map(function(val, index) {
+        oldGradeDropDown.append($('<option>').attr('val',val).text("Old class " + classCount + " grade: " + val));
+    })
+    $('#oldGrade').append(oldGradeDropDown);
+
     console.log("Class Count after adding row: " + classCount);
 }
 
 function removeRow() {
+    if (classCount == 0) {return; }
     console.log("Before hiding: " + classCount);
     $('#course-'+classCount).remove();
     $('#grade-'+classCount).remove();
     $('#credit-'+classCount).remove();
+    $("#"+classCount).remove(); // retake
+    $("#oldGrade-"+classCount).remove();
     classCount--;
     console.log("After hiding: " + classCount);
 }
@@ -86,9 +101,9 @@ function calculateOptimalPassFail(gpaHours, qualityPoints) {
     var newGPAHours = gpaHours;
     var newQualityPoints = qualityPoints;
     var upperBoundForClassesToTake = 0;
-    for (var i = 0; i < classCount; i++) {
-        newGPAHours += currentCourses[i].credits;
-        newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+    for (var i = 1; i <= classCount; i++) {
+        newGPAHours += currentCourses[i - 1].credits;
+        newQualityPoints += (currentCourses[i - 1].credits * currentCourses[i - 1].grade);
         console.log("maxGPA1 " + maxGPA);
         newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
         console.log("maxGPA2 " + newMaxGPA);
@@ -121,14 +136,15 @@ function displayOut(upperBoundForClassesToTake) {
     if (upperBoundForClassesToTake == 0) { 
         outText += "none"; 
     } 
-    for (var i = 0; i <= upperBoundForClassesToTake; i++) {
+    for (var i = 1; i <= upperBoundForClassesToTake; i++) {
         if (i === (upperBoundForClassesToTake)) {
-            outText += currentCourses[i].name
+            outText += currentCourses[i - 1].name
         }
         else {
-            outText += currentCourses[i].name + ", "
+            outText += currentCourses[i - 1].name + ", "
         }
     }
+    //$('#out').addClass(".output-box-view");
     $('#out').append(outText);
 
 }
@@ -141,6 +157,33 @@ function truncateDecimals (num, digits) {
         finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
 
     return parseFloat(finalResult);
+}
+
+function isChecked(id) {
+    console.log("id is: " + id);
+    // Get the checkbox
+    var checkBox = document.getElementById(id);
+    // Get the output text
+    var text = document.getElementById("oldGrade-"+ id);
+    var col = document.getElementById("th");
+
+    if (id == undefined) {
+        console.log("it is undefined");
+        //col.style.display = "none";
+        return;
+    }
+
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true){
+        console.log("Checkbox is checked");
+        text.style.display = "block";
+        text.style.position = "inherit";
+        //col.style.display = "block";
+    } else {
+        console.log("Checkbox is unchecked");
+        text.style.display = "none";
+        // /col.style.display = "none";
+    }
 }
 
 // Converts the dropdown select options into integers 
@@ -192,6 +235,7 @@ function convertGrade(grade) {
 $(() => {
 
     initializeRows();
+    // $('.output-box').hide();
 
     $('#submit-btn').click(function() {
         submit();
