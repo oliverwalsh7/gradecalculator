@@ -9,9 +9,7 @@ const classGradeCalcPage = new GradeCalculator();
 
 $(document).ready(function() {
 
-
     passFailCalcPage.show();
-
 
     $('#submit-btn').click(function() {
         passFailCalcPage.submit();
