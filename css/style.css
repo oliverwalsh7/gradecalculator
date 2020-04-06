@@ -9,11 +9,9 @@ body {
     --ocean3: #36384b;
     width: 100%;
 }
-
 html * {
    font-family: 'Roboto Mono', monospace !important;
 }
-
 header {
     background-color: var(--ocean);
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -24,9 +22,8 @@ header {
     height: 61px;
     margin: 0px;
 }
-
 .view-container {
-    margin: 0;
+    margin: 0px;
     position: fixed;
     display: flex;
     align-content: center;
@@ -34,7 +31,6 @@ header {
     height: 100vh;
     width: 100vw;
 }
-
 .footer {
     background-color: var(--ocean);
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -47,20 +43,17 @@ header {
     position: absolute;
     bottom: 0;
 }
-
-/* .topbar-text {
+.topbar-text {
     font-size: 90%;
     letter-spacing: .75vw;
     padding-top: .5vh;
-} */
-
+}
 .footer-text{
     position: block;
     font-size: 12.5px;
     letter-spacing: .2vw;
     padding-top: 1.65vh;
 }
-
 .instruct-wrap {
     margin: 0px;
     background: var(--ocean2);
@@ -68,7 +61,6 @@ header {
     height: 100%;
     align-items: center;
 }
-
 .instructions {
     margin-top: 0px;
     margin-left: 1vw;
@@ -77,7 +69,6 @@ header {
     line-height: 1;
     width: 100%;
 }
-
 .step-box {
     display: inline-block;
     line-height: 1;
@@ -86,8 +77,6 @@ header {
     align-items: center;
     color: var(--pearl);
 }
-
-
 .header {
     font-size: 15px;
     margin-top: 4vh;
@@ -95,7 +84,6 @@ header {
     margin-bottom: 1vh;
     text-decoration: underline;
 }
-
 .sub-text {
     font-size: 18px;
     margin-bottom: 1.5vh;
@@ -103,7 +91,6 @@ header {
     line-height: 1.25em;
     margin-left: 1vw;
 }
-
 #link {
     font-size: 18px;
     color: rgb(199, 173, 107);
@@ -113,17 +100,14 @@ header {
     letter-spacing: .5vh;
     font-style: italic;
 }
-
 #curr-GPA {
     margin-right: 2vw;
 }
-
 .about-section {
     margin-top: 5vh;
     margin-right: 2vw;
     border-color: var(--pearl);
 }
-
 .about-header {
     font-size: 17px;
     font-style: italic;
@@ -133,7 +117,6 @@ header {
     margin-left: 2.5vw;
     color: var(--pearl);
 }
-
 .about-text {
     font-size: 15px;
     margin-bottom: 1.5vh;
@@ -142,7 +125,6 @@ header {
     margin-left: 2.5vw;
     color: var(--pearl);
 }
-
 .input-wrap {
     margin: 0px;
     margin-bottom: 5.5vh;
@@ -155,7 +137,6 @@ header {
     background-size: 50vw cover; /* Resize the background image to cover the entire container */
     justify-content: center;
 }
-
 .select-btn {
     background: rgb(199, 173, 107, .8);
     width: 10vw;
@@ -163,7 +144,6 @@ header {
     border: 2px solid;
     border-color: ivory;
 }
-
 .input-form {
     background: rgb(199, 173, 107, .8);
     width: 15vw;
@@ -172,11 +152,9 @@ header {
     border-color: ivory;
     border-radius: 3px;
 }
-
 /* #th {
     display: none;
 } */
-
 .grade-form {
     background: rgb(199, 173, 107, .8);
     width: 9.5vw;
@@ -186,15 +164,12 @@ header {
     border-radius: 3px;
     display: none;
 }
-
 .input-form2 {
     color: ivory;
 }
-
 input {
     padding: 3.5px;
 }
-
 .input-box {
     display: block;
     line-height: 1;
@@ -202,13 +177,13 @@ input {
     height: 100%;
     color: ivory;
     margin-left: 2.5vw;
-    
 }
-
+::placeholder {
+    color: black;
+}
 label {
     margin-top: 5vh;
 }
-
 a {
     font-size: 12.5px;
     color: ivory;
@@ -216,22 +191,19 @@ a {
     margin-bottom: 2vh;
     letter-spacing: .5vh;
 }
-
 table {
     margin-top: 3vh;
 }
-
 .th-class {
     font-size: 1em;
     text-decoration: underline;
 }
-
 .input-button {
     -webkit-appearance: none;
-	border: 1px solid #cacece;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-	padding: 9px;
-	border-radius: 3px;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 3px;
     position: relative;
     border-color: rgb(199, 173, 107, .8);
     background: var(--ocean2);
@@ -240,65 +212,55 @@ table {
     height: 25px;
     margin-left: 1.75vw;
 }
-
 .input-button:active, .input-button:checked:active {
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
-
 .input-button:checked:after {
     content: '\2714';
-	font-size: 20px;
-	position: relative;
-	top: 0px;
-	left: 3px;
+    font-size: 20px;
+    position: relative;
+    top: 0px;
+    left: 3px;
     color: ivory;
 }
-
 .rows {
     display: inline-block;
     width:100%;
     background-color: black;
 }
-
 .course-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
     width: 15vw;
 }
-
 .grade-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
     width: 15vw;
 }
-
 .credits-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
     width: 15vw;
 }
-
 .retake-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
     width: 6.5vw;
 }
-
 .oldGrade-colm {
     /* display: flex;
     flex-direction: column; */
     display: block;
     width: 15vw;
 }
-
 button {
     margin-left: 0;
 }
-
 .output-box-view {
     font-size: 1em;
     color: var(--pearl);
@@ -309,13 +271,14 @@ button {
     width: 92%;
     display: block;
 }
-
 #out {
     padding: 2.5vh 0vh;
 }
-
 #submit-btn {
     margin-top: 3vh;
+    margin-right: 1vw;
+}
+#addRow-btn {
     margin-right: 1vw;
 }
 
