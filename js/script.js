@@ -19,7 +19,7 @@ $(document).ready(function() {
 
     $('#addRow-btn').click(function() {
         
-        if (passFailCalcPage.getClassCount < passFailCalcPage.getMaxClassCount) passFailCalcPage.addNewRow();
+        if (passFailCalcPage.getClassCount() < passFailCalcPage.getMaxClassCount()) passFailCalcPage.addNewRow();
     
     });
 
@@ -47,7 +47,7 @@ $(document).ready(function() {
     });
 
     $('#classGradeCalc-addRow-btn').click(function() {
-        if (classGradeCalcPage.rowCount < classGradeCalcPage.maxRows) {
+        if (classGradeCalcPage.getRowCount() < classGradeCalcPage.getMaxRowCount()) {
             classGradeCalcPage.addNewRow();
         }
     });

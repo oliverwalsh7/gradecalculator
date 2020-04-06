@@ -1,11 +1,12 @@
 import Utils from "./Utils.js";
 
+const startingClassCount = 5;
+const maxRows = 8;
+var rowCount = 0;
+var gradesWithWeights = [];
+
 export default class GradeCalculator {
 
-    startingClassCount = 5;
-    maxRows = 8;
-    rowCount = 0;
-    gradesWithWeights = [];
     isInit = false;
 
     constructor() {
@@ -57,32 +58,32 @@ export default class GradeCalculator {
     }
 
     initializeRows() {
-        for (var i = 1; i <= this.startingClassCount; i++) {
+        for (var i = 1; i <= startingClassCount; i++) {
             this.addNewRow();
         }
     }
 
     addNewRow() {
-        this.rowCount++;
-        var gradeInput = $('<input class="input-form"/>').attr("id","classGradeCalc-grade-"+this.rowCount).appendTo('#classGradeCalc-grades');
+        rowCount++;
+        var gradeInput = $('<input class="input-form"/>').attr("id","classGradeCalc-grade-"+rowCount).appendTo('#classGradeCalc-grades');
         var newLine = $('<div>\n</div>').appendTo('#grades');
         $('#classGradeCalc-grades').append(gradeInput);
         $('#classGradeCalc-grades').append(newLine);
     
-        var weightInput = $('<input class="input-form"/>').attr("id","classGradeCalc-weight-"+this.rowCount).appendTo('#classGradeCalc-weights');
+        var weightInput = $('<input class="input-form"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo('#classGradeCalc-weights');
         var newLine = $('<div>\n</div>').appendTo('#grades');
         $('#classGradeCalc-weights').append(weightInput);
         $('#classGradeCalc-weight').append(newLine);
     
-        console.log("Row Count after adding row: " + this.rowCount);
+        console.log("Row Count after adding row: " + rowCount);
     }
     
     removeRow() {
-        console.log("Before hiding: " + this.rowCount);
-        $('#classGradeCalc-grade-'+this.rowCount).remove();
-        $('#classGradeCalc-weight-'+this.rowCount).remove();
-        this.rowCount--;
-        console.log("After hiding: " + this.rowCount);
+        console.log("Before hiding: " + rowCount);
+        $('#classGradeCalc-grade-'+rowCount).remove();
+        $('#classGradeCalc-weight-'+rowCount).remove();
+        rowCount--;
+        console.log("After hiding: " + rowCount);
     }
 
     errorDisplay() {
@@ -93,15 +94,15 @@ export default class GradeCalculator {
     submit() {
         var gradePercentage;
         var weight;
-        for (var i = 1; i <= this.rowCount; i++) {
+        for (var i = 1; i <= rowCount; i++) {
             gradePercentage = parseInt($('#classGradeCalc-grade-'+i).val());
             weight = parseInt($('#classGradeCalc-weight-'+i).val());
             if (isNaN(gradePercentage) || isNaN(weight)) {
                 this.errorDisplay();
                 return;
             }
-            this.gradesWithWeights.push({ grade: gradePercentage, weight: weight });
-            console.log("Grade With Weight " + i + ": " + this.gradesWithWeights[i-1].grade + " " + this.gradesWithWeights[i-1].weight);
+            gradesWithWeights.push({ grade: gradePercentage, weight: weight });
+            console.log("Grade With Weight " + i + ": " + gradesWithWeights[i-1].grade + " " + gradesWithWeights[i-1].weight);
         }
         var totalCourseGrade = this.calculateTotalCourseGrade();
         this.displayOut(totalCourseGrade);
@@ -117,20 +118,28 @@ export default class GradeCalculator {
 
     calculateTotalCourseGrade() {
         var totalCourseGrade = 0;
-        for (var i = 0; i < this.gradesWithWeights.length; i++) {
-            console.log("Grade " + i + ": " + this.gradesWithWeights[i].grade);
-            console.log("Weight " + i + ": " + this.gradesWithWeights[i].weight);
-            totalCourseGrade += (this.gradesWithWeights[i].grade * (this.gradesWithWeights[i].weight / 100));
+        for (var i = 0; i < gradesWithWeights.length; i++) {
+            console.log("Grade " + i + ": " + gradesWithWeights[i].grade);
+            console.log("Weight " + i + ": " + gradesWithWeights[i].weight);
+            totalCourseGrade += (gradesWithWeights[i].grade * (gradesWithWeights[i].weight / 100));
             console.log("Course grade " + i + ": " + totalCourseGrade);
         }
         return totalCourseGrade;
     }
 
     clearForm() {
-        for (var i = 1; i <= this.rowCount; i++) {
+        for (var i = 1; i <= rowCount; i++) {
             $('#classGradeCalc-grade-'+i).val('');
             $('#classGradeCalc-weight-'+i).val('');
         }
-    }   
+    } 
+    
+    getRowCount() {
+        return rowCount;
+    }
+
+    getMaxRowCount() {
+        return maxRows;
+    }
 
 }
