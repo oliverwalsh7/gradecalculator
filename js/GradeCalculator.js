@@ -1,3 +1,5 @@
+import Utils from "./Utils";
+
 export default class GradeCalculator {
 
     startingClassCount = 5;
@@ -108,7 +110,7 @@ export default class GradeCalculator {
     displayOut(totalCourseGrade) {
         $('#classGradeCalc-out').empty();
         console.log("Total course grade: " + totalCourseGrade);
-        var outText = "Your grade in this course is " + this.truncateDecimals(totalCourseGrade, 2) +"\n";
+        var outText = "Your grade in this course is " + Utils.truncateDecimals(totalCourseGrade, 2) +"\n";
                     
         $('#classGradeCalc-out').append(outText);
     }
@@ -130,15 +132,5 @@ export default class GradeCalculator {
             $('#classGradeCalc-weight-'+i).val('');
         }
     }   
-
-    truncateDecimals(num, digits) {
-        var numS = num.toString(),
-            decPos = numS.indexOf('.'),
-            substrLength = decPos == -1 ? numS.length : 1 + decPos + digits,
-            trimmedResult = numS.substr(0, substrLength),
-            finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
-    
-        return parseFloat(finalResult);
-    }
 
 }
