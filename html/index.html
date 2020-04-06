@@ -68,38 +68,48 @@
                         <div class="input-form2">
                             <label for ="curr-GPA">Total Credit Hours:</label>
                             <input type="text" id="curr-GPA" placeholder="100">
-                        </div>
-                        <div class="input-form2">
                             <label for ="curr-QP">Total Quality Points:</label>
                             <input type="text" id="curr-QP" placeholder="400">
                         </div>
-                        <table style="width:100%">
-                            <tr>
-                                <th class="th-class">Course</th>
-                                <th class="th-class">Grade</th>
-                                <th class="th-class">Credits</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="course-colm" id="courses">
-                                        <!--Course COLUMN-->
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="grade-colm" id="grades">
-                                        <!--GRADES COLUMN-->
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="credits-colm" id="credits">
-                                        <!--CREDITS COLUMN-->
-                                    </div>
-                                </td>
-                            </tr>
-                        </table> 
+                            <table style="width:100%">
+                                <tr>
+                                    <th class="th-class">Course</th>
+                                    <th class="th-class">Grade</th>
+                                    <th class="th-class">Credits</th>
+                                    <th class="th-class">Retake?</th>
+                                    <th class="th-class" id="th">Old Grade</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="course-colm" id="courses">
+                                            <!--Course COLUMN-->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="grade-colm" id="grades">
+                                            <!--GRADES COLUMN-->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="credits-colm" id="credits">
+                                            <!--CREDITS COLUMN-->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="retake-colm" id="retakes">
+                                            <!--RETAKE COLUMN-->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="oldGrade-colm" id="oldGrade">
+                                            <!--oldGrade COLUMN-->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table> 
                         <button type="submit" id="submit-btn">Submit</button>
-                        <button type="submit" id="addRow-btn">Add Row</button>
-                        <button type="submit" id="removeRow-btn">Remove Row</button>
+                        <button type="submit" id="addRow-btn">Add Class</button>
+                        <button type="submit" id="removeRow-btn">Remove Class</button>
                         <div class="output-box" id="out">
                             <!--DISPLAY OUTPUTS-->
                         </div>
@@ -140,7 +150,6 @@
                         </div>
                     </div>  
                 </div>
-
             </div>
         </div>
 

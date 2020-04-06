@@ -1,15 +1,15 @@
+import Utils from './Utils.js';
+
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1','2','3','4'];
 const startingClassCount = 5;
 var currentCourses = [];
 var newMaxGPA;
-
-import Utils from './Utils.js';
+var classCount = 0;
+var maxClass = 8;
 
 export default class PassFailCalculator {
 
-    classCount = 0;
-    maxClass = 8;
     isInit = false;
 
     constructor() {
@@ -37,44 +37,58 @@ export default class PassFailCalculator {
     initializeRows() {
         for (var i = 1; i <= startingClassCount; i++) {
             this.addNewRow();
+            this.isChecked();
         }
     }
 
     addNewRow() {
-        this.classCount++;
-        var course = $('<input class="input-form" placeholder="Class ' + this.classCount + '" ' + ' />').attr("id","course-"+this.classCount).appendTo('#courses');
+        classCount++;
+        var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + ' />').attr("id","course-"+classCount).appendTo('#courses');
         var newLine = $('<div>\n</div>').appendTo('#courses');
         $('#course').append(course);
         $('#course').append(newLine);
     
-        var gradeDropDown = $('<select class="input-form">').attr("id","grade-"+this.classCount).appendTo('#grades');
-        grades.map(function(val, index) {
+        var gradeDropDown = $('<select class="input-form">').attr("id","grade-"+classCount).appendTo('#grades');
+        grades.map(function(val) {
             gradeDropDown.append($('<option>').attr('val',val).text(val));
         })
         $('#grade').append(gradeDropDown);
     
-        var creditDropDown = $('<select class="input-form">').attr("id","credit-"+this.classCount).appendTo('#credits');
-        credits.map(function(val, index) {
+        var creditDropDown = $('<select class="input-form">').attr("id","credit-"+classCount).appendTo('#credits');
+        credits.map(function(val) {
             creditDropDown.append($('<option>').attr('val',val).text(val));
         })
         $('#credits').append(creditDropDown);
-        console.log("Class Count after adding row: " + this.classCount);
+
+        var retakeDropDown = $('<input class="input-button" type="checkbox">').attr("id", classCount).appendTo('#retakes');
+        $('#retakes').append(retakeDropDown);
+        $('#retakes').append(newLine);
+
+        var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
+        grades.map(function(val) {
+            oldGradeDropDown.append($('<option>').attr('val',val).text("Old class " + classCount + " grade: " + val));
+        })
+        $('#oldGrade').append(oldGradeDropDown);
+        console.log("Class Count after adding row: " + classCount);
     }
 
     removeRow() {
-        console.log("Before hiding: " + this.classCount);
-        $('#course-'+this.classCount).remove();
-        $('#grade-'+this.classCount).remove();
-        $('#credit-'+this.classCount).remove();
-        this.classCount--;
-        console.log("After hiding: " + this.classCount);
+        if (classCount == 0) {return; }
+        console.log("Before hiding: " + classCount);
+        $('#course-'+classCount).remove();
+        $('#grade-'+classCount).remove();
+        $('#credit-'+classCount).remove();
+        $("#"+classCount).remove(); // retake
+        $("#oldGrade-"+classCount).remove();
+        classCount--;
+        console.log("After hiding: " + classCount);
     }
     
     submit() {
         var convertedGrade;
         var convertedCredit;
         var courseName;
-        for (var i = 1; i <= this.classCount; i++) {
+        for (var i = 1; i <= classCount; i++) {
             convertedGrade = this.convertGrade($('#grade-'+i).val());
             convertedCredit = parseInt($('#credit-'+i).val());
             console.log("Converted credit: " + convertedCredit);
@@ -111,7 +125,7 @@ export default class PassFailCalculator {
         var newGPAHours = gpaHours;
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
-        for (var i = 0; i < this.classCount; i++) {
+        for (var i = 0; i < classCount; i++) {
             newGPAHours += currentCourses[i].credits;
             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
             console.log("maxGPA1 " + maxGPA);
@@ -130,6 +144,33 @@ export default class PassFailCalculator {
         newMaxGPA = maxGPA;
         console.log(upperBoundForClassesToTake);
         return upperBoundForClassesToTake;
+    }
+
+    isChecked(id) {
+        console.log("id is: " + id);
+        // Get the checkbox
+        var checkBox = document.getElementById(id);
+        // Get the output text
+        var text = document.getElementById("oldGrade-"+ id);
+        var col = document.getElementById("th");
+    
+        if (id == undefined) {
+            console.log("it is undefined");
+            //col.style.display = "none";
+            return;
+        }
+    
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true){
+            console.log("Checkbox is checked");
+            text.style.display = "block";
+            text.style.position = "inherit";
+            //col.style.display = "block";
+        } else {
+            console.log("Checkbox is unchecked");
+            text.style.display = "none";
+            // /col.style.display = "none";
+        }
     }
     
     errorDisplay() {
@@ -211,6 +252,14 @@ export default class PassFailCalculator {
                 newGrade = -1;
         } 
         return newGrade;
+    }
+
+    getClassCount() {
+        return classCount;
+    }
+
+    getMaxClassCount() {
+        return maxClass;
     }
 
 }

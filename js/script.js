@@ -2,7 +2,6 @@ const PORT = 3000;
 const HOST = `localhost:${PORT}`;
 
 import GradeCalculator from './GradeCalculator.js';
-import Utils from './Utils.js';
 import PassFailCalculator from './PassFailCalculator.js';
 
 const passFailCalcPage = new PassFailCalculator();
@@ -13,7 +12,6 @@ $(document).ready(function() {
 
     passFailCalcPage.show();
 
-    // initializeRows();
 
     $('#submit-btn').click(function() {
         passFailCalcPage.submit();
@@ -21,12 +19,16 @@ $(document).ready(function() {
 
     $('#addRow-btn').click(function() {
         
-        if (passFailCalcPage.classCount < passFailCalcPage.maxClass) passFailCalcPage.addNewRow();
+        if (passFailCalcPage.getClassCount < passFailCalcPage.getMaxClassCount) passFailCalcPage.addNewRow();
     
     });
 
     $('#removeRow-btn').click(function() {
         passFailCalcPage.removeRow();
+    });
+
+    $('.input-button').click(function() {
+        passFailCalcPage.isChecked($(this).attr('id'));
     });
 
     $('#classGradeCalc-page-btn').click(function () {
@@ -45,17 +47,12 @@ $(document).ready(function() {
     });
 
     $('#classGradeCalc-addRow-btn').click(function() {
-        console.log("Got into add row event handler");
-        console.log("Current row count: " + this.rowCount);
         if (classGradeCalcPage.rowCount < classGradeCalcPage.maxRows) {
             classGradeCalcPage.addNewRow();
-            console.log("Add Row Click works");
         }
     });
 
     $('#classGradeCalc-removeRow-btn').click(function() {
-        //this.errorDisplay();
-        console.log("Got into the remove row event handler");
         classGradeCalcPage.removeRow();
     });
 
