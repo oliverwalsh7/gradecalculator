@@ -1,11 +1,12 @@
 export default class GradeCalculator {
 
+    startingClassCount = 5;
+    maxRows = 8;
+    rowCount = 0;
+    gradesWithWeights = [];
+    isInit = false;
+
     constructor() {
-        this.startingClassCount = 5;
-        this.maxRows = 8;
-        this.rowCount = 0;
-        this.gradesWithWeights = [];
-        this.isInit = 0;
     }
 
     addNewRow() {
@@ -23,21 +24,43 @@ export default class GradeCalculator {
         console.log("Row Count after adding row: " + this.rowCount);
     }
     
-    removeRow(){
+    removeRow() {
         console.log("Before hiding: " + this.rowCount);
         $('#classGradeCalc-grade-'+this.rowCount).remove();
         $('#classGradeCalc-weight-'+this.rowCount).remove();
         this.rowCount--;
         console.log("After hiding: " + this.rowCount);
     }
+
+    errorDisplay() {
+        $('#classGradeCalc-out').empty();
+        $('#classGradeCalc-out').append("Please fill in all required options correctly");
+    }
+
+    submit() {
+        var gradePercentage;
+        var weight;
+        for (var i = 1; i <= this.rowCount; i++) {
+            gradePercentage = parseInt($('#classGradeCalc-grade-'+i).val());
+            weight = parseInt($('#classGradeCalc-weight-'+i).val());
+            if (isNaN(gradePercentage) || isNaN(weight)) {
+                this.errorDisplay();
+                return;
+            }
+            this.gradesWithWeights.push({ grade: gradePercentage, weight: weight });
+            console.log("Grade With Weight " + i + ": " + this.gradesWithWeights[i-1].grade + " " + this.gradesWithWeights[i-1].weight);
+        }
+        var totalCourseGrade = this.calculateTotalCourseGrade();
+        this.displayOut(totalCourseGrade);
+    }
     
     init() {
 
         console.log(this);
-        this.addNewRow();
 
         if (!this.isInit) {
-            this.isInit = true;
+            this.isInit = true; 
+            this.initializeRows();
         }
 
         $('#classGradeCalc-submit-btn').click(function() {
@@ -51,12 +74,12 @@ export default class GradeCalculator {
             if (this.rowCount < this.maxRows) {
                 this.addNewRow();
                 console.log("Add Row Click works");
-            };
+            }
         
         });
         
-        document.getElementById('#classGradeCalc-removeRow-btn').addEventListener("click", function() {
-            this.errorDisplay();
+        $('#classGradeCalc-removeRow-btn').click(function() {
+            //this.errorDisplay();
             console.log("Got into the remove row event handler");
             this.removeRow();
         });
@@ -65,7 +88,6 @@ export default class GradeCalculator {
     show() {
         this.init();
         $('#classGradeCalc-container').show();
-        this.initializeRows();
     }
 
     hide() {
@@ -77,24 +99,6 @@ export default class GradeCalculator {
         for (var i = 1; i <= this.startingClassCount; i++) {
             this.addNewRow();
         }
-    }
-
-
-    submit() {
-        var gradePercentage;
-        var weight;
-        for (var i = 1; i <= this.rowCount; i++) {
-            gradePercentage = parseInt($('#classGradeCalc-grade-'+i).val());
-            weight = parseInt($('#classGradeCalc-weight-'+i).val());
-            if (isNaN(gradePercentage) || isNaN(weight)) {
-                errorDisplay();
-                return;
-            }
-            this.gradesWithWeights.push({ grade: gradePercentage, weight: weight });
-            console.log("Grade With Weight " + i + ": " + this.gradesWithWeights[i-1].grade + " " + this.gradesWithWeights[i-1].weight);
-        }
-        var totalCourseGrade = this.calculateTotalCourseGrade();
-        this.displayOut(totalCourseGrade);
     }
 
     displayOut(totalCourseGrade) {
@@ -128,11 +132,6 @@ export default class GradeCalculator {
             finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
     
         return parseFloat(finalResult);
-    }
-
-    errorDisplay = function() {
-        $('#classGradeCalc-out').empty();
-        $('#classGradeCalc-out').append("Please fill in all required options correctly");
     }
 
 }

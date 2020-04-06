@@ -212,6 +212,8 @@ $(document).ready(function() {
 
     let classGradeCalcPage = new GradeCalculator();
 
+    console.log(classGradeCalcPage);
+
     $('#classGradeCalc-page-btn').click(function () {
         $('#passFailCalc-container').hide();
         classGradeCalcPage.show();
@@ -220,6 +222,24 @@ $(document).ready(function() {
     $('#passFailCalc-page-btn').click(function () {
         classGradeCalcPage.hide();
         $('#passFailCalc-container').show();
+    });
+
+    $('#classGradeCalc-submit-btn').click(function() {
+        console.log("Got into submit event handler");
+        classGradeCalcPage.submit();
+    });
+
+    $('#classGradeCalc-addRow-btn').click(function() {
+        console.log("Got into add row event handler");
+        console.log("Current row count: " + classGradeCalcPage.rowCount);
+        if (classGradeCalcPage.rowCount < classGradeCalcPage.maxRows) {
+            classGradeCalcPage.addNewRow();
+        }
+    });
+
+    $('#classGradeCalc-removeRow-btn').click(function() {
+        console.log("Got into the remove row event handler");
+        classGradeCalcPage.removeRow();
     });
 
 });
