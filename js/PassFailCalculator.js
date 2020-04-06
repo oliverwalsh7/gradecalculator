@@ -60,8 +60,8 @@ export default class PassFailCalculator {
         })
         $('#credits').append(creditDropDown);
 
-        var retakeDropDown = $('<input class="input-button" type="checkbox">').attr("id", classCount).appendTo('#retakes');
-        $('#retakes').append(retakeDropDown);
+        var retakeInput = $('<input class="input-button" type="checkbox">').attr("id", classCount).appendTo('#retakes');
+        $('#retakes').append(retakeInput);
         $('#retakes').append(newLine);
 
         var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
