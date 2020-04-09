@@ -23,13 +23,22 @@ header {
     margin: 0px;
 }
 .view-container {
-    margin: 0px;
+    /* margin: 0px;
     position: fixed;
     display: flex;
     align-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    width: 100vw; */
+
+    /* position: fixed; */
+    /* display: flex; */
+    /* display: inline-block; */
+    /* align-content: center;
+    align-items: center; */
+    overflow-y: scroll;
+    /* height: 100vh; */
+    width: 100%;
 }
 .footer {
     background-color: var(--ocean);
@@ -55,12 +64,48 @@ header {
     padding-top: 1.65vh;
 }
 .instruct-wrap {
-    margin: 0px;
+    /* margin: 0px;
     background: var(--ocean2);
     width: 25vw;
     height: 100%;
+    align-items: center; */
+
+    position: absolute;
+    display: block;
+
+    background: var(--ocean2);
+    width: 25%;
     align-items: center;
+    height: calc(100vh - 106px);
 }
+
+.input-wrap {
+    /* display: inline-block;
+    margin: 0px;
+    margin-bottom: 5.5vh;
+    margin-left: 25vw;
+    background: var(--ocean3);
+    width: 75vw;
+    height: 100%;
+    background-image: url("../assets/wizardhat.png");
+    background-repeat: no-repeat, repeat;
+    background-position: center; 
+    background-size: 50vw cover; 
+    justify-content: center; */
+    
+     position: absolute;
+     display: block;
+     margin-left: 25vw;
+     background: var(--ocean3);
+     width: 75%;
+     height: calc(100vh - 106px);
+     background-image: url("../assets/wizardhat.png");
+     background-repeat: no-repeat, repeat;
+     background-position: center; 
+     background-size: 50vw cover; 
+     justify-content: center;
+}
+
 .instructions {
     margin-top: 0px;
     margin-left: 1vw;
@@ -125,18 +170,7 @@ header {
     margin-left: 2.5vw;
     color: var(--pearl);
 }
-.input-wrap {
-    margin: 0px;
-    margin-bottom: 5.5vh;
-    background: var(--ocean3);
-    width: 75vw;
-    height: 94.5vh;
-    background-image: url("../assets/wizardhat.png");
-    background-repeat: no-repeat, repeat;
-    background-position: center; /* Center the image */
-    background-size: 50vw cover; /* Resize the background image to cover the entire container */
-    justify-content: center;
-}
+
 .select-btn {
     background: rgb(199, 173, 107, .8);
     width: 10vw;
@@ -173,7 +207,7 @@ input {
 .input-box {
     display: block;
     line-height: 1;
-    width: 100%;
+    width: calc(100% - 2.5vw);
     height: 100%;
     color: ivory;
     margin-left: 2.5vw;
@@ -287,7 +321,7 @@ button {
 }
 
 /*
-Navbar shit
+Navbar stuff
 */
 li{
     list-style-type: none;
@@ -329,4 +363,65 @@ ul {
     padding-top: .5vh;
     padding-left: .5vw;
     padding-right: 2vw;
+}
+
+@media (max-width: 1050px) and (min-width: 800px) {
+    .instruct-wrap {
+        position: relative;
+        width: 100vw;
+        height: auto;
+    }
+    
+    .input-wrap {
+         position: relative;
+         margin-left: 0;
+         margin-top: 0;
+         width: 100vw;
+         height: auto;
+    }
+
+    .about-text {
+        margin-bottom: 0;
+    }
+
+}
+  
+@media (max-width: 800px) and (min-width: 550px){
+    .instruct-wrap {
+        position: relative;
+        width: 100vw;
+        height: auto;
+    }
+    
+    .input-wrap {
+         position: relative;
+         margin-left: 0;
+         margin-top: 0;
+         width: 100vw;
+         height: auto;
+    }
+
+    .about-text {
+        margin-bottom: 0;
+    }
+}
+  
+@media (max-width: 550px) {
+    .instruct-wrap {
+        position: relative;
+        width: 100vw;
+        height: auto;
+    }
+    
+    .input-wrap {
+         position: relative;
+         margin-left: 0;
+         margin-top: 0;
+         width: 100vw;
+         height: auto;
+    }
+
+    .about-text {
+        margin-bottom: 0;
+    }
 }
