@@ -296,9 +296,17 @@ table {
     font-size: 1em;
     text-decoration: underline;
 }
+tr {
+    width: 25vw;
+}
 td {
     width: 25vw;
 }
+
+.td-class {
+    width: 5vw;
+}
+
 .input-button {
     -webkit-appearance: none;
     border: 1px solid #cacece;
@@ -370,18 +378,13 @@ td {
 button {
     margin-left: 0;
 }
-.output-box-view {
-    font-size: 1em;
-    color: var(--pearl);
-    margin-top: 3vh;
-    background-color: #131831;
-    border: 1px solid;
-    border-color: ivory;
-    width: 92%;
-    display: block;
-}
 #out {
     padding: 2.5vh 0vh;
+    font-size: 1em;
+    color: var(--pearl);
+    margin-top: 5vh;
+    width: 92%;
+    display: block;
 }
 #submit-btn {
     margin-top: 5vh;
