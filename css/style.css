@@ -140,14 +140,14 @@ header {
     margin-right: 2vw;
 }
 .about-section {
-    margin-top: 5vh;
+    margin-top: 2.5vh;
     margin-right: 2vw;
     border-color: var(--pearl);
 }
 .about-header {
     font-size: 17px;
     font-style: italic;
-    margin-bottom: 1.5vh;
+    margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 2.5vw;
@@ -155,10 +155,31 @@ header {
 }
 .about-text {
     font-size: 15px;
+    margin-bottom: 3.5vh;
+    margin-right: 2vw;
+    line-height: 1.25em;
+    margin-left: 1vw;
+    color: var(--pearl);
+}
+
+.disclaimer-header {
+    font-size: 12.5px;
+    font-style: italic;
+    margin-right: 2vw;
+    line-height: 1.25em;
+    margin-left: 1vw;
+    margin-bottom: 1vh;
+    color: var(--pearl);
+    letter-spacing: .35vw;
+    text-decoration: underline;
+}
+
+.disclaimer-text {
+    font-size: 10px;
     margin-bottom: 1.5vh;
     margin-right: 2vw;
     line-height: 1.25em;
-    margin-left: 2.5vw;
+    margin-left: 1vw;
     color: var(--pearl);
 }
 
