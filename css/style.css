@@ -8,6 +8,7 @@ body {
     --ocean2: #1d1f2b;
     --ocean3: #36384b;
     width: 100%;
+
 }
 html * {
    font-family: 'Roboto Mono', monospace !important;
@@ -74,7 +75,8 @@ ul {
 
     /* min-height: 100vh; */
     width: 100%;
-    height: calc(100vh - 111px);
+    height: calc(100% - 50px);
+    background: var(--ocean3);
 }
 .footer {
     background-color: var(--ocean);
@@ -93,7 +95,13 @@ ul {
     position: block;
     font-size: 12.5px;
     letter-spacing: .2vw;
-    padding-top: 1.65vh;
+    padding: 16px 0px;
+}
+
+.page-wrap {
+    width: 100vw;
+    height: calc(100vh - 61px);
+    background: var(--ocean3);
 }
 .instruct-wrap {
     position: absolute;
@@ -102,7 +110,8 @@ ul {
     background: var(--ocean2);
     width: 25%;
     align-items: center;
-    height: calc(100vh - 106px);
+    height: calc(100vh - 111px);
+    overflow-x: hidden;
 }
 
 .input-wrap {
@@ -111,12 +120,13 @@ ul {
     margin-left: 25vw;
     background: var(--ocean3);
     width: 75%;
-    height: calc(100vh - 106px);
+    height: calc(100vh - 111px);
     background-image: url("../assets/wizardhat.png");
     background-repeat: no-repeat, repeat;
     background-position: center; 
     background-size: 50vw cover; 
     justify-content: center;
+    overflow-x: hidden;
 }
 
 .input-wrap2 {
@@ -219,6 +229,7 @@ ul {
     border: 2px solid;
     border-color: ivory;
 }
+
 .input-form {
     background: rgb(199, 173, 107, .8);
     width: 15vw;
@@ -226,6 +237,7 @@ ul {
     border: 2px solid rounded;
     border-color: ivory;
     border-radius: 3px;
+    padding: 0px;
 }
 .input-form2 {
     background: rgb(199, 173, 107, .8);
@@ -234,7 +246,9 @@ ul {
     border: 2px solid rounded;
     border-color: ivory;
     border-radius: 3px;
+    padding: 0px;
 }
+
 /* #th {
     display: none;
 } */
@@ -257,9 +271,9 @@ ul {
     display: none;
 }
 
-input {
+/* input {
     padding: 3.5px;
-}
+} */
 .input-box {
     display: block;
     line-height: 1;
