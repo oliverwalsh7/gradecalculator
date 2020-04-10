@@ -72,40 +72,17 @@
                             <input type="text" id="curr-QP" placeholder="400">
                         </div>
                             <table style="width:100%">
-                                <tr>
-                                    <th class="th-class">Course</th>
-                                    <th class="th-class">Grade</th>
-                                    <th class="th-class">Credits</th>
-                                    <th class="th-class">Retake?</th>
-                                    <th class="th-class" id="th">Old Grade</th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="course-colm" id="courses">
-                                            <!--Course COLUMN-->
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="grade-colm" id="grades">
-                                            <!--GRADES COLUMN-->
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="credits-colm" id="credits">
-                                            <!--CREDITS COLUMN-->
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="retake-colm" id="retakes">
-                                            <!--RETAKE COLUMN-->
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="oldGrade-colm" id="oldGrade">
-                                            <!--oldGrade COLUMN-->
-                                        </div>
-                                    </td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th class="th-class">Course</th>
+                                        <th class="th-class">Grade</th>
+                                        <th class="th-class">Credits</th>
+                                        <th class="th-class">Retake?</th>
+                                        <th class="th-class" id="th">Old Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="passFailForm-tbody">
+                                </tbody>
                             </table> 
                         <button type="submit" id="submit-btn">Submit</button>
                         <button type="submit" id="addRow-btn">Add Class</button>
@@ -140,22 +117,14 @@
                     <div class="input-box">
                         
                         <table style="width:100%">
-                            <tr>
-                                <th class="th-class">Grade (%)</th>
-                                <th class="th-class">Weight</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="grade-colm" id="classGradeCalc-grades">
-                                        <!--Course COLUMN-->
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="weight-colm" id="classGradeCalc-weights">
-                                        <!--GRADES COLUMN-->
-                                    </div>
-                                </td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th class="th-class">Grade (%)</th>
+                                    <th class="th-class">Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody id="classGradeForm-tbody">
+                            </tbody>
                         </table> 
                         <button type="submit" id="classGradeCalc-submit-btn">Submit</button>
                         <button type="submit" id="classGradeCalc-addRow-btn">Add Row</button>
