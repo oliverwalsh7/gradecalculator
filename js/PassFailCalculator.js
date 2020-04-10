@@ -48,40 +48,46 @@ export default class PassFailCalculator {
         var coursesColm = $('<div class="course-colm"></div>');
         var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + ' />').attr("id","course-"+classCount).appendTo(coursesColm);
         $(coursesColm).append(course);
-        var coursesCellMarkup = "<td>" + coursesColm.html() + "</td>";
 
+        var coursesCellMarkup = "<td>" + coursesColm.html() + "</td>";
         var gradesColm = $('<div class="grade-colm"></div>');
         var gradeDropDown = $('<select class="input-form">').attr("id","grade-"+classCount).appendTo(gradesColm);
         grades.map(function(val) {
             gradeDropDown.append($('<option>').attr('val',val).text(val));
         })
         $(gradesColm).append(gradeDropDown);
-        var gradesCellMarkup = "<td>" + gradesColm.html() + "</td>";
 
+        var gradesCellMarkup = "<td>" + gradesColm.html() + "</td>";
         var creditsColm = $('<div class="credit-colm"></div>');
         var creditDropDown = $('<select class="input-form">').attr("id","credit-"+classCount).appendTo(creditsColm);
         credits.map(function(val) {
             creditDropDown.append($('<option>').attr('val',val).text(val));
         })
         $(creditsColm).append(creditDropDown);
-        var creditsCellMarkup = "<td>" + creditsColm.html() + "</td>";
 
+        var creditsCellMarkup = "<td>" + creditsColm.html() + "</td>";
         var retakeColm = $('<div class="retake-colm"></div>');
         var retakeInput = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", classCount).appendTo(creditsColm);
         $(retakeColm).append(retakeInput);
-        var retakeCellMarkup = "<td>" + retakeColm.html() + "</td>";
 
+        var retakeCellMarkup = "<td>" + retakeColm.html() + "</td>";
         var oldGradeColm = $('<div class="oldGrade-colm"></div>');
         var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo(oldGradeColm);
         grades.map(function(val) {
             oldGradeDropDown.append($('<option>').attr('val',val).text(val));
         })
         $(oldGradeColm).append(oldGradeDropDown);
-        var oldGradeCellMarkup = "<td>" + oldGradeColm.html() + "</td>";
-        console.log("Class Count after adding row: " + classCount);
 
+        var oldGradeCellMarkup = "<td>" + oldGradeColm.html() + "</td>";
+        var i = classCount + 10;
+        var passFailColm = $('<div class="passFail-colm"></div>');
+        var passFailInput = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", i).appendTo(passFailColm);
+        $(passFailColm).append(passFailInput);
+
+        var passFailCellMarkup = "<td>" + passFailColm.html() + "</td>";
+        console.log("Class Count after adding row: " + classCount);
         var rowMarkup = "<tr id='passFailCalc-row-" + classCount + "'>"  
-                            + coursesCellMarkup + gradesCellMarkup + creditsCellMarkup + retakeCellMarkup + oldGradeCellMarkup 
+                            + coursesCellMarkup + gradesCellMarkup + creditsCellMarkup + retakeCellMarkup + oldGradeCellMarkup + passFailCellMarkup
                         + "</tr>";
 
         $("#passFailForm-tbody").append(rowMarkup);
