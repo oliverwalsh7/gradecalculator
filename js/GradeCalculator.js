@@ -65,23 +65,30 @@ export default class GradeCalculator {
 
     addNewRow() {
         rowCount++;
-        var gradeInput = $('<input class="input-form"/>').attr("id","classGradeCalc-grade-"+rowCount).appendTo('#classGradeCalc-grades');
-        var newLine = $('<div>\n</div>').appendTo('#grades');
-        $('#classGradeCalc-grades').append(gradeInput);
-        $('#classGradeCalc-grades').append(newLine);
-    
-        var weightInput = $('<input class="input-form"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo('#classGradeCalc-weights');
-        var newLine = $('<div>\n</div>').appendTo('#grades');
-        $('#classGradeCalc-weights').append(weightInput);
-        $('#classGradeCalc-weight').append(newLine);
-    
+
+        var gradesColm = $('<div class="grade-colm"></div>');
+        var gradeInput = $('<input class="input-form"/>').attr("id","classGradeCalc-grade-"+rowCount).appendTo(gradesColm);
+        $(gradesColm).append(gradeInput);
+        var gradesCellMarkup = "<td>" + gradesColm.html() + "</td>";
+
+        var weightsColm = $('<div class="weights-colm"></div>');
+        var weightInput = $('<input class="input-form"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo(weightsColm);
+        console.log(weightInput);
+        $(weightsColm).append(weightInput.html());
+        var weightsCellMarkup = "<td>" + weightsColm.html() + "</td>";
+
+        var rowMarkup = "<tr id='classGradeCalc-row-" + rowCount + "'>" 
+                        + gradesCellMarkup + weightsCellMarkup 
+                        + "</tr>";
+        
+        $('#classGradeForm-tbody').append(rowMarkup);
         console.log("Row Count after adding row: " + rowCount);
     }
     
     removeRow() {
         console.log("Before hiding: " + rowCount);
-        $('#classGradeCalc-grade-'+rowCount).remove();
-        $('#classGradeCalc-weight-'+rowCount).remove();
+        if (rowCount === 0) { return; }
+        $('#classGradeCalc-row-'+rowCount).remove();
         rowCount--;
         console.log("After hiding: " + rowCount);
     }
