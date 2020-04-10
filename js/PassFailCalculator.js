@@ -45,9 +45,9 @@ export default class PassFailCalculator {
     addNewRow() {
         classCount++;
         var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + ' />').attr("id","course-"+classCount).appendTo('#courses');
-        var newLine = $('<div>\n</div>').appendTo('#courses');
+        var newLine1 = $('<div>\n</div>').appendTo('#courses');
         $('#course').append(course);
-        $('#course').append(newLine);
+        $('#course').append(newLine1);
     
         var gradeDropDown = $('<select class="input-form">').attr("id","grade-"+classCount).appendTo('#grades');
         grades.map(function(val) {
@@ -63,7 +63,8 @@ export default class PassFailCalculator {
 
         var retakeInput = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", classCount).appendTo('#retakes');
         $('#retakes').append(retakeInput);
-        $('#retakes').append(newLine);
+        var newLine2 = $('<div>\n</div>').appendTo('#retakes');
+        $('#retakes').append(newLine2);
 
         var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
         grades.map(function(val) {
@@ -71,6 +72,13 @@ export default class PassFailCalculator {
         })
         $('#oldGrade').append(oldGradeDropDown);
         console.log("Class Count after adding row: " + classCount);
+
+        var i = 10 + classCount;
+        var passFailInput = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", i).appendTo('#passFails');
+        var newLine3 = $('<div>\n</div>').appendTo('#passFails');
+        $('#passFails').append(passFailInput);
+        $('#passFails').append(newLine3);
+        
     }
 
     removeRow() {
