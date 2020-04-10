@@ -1,254 +1,57 @@
 const PORT = 3000;
 const HOST = `localhost:${PORT}`;
 
-const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-const credits = ['N/A','1','2','3','4'];
-const startingClassCount = 3;
-var classCount = 0;
-var currentCourses = [];
-var newMaxGPA;
-var maxClass = 8;
+import GradeCalculator from './GradeCalculator.js';
+import PassFailCalculator from './PassFailCalculator.js';
 
-function initializeRows() {
-    for (var i = 1; i <= startingClassCount; i++) {
-        addNewRow();
-        isChecked();
-    }
-}
+const passFailCalcPage = new PassFailCalculator();
+const classGradeCalcPage = new GradeCalculator();
 
-function addNewRow() {
-    classCount++;
-    var course = $('<input class="input-form" placeholder="Class ' + classCount + '" ' + ' />').attr("id","course-"+classCount).appendTo('#courses');
-    var newLine = $('<div>\n</div>').appendTo('#courses');
-    $('#course').append(course);
-    $('#course').append(newLine);
+$(document).ready(function() {
 
-    var gradeDropDown = $('<select class="input-form">').attr("id","grade-"+classCount).appendTo('#grades');
-    grades.map(function(val, index) {
-        gradeDropDown.append($('<option>').attr('val',val).text(val));
-    })
-    $('#grades').append(gradeDropDown);
-
-    var creditDropDown = $('<select class="input-form">').attr("id","credit-"+classCount).appendTo('#credits');
-    credits.map(function(val, index) {
-        creditDropDown.append($('<option>').attr('val',val).text(val));
-    })
-    $('#credits').append(creditDropDown);
-
-    var retakeDropDown = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", classCount).appendTo('#retakes');
-    $('#retakes').append(retakeDropDown);
-    $('#retakes').append(newLine);
-
-    var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo('#oldGrade');
-    grades.map(function(val, index) {
-        oldGradeDropDown.append($('<option>').attr('val',val).text("Old class " + classCount + " grade: " + val));
-    })
-    $('#oldGrade').append(oldGradeDropDown);
-
-    console.log("Class Count after adding row: " + classCount);
-}
-
-function removeRow() {
-    if (classCount == 0) {return; }
-    console.log("Before hiding: " + classCount);
-    $('#course-'+classCount).remove();
-    $('#grade-'+classCount).remove();
-    $('#credit-'+classCount).remove();
-    $("#"+classCount).remove(); // retake
-    $("#oldGrade-"+classCount).remove();
-    classCount--;
-    console.log("After hiding: " + classCount);
-}
-
-function submit() {
-    var convertedGrade;
-    var convertedCredit;
-    var courseName;
-    for (var i = 1; i <= classCount; i++) {
-        convertedGrade = convertGrade($('#grade-'+i).val());
-        convertedCredit = parseInt($('#credit-'+i).val());
-        console.log("Converted credit: " + convertedCredit);
-        if (convertedGrade === -1 || isNaN(convertedCredit)) {
-            errorDisplay();
-            return;
-        }
-        if ($('#course-'+i).val() === '') {
-            courseName = $('#course-'+i).attr('placeholder');
-        }
-        else {
-            courseName = $('#course-'+i).val();
-        }
-        currentCourses.push({ name: courseName, grade: convertedGrade, credits: convertedCredit });
-        console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
-    }
-    var gpaHours = parseInt($('#curr-GPA').val());
-    var qualityPoints = parseInt($('#curr-QP').val());
-    var upperBoundForClassesToTake = calculateOptimalPassFail(gpaHours, qualityPoints);
-    displayOut(upperBoundForClassesToTake);
-    console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
-}
-
-
-
-function calculateOptimalPassFail(gpaHours, qualityPoints) {
-    currentCourses.sort(function(a, b) {
-        return b.grade - a.grade;
-    });
-    for (var i = 0; i < currentCourses.length; i++) {
-        console.log("Current Course " + i + ": " + currentCourses[i].grade);
-    }
-    var maxGPA = qualityPoints / gpaHours;
-    var newGPAHours = gpaHours;
-    var newQualityPoints = qualityPoints;
-    var upperBoundForClassesToTake = 0;
-    for (var i = 1; i <= classCount; i++) {
-        newGPAHours += currentCourses[i - 1].credits;
-        newQualityPoints += (currentCourses[i - 1].credits * currentCourses[i - 1].grade);
-        console.log("maxGPA1 " + maxGPA);
-        newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
-        console.log("maxGPA2 " + newMaxGPA);
-        console.log("(newQualityPoints / newGPAHours) " + (newQualityPoints / newGPAHours));
-        if (newMaxGPA !== maxGPA) {
-            maxGPA = newMaxGPA;
-            console.log("upperBound1 " + upperBoundForClassesToTake);
-            upperBoundForClassesToTake = i;
-            console.log("upperBound1 " + upperBoundForClassesToTake);
-            continue;
-        }
-        break;
-    }
-    newMaxGPA = maxGPA;
-    console.log(upperBoundForClassesToTake);
-    return upperBoundForClassesToTake;
-}
-
-function errorDisplay() {
-    $('#out').empty();
-    $('#out').append("Please fill in all required options");
-}
-
-function displayOut(upperBoundForClassesToTake) {
-    $('#out').empty();
-
-    var outText = "Your new GPA is " + truncateDecimals(newMaxGPA, 2) + 
-                  " and you should keep credit for these classes: \n";
-                  
-    if (upperBoundForClassesToTake == 0) { 
-        outText += "none"; 
-    } 
-    for (var i = 1; i <= upperBoundForClassesToTake; i++) {
-        if (i === (upperBoundForClassesToTake)) {
-            outText += currentCourses[i - 1].name
-        }
-        else {
-            outText += currentCourses[i - 1].name + ", "
-        }
-    }
-    //$('#out').addClass(".output-box-view");
-    $('#out').append(outText);
-
-}
-
-function truncateDecimals (num, digits) {
-    var numS = num.toString(),
-        decPos = numS.indexOf('.'),
-        substrLength = decPos == -1 ? numS.length : 1 + decPos + digits,
-        trimmedResult = numS.substr(0, substrLength),
-        finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
-
-    return parseFloat(finalResult);
-}
-
-function isChecked(id) {
-    console.log("id is: " + id);
-    // Get the checkbox
-    var checkBox = document.getElementById(id);
-    // Get the output text
-    var text = document.getElementById("oldGrade-"+ id);
-    var col = document.getElementById("th");
-
-    if (id == undefined) {
-        console.log("it is undefined");
-        //col.style.display = "none";
-        return;
-    }
-
-    // If the checkbox is checked, display the output text
-    if (checkBox.checked == true){
-        console.log("Checkbox is checked");
-        text.style.display = "block";
-        text.style.position = "inherit";
-        //col.style.display = "block";
-    } else {
-        console.log("Checkbox is unchecked");
-        text.style.display = "none";
-        // /col.style.display = "none";
-    }
-}
-
-// Converts the dropdown select options into integers 
-function convertGrade(grade) {
-    let newGrade = 0;
-    switch (grade) {
-        case 'A': 
-            newGrade = 4; 
-            break;
-        case 'A-': 
-            newGrade = 3.7; 
-            break;
-        case 'B+': 
-            newGrade = 3.3; 
-            break;
-        case 'B': 
-            newGrade = 3; 
-            break;
-        case 'B-': 
-            newGrade = 2.7; 
-            break;
-        case 'C+': 
-            newGrade = 2.3; 
-            break;
-        case 'C': 
-            newGrade = 2; 
-            break;
-        case 'C-': 
-            newGrade = 1.7; 
-            break;
-        case 'D+': 
-            newGrade = 1.3; 
-            break;
-        case 'D': 
-            newGrade = 1; 
-            break;
-        case 'D-': 
-            newGrade = .7; 
-            break;
-        case 'F': 
-            newGrade = 0; 
-            break;
-        default:
-            newGrade = -1;
-    } 
-    return newGrade;
-}
-
-$(() => {
-
-    initializeRows();
-    // $('.output-box').hide();
+    passFailCalcPage.show();
 
     $('#submit-btn').click(function() {
-        submit();
+        passFailCalcPage.submit();
     });
 
     $('#addRow-btn').click(function() {
         
-        if (classCount < maxClass) addNewRow();
+        if (passFailCalcPage.getClassCount() < passFailCalcPage.getMaxClassCount()) passFailCalcPage.addNewRow();
     
     });
 
     $('#removeRow-btn').click(function() {
-        removeRow();
+        passFailCalcPage.removeRow();
+    });
+
+    // $('.input-button').click(function() {
+    //     passFailCalcPage.isChecked($(this).attr('id'));
+    // });
+
+    $('#classGradeCalc-page-btn').click(function () {
+        passFailCalcPage.hide();
+        classGradeCalcPage.show();
+    });
+
+    $('#passFailCalc-page-btn').click(function () {
+        classGradeCalcPage.hide();
+        passFailCalcPage.show();
+    });
+
+    $('#classGradeCalc-submit-btn').click(function() {
+        console.log("Got into submit event handler");
+        classGradeCalcPage.submit();
+    });
+
+    $('#classGradeCalc-addRow-btn').click(function() {
+        if (classGradeCalcPage.getRowCount() < classGradeCalcPage.getMaxRowCount()) {
+            classGradeCalcPage.addNewRow();
+        }
+    });
+
+    $('#classGradeCalc-removeRow-btn').click(function() {
+        classGradeCalcPage.removeRow();
     });
 
 });
