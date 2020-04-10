@@ -72,7 +72,7 @@ export default class PassFailCalculator {
 
         var retakeCellMarkup = "<td>" + retakeColm.html() + "</td>";
         var oldGradeColm = $('<div class="oldGrade-colm"></div>');
-        var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo(oldGradeColm);
+        var oldGradeDropDown = $('<select class="grade-form2">').attr("id","oldGrade-"+classCount).appendTo(oldGradeColm);
         grades.map(function(val) {
             oldGradeDropDown.append($('<option>').attr('val',val).text(val));
         })
