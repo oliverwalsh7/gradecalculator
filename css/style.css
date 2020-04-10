@@ -36,8 +36,11 @@ header {
     /* display: inline-block; */
     /* align-content: center;
     align-items: center; */
-    overflow-y: scroll;
-    /* height: 100vh; */
+
+    /* overflow-y: scroll; */
+    position: relative;
+
+    /* min-height: 100vh; */
     width: 100%;
 }
 .footer {
@@ -46,11 +49,11 @@ header {
     font-size: 15px;
     color: white;
     text-align: center;
-    width: 100%;
     height: 45px;
     margin: 0px;
     position: absolute;
     bottom: 0;
+    width: 100%;
 }
 .topbar-text {
     font-size: 90%;
@@ -104,6 +107,13 @@ header {
      background-position: center; 
      background-size: 50vw cover; 
      justify-content: center;
+}
+
+.input-wrap2 {
+    display: inline-block;
+    position: relative;
+    /* width: 45%; */
+    color: ivory;
 }
 
 .instructions {
@@ -198,9 +208,7 @@ header {
     border-radius: 3px;
     display: none;
 }
-.input-form2 {
-    color: ivory;
-}
+
 input {
     padding: 3.5px;
 }
@@ -210,7 +218,7 @@ input {
     width: calc(100% - 2.5vw);
     height: 100%;
     color: ivory;
-    margin-left: 2.5vw;
+    margin-left: 2%;
 }
 ::placeholder {
     color: black;
