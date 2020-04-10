@@ -177,6 +177,14 @@ header {
     border-color: ivory;
     border-radius: 3px;
 }
+.input-form2 {
+    background: rgb(199, 173, 107, .8);
+    width: 7.5vw;
+    margin-top: 2.5vh;
+    border: 2px solid rounded;
+    border-color: ivory;
+    border-radius: 3px;
+}
 /* #th {
     display: none;
 } */
@@ -229,6 +237,9 @@ table {
 .th-class {
     font-size: 1em;
     text-decoration: underline;
+}
+td {
+    width: 25vw;
 }
 .input-button {
     -webkit-appearance: none;
@@ -315,11 +326,13 @@ button {
     padding: 2.5vh 0vh;
 }
 #submit-btn {
-    margin-top: 3vh;
-    margin-right: 1vw;
+    margin-top: 5vh;
+    margin-left: 12.5vw;
 }
 #addRow-btn {
-    margin-right: 1vw;
+    margin-right: 0vw;
+    margin-top: 5vh;
+
 }
 
 #classGradeCalc-container {

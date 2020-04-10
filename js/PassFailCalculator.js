@@ -51,7 +51,7 @@ export default class PassFailCalculator {
 
         var coursesCellMarkup = "<td>" + coursesColm.html() + "</td>";
         var gradesColm = $('<div class="grade-colm"></div>');
-        var gradeDropDown = $('<select class="input-form">').attr("id","grade-"+classCount).appendTo(gradesColm);
+        var gradeDropDown = $('<select class="input-form2">').attr("id","grade-"+classCount).appendTo(gradesColm);
         grades.map(function(val) {
             gradeDropDown.append($('<option>').attr('val',val).text(val));
         })
@@ -59,7 +59,7 @@ export default class PassFailCalculator {
 
         var gradesCellMarkup = "<td>" + gradesColm.html() + "</td>";
         var creditsColm = $('<div class="credit-colm"></div>');
-        var creditDropDown = $('<select class="input-form">').attr("id","credit-"+classCount).appendTo(creditsColm);
+        var creditDropDown = $('<select class="input-form2">').attr("id","credit-"+classCount).appendTo(creditsColm);
         credits.map(function(val) {
             creditDropDown.append($('<option>').attr('val',val).text(val));
         })
