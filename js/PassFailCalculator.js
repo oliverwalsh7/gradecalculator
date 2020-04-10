@@ -74,7 +74,7 @@ export default class PassFailCalculator {
         var oldGradeColm = $('<div class="oldGrade-colm"></div>');
         var oldGradeDropDown = $('<select class="grade-form">').attr("id","oldGrade-"+classCount).appendTo(oldGradeColm);
         grades.map(function(val) {
-            oldGradeDropDown.append($('<option>').attr('val',val).text("Old class " + classCount + " grade: " + val));
+            oldGradeDropDown.append($('<option>').attr('val',val).text(val));
         })
         $(oldGradeColm).append(oldGradeDropDown);
         var oldGradeCellMarkup = "<td>" + oldGradeColm.html() + "</td>";
@@ -98,10 +98,12 @@ export default class PassFailCalculator {
     submit() {
         var convertedGrade;
         var convertedCredit;
+        var convertedOldGrade;
         var courseName;
         for (var i = 1; i <= classCount; i++) {
             convertedGrade = this.convertGrade($('#grade-'+i).val());
             convertedCredit = parseInt($('#credit-'+i).val());
+            convertedOldGrade = this.convertGrade($('#oldGrade-'+i).val());
             console.log("Converted credit: " + convertedCredit);
             if (convertedGrade === -1 || isNaN(convertedCredit)) {
                 this.errorDisplay();
@@ -113,7 +115,13 @@ export default class PassFailCalculator {
             else {
                 courseName = $('#course-'+i).val();
             }
-            currentCourses.push({ name: courseName, grade: convertedGrade, credits: convertedCredit });
+            currentCourses.push(
+                { 
+                    name: courseName, 
+                    grade: convertedGrade, 
+                    credits: convertedCredit,
+                    oldGrade: convertedOldGrade 
+                });
             console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
         }
         var gpaHours = parseInt($('#curr-GPA').val());
@@ -137,8 +145,18 @@ export default class PassFailCalculator {
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
         for (var i = 0; i < classCount; i++) {
-            newGPAHours += currentCourses[i].credits;
-            newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            var isClassRetake = $('#'+(i+1)).is(":checked");
+            console.log("Is class retake: " + isClassRetake);
+            if (isClassRetake) {
+                var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
+                                            - (currentCourses[i].credits * currentCourses[i].oldGrade);
+                console.log(retakeNewQualityPoints);
+                newQualityPoints += retakeNewQualityPoints;
+            }
+            else {
+                newGPAHours += currentCourses[i].credits;
+                newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            }
             console.log("maxGPA1 " + maxGPA);
             newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
             console.log("maxGPA2 " + newMaxGPA);
