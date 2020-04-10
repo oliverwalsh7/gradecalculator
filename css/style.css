@@ -237,7 +237,8 @@ ul {
     border: 2px solid rounded;
     border-color: ivory;
     border-radius: 3px;
-    padding: 0px;
+    padding: 0px 2px ;
+    height: 30px;
 }
 .input-form2 {
     background: rgb(199, 173, 107, .8);
@@ -246,7 +247,8 @@ ul {
     border: 2px solid rounded;
     border-color: ivory;
     border-radius: 3px;
-    padding: 0px;
+    padding: 0px 2px;
+    height: 30px;
 }
 
 /* #th {
