@@ -341,7 +341,7 @@ li{
 
 nav a {
     text-decoration: none;
-    /* padding: 2vw; */
+    padding: 2vw;
     padding-top: 3vh;    
     padding-right: 2vw;    
     padding-bottom: 3.5vh;    
@@ -355,9 +355,11 @@ a:hover {
 }
 
 nav {
-    height: 8vh;
-    padding: 1vh;
-    width: 100vw;
+    /* height: 8vh; */
+    height: 61px;
+    /* padding: 1vh; */
+    width: calc(100vw - 1.5%);
+    margin-left: 1.5%;
     background-color: var(--ocean);
 }
 
