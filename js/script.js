@@ -9,6 +9,15 @@ const classGradeCalcPage = new GradeCalculator();
 
 $(document).ready(function() {
 
+    $('#mobile-nav-options-btn').click(function() {
+        /* this if else to change the text in the button */
+        if ($("#navBar").attr("class") === "topnav"){
+            $("#navBar").addClass("responsive");
+        } else{
+            $("#navBar").removeClass("responsive");
+        }
+    });
+
     passFailCalcPage.show();
 
     $('#submit-btn').click(function() {
