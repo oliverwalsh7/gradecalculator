@@ -31,7 +31,6 @@ export default class PassFailCalculator {
     }
 
     hide() {
-        this.clearForm();
         $('#passFailCalc-container').hide();
     }
 
@@ -234,14 +233,14 @@ export default class PassFailCalculator {
     
     }
 
-    clearForm() {
-        for (var i = 1; i <= this.rowCount; i++) {
-            // TODO: make more specific IDs for this calculator
-            $('#course-'+i).val('');
-            $('#grade-'+i).val('');
-            $('#credit-'+i).val('');
-        }
-    }  
+    // clearForm() {
+    //     for (var i = 1; i <= this.rowCount; i++) {
+    //         // TODO: make more specific IDs for this calculator
+    //         $('#course-'+i).val('');
+    //         $('#grade-'+i).val('');
+    //         $('#credit-'+i).val('');
+    //     }
+    // }  
     
     // Converts the dropdown select options into integers 
     convertGrade(grade) {

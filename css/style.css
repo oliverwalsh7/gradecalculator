@@ -34,6 +34,7 @@ Navbar stuff
     background-color: var(--ocean1);
     border: none;
     outline: 0;
+    height: 8.5vh;
 }
 
 .topnav .nav-button {
@@ -58,7 +59,7 @@ Navbar stuff
     margin-left: 1.5%; */
     background-color: var(--ocean);
     overflow: hidden;
-    flex: 1;
+    /* flex: 1; */
 }
 
 .topnav div {
@@ -73,7 +74,7 @@ Navbar stuff
 
 .topnav .topbar-text {
     font-size: 24px;
-    letter-spacing: .75vw;
+    letter-spacing: .6vw;
     padding: 12.5px 0;
 }
 
@@ -89,7 +90,7 @@ Navbar stuff
     bottom: 0;
     width: 100%;
     /* flex: none; */
-    flex: 1;
+    /* flex: 1; */
 }
 
 .footer-text{
@@ -137,7 +138,7 @@ Navbar stuff
     background-position: center; 
     background-size: 50vw cover; 
     /* justify-content: center; */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 .input-wrap2 {
@@ -155,6 +156,7 @@ Navbar stuff
     line-height: 1;
     width: 100%;
 }
+
 .step-box {
     display: inline-block;
     line-height: 1;
@@ -407,6 +409,11 @@ button {
 
 }
 
+/*  TODO:
+    Not being hidden right away due to media query
+    It isn't really necessary maybe check how we can have it 
+    hidden right away
+*/
 #classGradeCalc-container {
     display: none;
 }
@@ -489,7 +496,7 @@ button {
 /*change the layout of the navigation bar for all the screens 
 that have a width less or equal than 500px*/
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
     /*shows elements in a column*/
     .topnav div:not(:first-child) {
         display: none;
@@ -497,12 +504,11 @@ that have a width less or equal than 500px*/
     .topnav .mobile-nav-icon {
         float: right;
         display: block;
-        height: 8vh;
     }
     
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
    
    .topnav.responsive {
        position: relative;
@@ -521,8 +527,18 @@ that have a width less or equal than 500px*/
 }
 
 @media screen and (min-width: 700px) {
-    .page-wrap {
+    .page-wrap {  
         display: flex;
-        flex: 10;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    #classGradeCalc-container {  
+        display: flex;
+    }
+}
+@media screen and (max-width: 700px) {
+    #classGradeCalc-container {
+        display: block;
     }
 }
