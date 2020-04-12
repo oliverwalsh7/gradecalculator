@@ -350,44 +350,32 @@ td {
     width:100%;
     background-color: black;
 }
-.course-colm {
-    /* display: flex;
-    flex-direction: column; */
+/* .course-colm {
     display: block;
     width: 15vw;
     margin-right: 1vw;
 }
 .grade-colm {
-    /* display: flex;
-    flex-direction: column; */
     display: block;
     width: 15vw;
     margin-right: 1vw;
 }
 .credits-colm {
-    /* display: flex;
-    flex-direction: column; */
     display: block;
     width: 15vw;
 }
 .retake-colm {
-    /* display: flex;
-    flex-direction: column; */
     display: block;
     width: 6vw;
 }
 .oldGrade-colm {
-    /* display: flex;
-    flex-direction: column; */
     display: block;
     width: 12vw;
 }
 .passFail-colm {
-    /* display: flex;
-    flex-direction: column; */
     display: block;
     width: 6vw;
-}
+} */
 button {
     margin-left: 0;
 }
