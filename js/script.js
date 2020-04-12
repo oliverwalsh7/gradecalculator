@@ -10,13 +10,8 @@ const classGradeCalcPage = new GradeCalculator();
 classGradeCalcPage.hide();
 
 $(document).ready(function() {
- 
-    // if ($('#passFailCalc-container').css("display") !== "none") {
-    //     classGradeCalcPage.hide();
-    // }
 
     $('#mobile-nav-options-btn').click(function() {
-        /* this if else to change the text in the button */
         if ($("#navBar").attr("class") === "topnav"){
             $("#navBar").addClass("responsive");
         } else{

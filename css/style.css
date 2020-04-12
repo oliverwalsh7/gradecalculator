@@ -37,6 +37,7 @@ Navbar stuff
     height: 8.5vh;
     text-align: center;
     padding: 0 3vh;
+    font-size: 3vw;
 }
 
 .topnav .nav-item {
@@ -541,3 +542,4 @@ that have a width less or equal than 500px*/
         flex-direction: column;
     }
 }
+
