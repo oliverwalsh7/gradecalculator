@@ -156,6 +156,7 @@ Navbar stuff
     display: block;
     line-height: 1;
     width: 100%;
+    padding: 0 2vh;
 }
 
 .step-box {
@@ -164,6 +165,7 @@ Navbar stuff
     align-content: center;
     align-items: center;
     color: var(--pearl);
+    /* padding: 0 2vh; */
 }
 .header {
     font-size: 15px;
@@ -195,6 +197,7 @@ Navbar stuff
     margin-top: 2.5vh;
     margin-right: 2vw;
     border-color: var(--pearl);
+    /* padding: 0 1.5vh; */
 }
 .about-header {
     font-size: 17px;
@@ -202,7 +205,7 @@ Navbar stuff
     margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
-    margin-left: 2.5vw;
+    margin-left: 1vw;
     color: var(--pearl);
 }
 .about-text {
@@ -532,14 +535,9 @@ that have a width less or equal than 500px*/
         display: flex;
     }
 }
-
-@media screen and (min-width: 700px) {
-    #classGradeCalc-container {  
-        display: flex;
-    }
-}
 @media screen and (max-width: 700px) {
-    #classGradeCalc-container {
-        display: block;
+    .page-wrap {
+        display: flex;
+        flex-direction: column;
     }
 }
