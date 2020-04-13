@@ -5,6 +5,7 @@ const credits = ['N/A','1','2','3','4'];
 const startingClassCount = 5;
 var currentCourses = [];
 var newMaxGPA;
+var semesterGPA;
 var classCount = 0;
 var maxClass = 8;
 
@@ -135,6 +136,7 @@ export default class PassFailCalculator {
         var gpaHours = parseInt($('#curr-GPA').val());
         var qualityPoints = parseInt($('#curr-QP').val());
         this.calculateOptimalPassFail(gpaHours, qualityPoints);
+        this.calculateSemesterGPA();
         this.displayOut();
         console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
     }
@@ -185,7 +187,7 @@ export default class PassFailCalculator {
     }
 
     recalculateGPAWhenKeepingGrades(upperBoundForClassesToTake, newGPAHours, newQualityPoints) {
-        // Check that if a class must be taken for a grade what the new gpa will be
+        // Check that if a class must be taken for a grade and what the new gpa will be
         // Must be done after initial gpa calculation in case it decreases the gpa
         var newGPA;
         
@@ -198,6 +200,8 @@ export default class PassFailCalculator {
                 if (isForceKeepingGrade == true) {
                     var isClassRetake = $('#'+(i+1)).is(":checked");
                     console.log("Is class retake: " + isClassRetake);
+                    // This is done because when we exit the optimization calculation the new GPA hours
+                    // and new QP are already calculated, as that class is what caused it to leave the optimization loop
                     if (i > (upperBoundForClassesToTake+1)) {
                         if (isClassRetake == true) {
                             var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
@@ -218,7 +222,27 @@ export default class PassFailCalculator {
             }
         }
         console.log(newGPA);
-    }   
+    }  
+    
+    calculateSemesterGPA() {
+        var newGPAHours = 0;
+        var newQualityPoints = 0;
+        for (var i = 0; i < classCount; i++) {
+            var isClassRetake = $('#'+(i+1)).is(":checked");
+            console.log("Is class retake: " + isClassRetake);
+            if (isClassRetake == true) {
+                var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
+                                            - (currentCourses[i].credits * currentCourses[i].oldGrade);
+                console.log(retakeNewQualityPoints);
+                newQualityPoints += retakeNewQualityPoints;
+            }
+            else {
+                newGPAHours += currentCourses[i].credits;
+                newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            }
+        }
+        semesterGPA = newQualityPoints / newGPAHours;
+    }
 
     isChecked(id) {
         console.log("id is: " + id);
@@ -254,9 +278,10 @@ export default class PassFailCalculator {
     
     displayOut() {
         $('#out').empty();
-    
-        var outText = "Your new GPA is " + Utils.truncateDecimals(newMaxGPA, 2) + 
-                      " and you should keep these classes for a grade: \n";
+        var semesterGPAText = "Your semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
+
+        var outText = "<br>Your new GPA is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
+                      " and you should keep these classes for a grade: ";
                  
         var isKeepingAnyClasses = false;
         for (var i = 0; i < classCount; i++) {
@@ -272,17 +297,10 @@ export default class PassFailCalculator {
         else {
             outText += "none";
         }
-        $('#out').append(outText);
+        semesterGPAText += outText;
+        console.log(semesterGPAText);
+        $('#out').append(semesterGPAText);
     }
-
-    // clearForm() {
-    //     for (var i = 1; i <= this.rowCount; i++) {
-    //         // TODO: make more specific IDs for this calculator
-    //         $('#course-'+i).val('');
-    //         $('#grade-'+i).val('');
-    //         $('#credit-'+i).val('');
-    //     }
-    // }  
     
     // Converts the dropdown select options into integers 
     convertGrade(grade) {

@@ -93,7 +93,7 @@ export default class GradeCalculator {
     displayOut(totalCourseGrade) {
         $('#classGradeCalc-out').empty();
         console.log("Total course grade: " + totalCourseGrade);
-        var outText = "Your grade in this course is " + Utils.truncateDecimals(totalCourseGrade, 2) +"\n";
+        var outText = "Your grade in this course is " + Utils.truncateDecimals(totalCourseGrade, 2).toFixed(2) +"\n";
                     
         $('#classGradeCalc-out').append(outText);
     }
