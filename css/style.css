@@ -350,36 +350,15 @@ td {
     width:100%;
     background-color: black;
 }
-/* .course-colm {
-    display: block;
-    width: 15vw;
-    margin-right: 1vw;
-}
-.grade-colm {
-    display: block;
-    width: 15vw;
-    margin-right: 1vw;
-}
-.credits-colm {
-    display: block;
-    width: 15vw;
-}
-.retake-colm {
-    display: block;
-    width: 6vw;
-}
-.oldGrade-colm {
-    display: block;
-    width: 12vw;
-}
-.passFail-colm {
-    display: block;
-    width: 6vw;
-} */
+
 button {
     margin-left: 0;
 }
-.output-box-view {
+
+/* No matching HTML element
+   Left in here in case we go back to an output box view
+*/
+/* .output-box-view {
     font-size: 1em;
     color: var(--pearl);
     margin-top: 3vh;
@@ -388,7 +367,8 @@ button {
     border-color: ivory;
     width: 92%;
     display: block;
-}
+} */
+
 #out {
     padding: 2.5vh 0vh;
 }
@@ -410,81 +390,6 @@ button {
 #classGradeCalc-container {
     display: none;
 }
-
-/* @media (max-width: 1050px) and (min-width: 800px) {
-
-    .topbar-text {
-        font-size: 70%;
-    }
-
-    .instruct-wrap {
-        position: relative;
-        width: 100vw;
-        height: auto;
-    }
-    
-    .input-wrap {
-         position: relative;
-         margin-left: 0;
-         margin-top: 0;
-         width: 100vw;
-         height: auto;
-    }
-
-    .about-text {
-        margin-bottom: 0;
-    }
-
-} */
-  
-/* @media (max-width: 800px) and (min-width: 550px){
-
-    .topbar-text {
-        font-size: 70%;
-    } 
-
-    .instruct-wrap {
-        position: relative;
-        width: 100vw;
-        height: auto;
-    }
-    
-    .input-wrap {
-         position: relative;
-         margin-left: 0;
-         margin-top: 0;
-         width: 100vw;
-         height: auto;
-    }
-
-    .about-text {
-        margin-bottom: 0;
-    }
-} */
-  
-/* @media (max-width: 550px) {
-
-    .topbar-text {
-        font-size: 60%;
-    }
-    .instruct-wrap {
-        position: relative;
-        width: 100vw;
-        height: auto;
-    }
-    
-    .input-wrap {
-         position: relative;
-         margin-left: 0;
-         margin-top: 0;
-         width: 100vw;
-         height: auto;
-    }
-
-    .about-text {
-        margin-bottom: 0;
-    }
-} */
 
 /*change the layout of the navigation bar for all the screens 
 that have a width less or equal than 500px*/
