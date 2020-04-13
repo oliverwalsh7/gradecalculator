@@ -7,7 +7,17 @@ import PassFailCalculator from './PassFailCalculator.js';
 const passFailCalcPage = new PassFailCalculator();
 const classGradeCalcPage = new GradeCalculator();
 
+classGradeCalcPage.hide();
+
 $(document).ready(function() {
+
+    $('#mobile-nav-options-btn').click(function() {
+        if ($("#navBar").attr("class") === "topnav"){
+            $("#navBar").addClass("responsive");
+        } else{
+            $("#navBar").removeClass("responsive");
+        }
+    });
 
     passFailCalcPage.show();
 

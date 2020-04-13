@@ -14,42 +14,17 @@ export default class GradeCalculator {
     
     init() {
 
-        console.log(this);
-
         if (!this.isInit) {
             this.isInit = true; 
             this.initializeRows();
         }
-
-        // These click listeners must be called within a $(document).ready function.
-        // That is why the JS methods suposedly didn't exist when the buttons were being clicked
-        // They were moved into the main script.js file for now
-        // $('#classGradeCalc-submit-btn').click(function() {
-        //     console.log("Got into submit event handler");
-        //     this.submit();
-        // });
-    
-        // $('#classGradeCalc-addRow-btn').click(function() {
-        //     console.log("Got into add row event handler");
-        //     console.log("Current row count: " + this.rowCount);
-        //     if (this.rowCount < this.maxRows) {
-        //         this.addNewRow();
-        //         console.log("Add Row Click works");
-        //     }
-        
-        // });
-        
-        // $('#classGradeCalc-removeRow-btn').click(function() {
-        //     //this.errorDisplay();
-        //     console.log("Got into the remove row event handler");
-        //     this.removeRow();
-        // });
         
     }
 
     show() {
         this.init();
-        $('#classGradeCalc-container').show();
+        $('#classGradeCalc-container').css("display", "flex");
+        console.log($('#classGradeCalc-container').css("display"));
     }
 
     hide() {
@@ -118,7 +93,7 @@ export default class GradeCalculator {
     displayOut(totalCourseGrade) {
         $('#classGradeCalc-out').empty();
         console.log("Total course grade: " + totalCourseGrade);
-        var outText = "Your grade in this course is " + Utils.truncateDecimals(totalCourseGrade, 2) +"\n";
+        var outText = "Your grade in this course is " + Utils.truncateDecimals(totalCourseGrade, 2).toFixed(2) +"\n";
                     
         $('#classGradeCalc-out').append(outText);
     }
