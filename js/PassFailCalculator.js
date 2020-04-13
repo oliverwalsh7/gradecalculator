@@ -11,9 +11,18 @@ var maxClass = 8;
 
 export default class PassFailCalculator {
 
-    isInit = false;
+    //isInit = false;
 
     constructor() {
+        // const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
+        // const credits = ['N/A','1','2','3','4'];
+        // const startingClassCount = 5;
+        // var currentCourses = [];
+        // var newMaxGPA;
+        // var semesterGPA;
+        // var classCount = 0;
+        // var maxClass = 8;
+        this.isInit = false;
     }
 
     init() {

@@ -1,11 +1,8 @@
-const PORT = 3000;
-const HOST = `localhost:${PORT}`;
-
 import GradeCalculator from './GradeCalculator.js';
 import PassFailCalculator from './PassFailCalculator.js';
 
-const passFailCalcPage = new PassFailCalculator();
-const classGradeCalcPage = new GradeCalculator();
+let passFailCalcPage = new PassFailCalculator();
+let classGradeCalcPage = new GradeCalculator();
 
 classGradeCalcPage.hide();
 

@@ -7,9 +7,10 @@ var gradesWithWeights = [];
 
 export default class GradeCalculator {
 
-    isInit = false;
+    //isInit = false;
 
     constructor() {
+        this.isInit = false;
     }
     
     init() {
