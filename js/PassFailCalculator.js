@@ -77,7 +77,7 @@ export default class PassFailCalculator {
         var retakeColm = $('<div class="retake-colm"></div>');
         var retakeInput = $('<input class="input-button" type="checkbox" onclick="isChecked(this.id)">').attr("id", classCount).appendTo(creditsColm);
         $(retakeColm).append(retakeInput);
-        var retakeCellMarkup = "<td>" + retakeColm.html() + "</td>";
+        var retakeCellMarkup = "<td class='retakeCell'>" + retakeColm.html() + "</td>";
         
         var oldGradeColm = $('<div class="oldGrade-colm"></div>');
         var oldGradeDropDown = $('<select class="grade-form2">').attr("id","oldGrade-"+classCount).appendTo(oldGradeColm);
@@ -85,7 +85,7 @@ export default class PassFailCalculator {
             oldGradeDropDown.append($('<option>').attr('val',val).text(val));
         })
         $(oldGradeColm).append(oldGradeDropDown);
-        var oldGradeCellMarkup = "<td>" + oldGradeColm.html() + "</td>";
+        var oldGradeCellMarkup = "<td class='oldGradeCell'>" + oldGradeColm.html() + "</td>";
         
         var passFailColm = $('<div class="passFail-colm"></div>');
         var passFailInput = $('<input class="input-button" type="checkbox">').attr("id","keepGrade-"+classCount).appendTo(passFailColm);

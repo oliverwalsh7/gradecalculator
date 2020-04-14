@@ -249,7 +249,7 @@ Navbar stuff
 
 .input-form {
     background: rgb(199, 173, 107, .8);
-    width: 15vw;
+    width: 90%;
     margin-top: 2.5vh;
     border: 2px solid rounded;
     border-color: ivory;
@@ -259,7 +259,7 @@ Navbar stuff
 }
 .input-form2 {
     background: rgb(199, 173, 107, .8);
-    width: 7.5vw;
+    width: 90%;
     margin-top: 2.5vh;
     border: 2px solid rounded;
     border-color: ivory;
@@ -282,7 +282,7 @@ Navbar stuff
 }
 .grade-form2 {
     background: rgb(199, 173, 107, .8);
-    width: 60%;
+    width: 90%;
     margin-top: 2.5vh;
     border: 2px solid rounded;
     border-color: ivory;
@@ -296,7 +296,8 @@ Navbar stuff
 .input-box {
     display: block;
     line-height: 1;
-    width: calc(100% - 2.5vw);
+    width: 100%;
+    padding: 0 .5vw;
     height: 100%;
     color: ivory;
     margin-left: 2%;
@@ -309,6 +310,8 @@ label {
 }
 
 table {
+    table-layout: fixed;
+    width: 100%;
     margin-top: 3vh;
 }
 .th-class {
@@ -316,7 +319,10 @@ table {
     text-decoration: underline;
 }
 td {
-    width: 25vw;
+    width: auto;
+}
+.retakeCell {
+    width: 10%;
 }
 .input-button {
     -webkit-appearance: none;
@@ -374,7 +380,6 @@ button {
 }
 #submit-btn {
     margin-top: 5vh;
-    margin-left: 12.5vw;
 }
 #addRow-btn {
     margin-right: 0vw;
@@ -428,11 +433,23 @@ that have a width less or equal than 500px*/
     .page-wrap {  
         display: flex;
     }
+    body {
+        overflow: hidden;
+    }
 }
 @media screen and (max-width: 700px) {
     .page-wrap {
         display: flex;
         flex-direction: column;
+    }
+    body {
+        overflow-x: hidden;
+    }
+    table {
+        font-size: .6em;
+    }
+    .retakeCell {
+        width: 13.5%;
     }
 }
 
