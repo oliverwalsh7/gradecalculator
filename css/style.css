@@ -413,6 +413,10 @@ button {
 
 }
 
+.flex-container::-webkit-scrollbar {
+    display: none;
+}  
+
 /*  TODO:
     Not being hidden right away due to media query
     It isn't really necessary maybe check how we can have it 
