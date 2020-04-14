@@ -150,8 +150,6 @@ Navbar stuff
     position: relative;
     /* width: 45%; */
     color: ivory;
-    padding: 0 2vh;
-    margin-left: -2%;
 }
 
 .instructions {
@@ -161,7 +159,6 @@ Navbar stuff
     display: block;
     line-height: 1;
     width: 100%;
-    padding: 0 2vh;
 }
 
 .step-box {
@@ -179,6 +176,7 @@ Navbar stuff
     margin-left: 1vw;
     margin-bottom: 1vh;
     text-decoration: underline;
+    color: rgb(199, 173, 107, .8)
 }
 
 .sub-text {
@@ -217,7 +215,7 @@ Navbar stuff
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 1vw;
-    color: var(--pearl);
+    color: rgb(199, 173, 107, .8);
 }
 
 .about-text {
@@ -236,13 +234,14 @@ Navbar stuff
     line-height: 1.25em;
     margin-left: 1vw;
     margin-bottom: 1vh;
-    color: var(--pearl);
+    color: rgb(199, 173, 107, .8);
     letter-spacing: .35vw;
     text-decoration: underline;
+    
 }
 
 .disclaimer-text {
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 1.5vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -321,7 +320,7 @@ Navbar stuff
 }
 
 label {
-    margin-top: 2vh;
+    margin-top: 4vh;
 }
 
 table {
@@ -452,6 +451,19 @@ that have a width less or equal than 500px*/
        display: block;
        text-align: left;
    }
+
+   .input-wrap2 {
+        padding: 0 2vh;
+        margin-left: -2%;
+    }
+
+    .instructions {
+        padding: 0 2vh;
+    }
+
+    label {
+        margin-top: 2vh;
+    }
 }
 
 @media screen and (min-width: 700px) {
@@ -476,7 +488,7 @@ that have a width less or equal than 500px*/
     table {
         font-size: .6em;
     }
-    
+
     .retakeCell {
         width: 13.5%;
     }
