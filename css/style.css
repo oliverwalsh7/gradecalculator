@@ -9,6 +9,7 @@ body {
     --ocean3: #36384b;
     height: 100vh;
 }
+
 html * {
    font-family: 'Roboto Mono', monospace;
 }
@@ -171,6 +172,7 @@ Navbar stuff
     color: var(--pearl);
     /* padding: 0 2vh; */
 }
+
 .header {
     font-size: 15px;
     margin-top: 2vh;
@@ -178,6 +180,7 @@ Navbar stuff
     margin-bottom: 1vh;
     text-decoration: underline;
 }
+
 .sub-text {
     font-size: 18px;
     margin-bottom: 1vh;
@@ -185,6 +188,7 @@ Navbar stuff
     line-height: 1.25em;
     margin-left: 1vw;
 }
+
 #link {
     font-size: 18px;
     color: rgb(199, 173, 107);
@@ -194,15 +198,18 @@ Navbar stuff
     letter-spacing: .5vh;
     font-style: italic;
 }
+
 #curr-GPA {
     margin-right: 2vw;
 }
+
 .about-section {
     margin-top: 2.5vh;
     margin-right: 2vw;
     border-color: var(--pearl);
     /* padding: 0 1.5vh; */
 }
+
 .about-header {
     font-size: 17px;
     font-style: italic;
@@ -212,6 +219,7 @@ Navbar stuff
     margin-left: 1vw;
     color: var(--pearl);
 }
+
 .about-text {
     font-size: 15px;
     margin-bottom: 3.5vh;
@@ -260,6 +268,7 @@ Navbar stuff
     padding: 0px 2px ;
     height: 30px;
 }
+
 .input-form2 {
     background: rgb(199, 173, 107, .8);
     width: 90%;
@@ -283,6 +292,7 @@ Navbar stuff
     border-radius: 3px;
     display: none;
 }
+
 .grade-form2 {
     background: rgb(199, 173, 107, .8);
     width: 90%;
@@ -305,9 +315,11 @@ Navbar stuff
     color: ivory;
     margin-left: 2%;
 }
+
 ::placeholder {
     color: black;
 }
+
 label {
     margin-top: 2vh;
 }
@@ -317,16 +329,20 @@ table {
     width: 100%;
     margin-top: 3vh;
 }
+
 .th-class {
     font-size: 1em;
     text-decoration: underline;
 }
+
 td {
     width: auto;
 }
+
 .retakeCell {
     width: 10%;
 }
+
 .input-button {
     -webkit-appearance: none;
     border: 1px solid #cacece;
@@ -342,9 +358,11 @@ td {
     margin-left: 1.75vw;
     outline: 0;
 }
+
 .input-button:active, .input-button:checked:active {
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
+
 .input-button:checked:after {
     content: '\2714';
     padding-top: 3px;
@@ -354,6 +372,7 @@ td {
     left: 3px;
     color: ivory;
 }
+
 .rows {
     display: inline-block;
     width:100%;
@@ -381,9 +400,11 @@ button {
 #out {
     padding: 2.5vh 0vh;
 }
+
 #submit-btn {
     margin-top: 5vh;
 }
+
 #addRow-btn {
     margin-right: 0vw;
     margin-top: 5vh;
@@ -407,11 +428,11 @@ that have a width less or equal than 500px*/
     .topnav div:not(:first-child) {
         display: none;
     }
+
     .topnav .mobile-nav-icon {
         float: right;
         display: block;
-    }
-    
+    } 
 }
 
 @media screen and (max-width: 700px) {
@@ -419,6 +440,7 @@ that have a width less or equal than 500px*/
    .topnav.responsive {
        position: relative;
    }
+
    .topnav.responsive .mobile-nav-icon {
        position: absolute;
        right: 0;
@@ -436,6 +458,7 @@ that have a width less or equal than 500px*/
     .page-wrap {  
         display: flex;
     }
+
     body {
         overflow: hidden;
     }
@@ -445,12 +468,15 @@ that have a width less or equal than 500px*/
         display: flex;
         flex-direction: column;
     }
+
     body {
         overflow-x: hidden;
     }
+
     table {
         font-size: .6em;
     }
+    
     .retakeCell {
         width: 13.5%;
     }
