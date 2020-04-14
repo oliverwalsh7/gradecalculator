@@ -77,7 +77,8 @@ Navbar stuff
 .topnav .topbar-text {
     font-size: 24px;
     letter-spacing: .6vw;
-    padding: 12.5px 0;
+    padding: 12.5px;
+    padding-left: 2vh;
 }
 
 .footer {
@@ -148,6 +149,8 @@ Navbar stuff
     position: relative;
     /* width: 45%; */
     color: ivory;
+    padding: 0 2vh;
+    margin-left: -2%;
 }
 
 .instructions {
@@ -170,14 +173,14 @@ Navbar stuff
 }
 .header {
     font-size: 15px;
-    margin-top: 4vh;
+    margin-top: 2vh;
     margin-left: 1vw;
     margin-bottom: 1vh;
     text-decoration: underline;
 }
 .sub-text {
     font-size: 18px;
-    margin-bottom: 1.5vh;
+    margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 1vw;
@@ -306,7 +309,7 @@ Navbar stuff
     color: black;
 }
 label {
-    margin-top: 5vh;
+    margin-top: 2vh;
 }
 
 table {
