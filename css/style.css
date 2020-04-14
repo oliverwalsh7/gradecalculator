@@ -294,12 +294,13 @@ Navbar stuff
 
 .grade-form2 {
     background: rgb(199, 173, 107, .8);
-    width: 90%;
+    width: 60%;
     margin-top: 2.5vh;
     border: 2px solid rounded;
     border-color: ivory;
     border-radius: 3px;
     display: none;
+    height: 30px;
 }
 
 /* input {
@@ -334,12 +335,14 @@ table {
     text-decoration: underline;
 }
 
-td {
-    width: auto;
+.retakeCell {
+    width: 11%;
+    text-align: center;
 }
 
-.retakeCell {
-    width: 10%;
+.keepGradeCell {
+    width: 11%;
+    text-align: center;
 }
 
 .input-button {
@@ -354,7 +357,7 @@ td {
     margin-top: 2.75vh;
     width: 25px;
     height: 25px;
-    margin-left: 1.75vw;
+    /* margin-left: 1.75vw; */
     outline: 0;
 }
 
@@ -409,6 +412,10 @@ button {
     margin-top: 5vh;
 
 }
+
+.flex-container::-webkit-scrollbar {
+    display: none;
+}  
 
 /*  TODO:
     Not being hidden right away due to media query
@@ -489,7 +496,6 @@ that have a width less or equal than 500px*/
     table {
         font-size: .6em;
     }
-
     .retakeCell {
         width: 13.5%;
     }

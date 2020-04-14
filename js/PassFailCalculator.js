@@ -90,11 +90,11 @@ export default class PassFailCalculator {
         var passFailColm = $('<div class="passFail-colm"></div>');
         var passFailInput = $('<input class="input-button" type="checkbox">').attr("id","keepGrade-"+classCount).appendTo(passFailColm);
         $(passFailColm).append(passFailInput);
-        var passFailCellMarkup = "<td>" + passFailColm.html() + "</td>";
+        var passFailCellMarkup = "<td class='keepGradeCell'>" + passFailColm.html() + "</td>";
         
         console.log("Class Count after adding row: " + classCount);
         var rowMarkup = "<tr id='passFailCalc-row-" + classCount + "'>"  
-                            + coursesCellMarkup + gradesCellMarkup + creditsCellMarkup + retakeCellMarkup + oldGradeCellMarkup + passFailCellMarkup
+                            + coursesCellMarkup + gradesCellMarkup + creditsCellMarkup + passFailCellMarkup + retakeCellMarkup + oldGradeCellMarkup + 
                         + "</tr>";
 
         $("#passFailForm-tbody").append(rowMarkup);
@@ -237,18 +237,8 @@ export default class PassFailCalculator {
         var newGPAHours = 0;
         var newQualityPoints = 0;
         for (var i = 0; i < classCount; i++) {
-            var isClassRetake = $('#'+(i+1)).is(":checked");
-            console.log("Is class retake: " + isClassRetake);
-            if (isClassRetake == true) {
-                var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
-                                            - (currentCourses[i].credits * currentCourses[i].oldGrade);
-                console.log(retakeNewQualityPoints);
-                newQualityPoints += retakeNewQualityPoints;
-            }
-            else {
-                newGPAHours += currentCourses[i].credits;
-                newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
-            }
+            newGPAHours += currentCourses[i].credits;
+            newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
         }
         semesterGPA = newQualityPoints / newGPAHours;
     }
