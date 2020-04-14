@@ -176,7 +176,7 @@ Navbar stuff
     margin-left: 1vw;
     margin-bottom: 1vh;
     text-decoration: underline;
-    color: rgb(199, 173, 107, .8)
+    color: rgb(212, 187, 122);
 }
 
 .sub-text {
@@ -215,7 +215,7 @@ Navbar stuff
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 1vw;
-    color: rgb(199, 173, 107, .8);
+    color: rgb(212, 187, 122);
 }
 
 .about-text {
@@ -234,7 +234,7 @@ Navbar stuff
     line-height: 1.25em;
     margin-left: 1vw;
     margin-bottom: 1vh;
-    color: rgb(199, 173, 107, .8);
+    color: rgb(212, 187, 122);
     letter-spacing: .35vw;
     text-decoration: underline;
     
@@ -463,6 +463,10 @@ that have a width less or equal than 500px*/
 
     label {
         margin-top: 2vh;
+    }
+
+    .disclaimer-text {
+        margin-bottom: 20px;
     }
 }
 
