@@ -62,6 +62,8 @@ Navbar stuff
     margin-left: 1.5%; */
     background-color: var(--ocean);
     overflow: hidden;
+    display: flex;
+    align-items: center;
     /* flex: 1; */
 }
 
