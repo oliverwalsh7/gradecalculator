@@ -161,6 +161,7 @@ Navbar stuff
     display: block;
     line-height: 1;
     width: 100%;
+    
 }
 
 .step-box {
@@ -208,6 +209,7 @@ Navbar stuff
     margin-right: 2vw;
     border-color: var(--pearl);
     /* padding: 0 1.5vh; */
+
 }
 
 .about-header {
@@ -280,6 +282,7 @@ Navbar stuff
     padding: 0px 2px;
     height: 30px;
 }
+
 
 /* #th {
     display: none;
