@@ -270,7 +270,6 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px ;
     height: 30px;
-    font-size: 16px;
 }
 
 .input-form2 {
@@ -282,7 +281,6 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px;
     height: 30px;
-    font-size: 16px;
 }
 
 
@@ -504,6 +502,10 @@ that have a width less or equal than 500px*/
     }
     
     .input-form2 {
+        font-size: 16px;
+    }
+
+    .grade-form2 {
         font-size: 16px;
     }
     
