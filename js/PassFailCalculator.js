@@ -134,6 +134,7 @@ export default class PassFailCalculator {
             currentCourses.push(
                 { 
                     name: courseName, 
+                    courseNum: i,
                     grade: convertedGrade, 
                     credits: convertedCredit,
                     oldGrade: convertedOldGrade,
@@ -164,7 +165,7 @@ export default class PassFailCalculator {
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
         for (var i = 0; i < classCount; i++) {
-            var isClassRetake = $('#'+(i+1)).is(":checked");
+            var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
             console.log("Is class retake: " + isClassRetake);
             if (isClassRetake == true) {
                 var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
@@ -186,6 +187,7 @@ export default class PassFailCalculator {
                 upperBoundForClassesToTake = i;
                 console.log("i before setting keeping grade:" + i);
                 currentCourses[i].isKeepingGrade = true;
+                console.log("Keep course " + i + "name: " + currentCourses[i].name);
                 continue;
             }
             break;
@@ -203,11 +205,11 @@ export default class PassFailCalculator {
         console.log("Recalculation 1 (newQP / newQPAHours): " + (newQualityPoints / newGPAHours));
         if (upperBoundForClassesToTake < classCount) {
             for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
-                var isForceKeepingGrade = $('#keepGrade-'+(i+1)).is(':checked');;
+                var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');;
                 console.log("i in recalculation check:" + i);
                 console.log("Is Force Keep Grade Checked: " + isForceKeepingGrade);
                 if (isForceKeepingGrade == true) {
-                    var isClassRetake = $('#'+(i+1)).is(":checked");
+                    var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
                     console.log("Is class retake: " + isClassRetake);
                     // This is done because when we exit the optimization calculation the new GPA hours
                     // and new QP are already calculated, as that class is what caused it to leave the optimization loop
@@ -227,6 +229,7 @@ export default class PassFailCalculator {
                     newGPA = newQualityPoints / newGPAHours; 
                     newMaxGPA = newGPA;
                     currentCourses[i].isKeepingGrade = true;
+                    console.log("Keep course " + i + "name: " + currentCourses[i].name);
                 }
             }
         }
