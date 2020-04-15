@@ -4,8 +4,10 @@ const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D
 const credits = ['N/A','1','2','3','4'];
 const startingClassCount = 5;
 var currentCourses = [];
+var currCumGPA;
 var newMaxGPA;
 var semesterGPA;
+var cumGPAWithoutPassFail;
 var classCount = 0;
 var maxClass = 8;
 
@@ -146,7 +148,7 @@ export default class PassFailCalculator {
         var gpaHours = parseInt($('#curr-GPA').val());
         var qualityPoints = parseInt($('#curr-QP').val());
         this.calculateOptimalPassFail(gpaHours, qualityPoints);
-        this.calculateSemesterGPA();
+        this.calculateNonOptimizedGPAs(gpaHours, qualityPoints);
         this.displayOut();
         console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
     }
@@ -160,7 +162,10 @@ export default class PassFailCalculator {
         for (var i = 0; i < currentCourses.length; i++) {
             console.log("Current Course " + i + ": " + currentCourses[i].grade);
         }
+        // Initial cumulative GPA
         var maxGPA = qualityPoints / gpaHours;
+        currCumGPA = maxGPA;
+
         var newGPAHours = gpaHours;
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
@@ -236,7 +241,7 @@ export default class PassFailCalculator {
         console.log(newGPA);
     }  
     
-    calculateSemesterGPA() {
+    calculateNonOptimizedGPAs(gpaHours, qualityPoints) {
         var newGPAHours = 0;
         var newQualityPoints = 0;
         for (var i = 0; i < classCount; i++) {
@@ -244,6 +249,12 @@ export default class PassFailCalculator {
             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
         }
         semesterGPA = newQualityPoints / newGPAHours;
+
+        newGPAHours += gpaHours;
+        newQualityPoints += qualityPoints; 
+        console.log("new gpa hours: " + newGPAHours + " new quality points: " + newQualityPoints);
+        cumGPAWithoutPassFail = newQualityPoints / newGPAHours;
+        console.log("cum gpa: " + cumGPAWithoutPassFail);
     }
 
     isChecked(id) {
@@ -280,28 +291,34 @@ export default class PassFailCalculator {
     
     displayOut() {
         $('#out').empty();
-        var semesterGPAText = "Your semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
 
-        var outText = "<br>Your new GPA is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
-                      " and you should keep these classes for a grade: ";
+        var currGPAText = "Your current cumulative GPA is " + Utils.truncateDecimals(currCumGPA, 2).toFixed(2) + "<br>";
+
+        var semesterGPAText = "<br>Your semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
+
+        var newNotOptmiziedGPAText = "<br>Your new cumulative GPA without pass fail optimization is " 
+                                        + Utils.truncateDecimals(cumGPAWithoutPassFail, 2).toFixed(2) + "<br>";
+
+        var optimizedGPAText = "<br>Your new optimized GPA is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
+                      " when keeping these classes for a grade: ";
                  
         var isKeepingAnyClasses = false;
         for (var i = 0; i < classCount; i++) {
             if (currentCourses[i].isKeepingGrade == true) {
-                outText += currentCourses[i].name + ", ";
+                optimizedGPAText += currentCourses[i].name + ", ";
                 console.log(currentCourses[i].name);
                 isKeepingAnyClasses = true;
             }
         }
         if (isKeepingAnyClasses == true) {
-            outText = outText.substring(0, outText.length-2);
+            optimizedGPAText = optimizedGPAText.substring(0, optimizedGPAText.length-2);
         }
         else {
-            outText += "none";
+            optimizedGPAText += "none";
         }
-        semesterGPAText += outText;
-        console.log(semesterGPAText);
-        $('#out').append(semesterGPAText);
+        var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedGPAText;
+        console.log(outText);
+        $('#out').append(outText);
     }
     
     // Converts the dropdown select options into integers 

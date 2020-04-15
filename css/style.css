@@ -183,7 +183,7 @@ Navbar stuff
 }
 
 .sub-text {
-    font-size: 13.5px;
+    font-size: 13px;
     margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -325,6 +325,7 @@ Navbar stuff
 /* Placeholder Styling */
 ::placeholder {
     color: black;
+    opacity: 0.5;
 }
 
 
@@ -341,6 +342,11 @@ table {
 .th-class {
     font-size: 1em;
     /* text-decoration: underline; */
+}
+
+.requiredField {
+    color: red;
+    display: inline-block;
 }
 
 .retakeCell {
