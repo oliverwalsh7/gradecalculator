@@ -62,8 +62,8 @@ Navbar stuff
     margin-left: 1.5%; */
     background-color: var(--ocean);
     overflow: hidden;
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
     /* flex: 1; */
 }
 
@@ -270,6 +270,7 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px ;
     height: 30px;
+    font-size: 16px;
 }
 
 .input-form2 {
@@ -281,6 +282,7 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px;
     height: 30px;
+    font-size: 16px;
 }
 
 
@@ -321,9 +323,12 @@ Navbar stuff
     margin-left: 2%;
 }
 
+
+/* Placeholder Styling */
 ::placeholder {
     color: black;
 }
+
 
 label {
     margin-top: 4vh;
@@ -480,6 +485,28 @@ that have a width less or equal than 500px*/
     .disclaimer-text {
         margin-bottom: 20px;
     }
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-size: 16px;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+        font-size: 16px;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+        font-size: 16px;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+        font-size: 16px;
+    }
+
+    .input-form {
+        font-size: 16px;
+    }
+    
+    .input-form2 {
+        font-size: 16px;
+    }
+    
 }
 
 @media screen and (min-width: 700px) {
