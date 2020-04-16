@@ -114,6 +114,7 @@ Navbar stuff
 
 .page-wrap {
     /* display: flex; */
+    
     flex: 10;
     /* width: 100%; */
     /* height: 100%; */
@@ -443,7 +444,9 @@ button {
 /*change the layout of the navigation bar for all the screens 
 that have a width less or equal than 500px*/
 
+
 @media screen and (max-width: 700px) {
+
     /*shows elements in a column*/
     .topnav div:not(:first-child) {
         display: none;
@@ -453,9 +456,6 @@ that have a width less or equal than 500px*/
         float: right;
         display: block;
     } 
-}
-
-@media screen and (max-width: 700px) {
    
    .topnav.responsive {
        position: relative;
@@ -473,13 +473,13 @@ that have a width less or equal than 500px*/
        text-align: left;
    }
 
-   .input-wrap2 {
+   /* .input-wrap2 {
         padding: 0 2vh;
         margin-left: -2%;
-    }
+    } */
 
     .instructions {
-        padding: 0 2vh;
+        padding: 0 1vh;
     }
 
     label {
@@ -515,16 +515,7 @@ that have a width less or equal than 500px*/
         font-size: 12px;
         width: 75%;
     }
-    
-}
 
-@media screen and (min-width: 700px) {
-    .page-wrap {  
-        display: flex;
-        overflow-x: hidden;
-    }
-}
-@media screen and (max-width: 700px) {
     .page-wrap {
         display: flex;
         flex-direction: column;
@@ -539,6 +530,14 @@ that have a width less or equal than 500px*/
     }
     .retakeCell {
         width: 13.5%;
+    }
+    
+}
+
+@media screen and (min-width: 700px) {
+    .page-wrap {  
+        display: flex;
+        overflow-x: hidden;
     }
 }
 
