@@ -299,7 +299,7 @@ export default class PassFailCalculator {
         var newNotOptmiziedGPAText = "<br>Your new cumulative GPA without pass fail optimization is " 
                                         + Utils.truncateDecimals(cumGPAWithoutPassFail, 2).toFixed(2) + "<br>";
 
-        var optimizedGPAText = "<br>Your new optimized GPA is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
+        var optimizedGPAText = "<br>Your new cumulative GPA with P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
                       " when keeping these classes for a grade: ";
                  
         var isKeepingAnyClasses = false;
