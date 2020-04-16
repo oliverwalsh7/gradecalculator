@@ -178,12 +178,12 @@ Navbar stuff
     margin-top: 2vh;
     margin-left: 1vw;
     margin-bottom: 1vh;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: rgb(212, 187, 122);
 }
 
 .sub-text {
-    font-size: 18px;
+    font-size: 13px;
     margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -213,7 +213,7 @@ Navbar stuff
 }
 
 .about-header {
-    font-size: 17px;
+    font-size: 14px;
     font-style: italic;
     margin-bottom: 1vh;
     margin-right: 2vw;
@@ -223,7 +223,7 @@ Navbar stuff
 }
 
 .about-text {
-    font-size: 15px;
+    font-size: 11px;
     margin-bottom: 3.5vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -232,7 +232,7 @@ Navbar stuff
 }
 
 .disclaimer-header {
-    font-size: 12.5px;
+    font-size: 9px;
     font-style: italic;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -240,12 +240,12 @@ Navbar stuff
     margin-bottom: 1vh;
     color: rgb(212, 187, 122);
     letter-spacing: .35vw;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     
 }
 
 .disclaimer-text {
-    font-size: 12px;
+    font-size: 8px;
     margin-bottom: 1.5vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -325,6 +325,7 @@ Navbar stuff
 /* Placeholder Styling */
 ::placeholder {
     color: black;
+    opacity: 0.5;
 }
 
 
@@ -340,7 +341,12 @@ table {
 
 .th-class {
     font-size: 1em;
-    text-decoration: underline;
+    /* text-decoration: underline; */
+}
+
+.requiredField {
+    color: red;
+    display: inline-block;
 }
 
 .retakeCell {

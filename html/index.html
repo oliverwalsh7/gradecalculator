@@ -33,11 +33,21 @@
                             </div>
                             <div class="step-box">
                                 <div class="header"> Step Two </div>
-                                <div class="sub-text"> Retrieve your total credit hours & total grade points </div>
+                                <div class="sub-text"> 
+                                    Retrieve your total gpa hours & total quality points. Total gpa hours are only credit hours that 
+                                    have gone towards your gpa and exclude credits from things such as AP classes or failed classes. 
+                                    Total quality points is the value of a grade (ex. A = 4.0) times the credit hours of that course
+                                    for every course you have taken. 
+                                </div>
                             </div>
                             <div class="step-box">
                                 <div class="header"> Step Three </div>
-                                <div class="sub-text"> Input your hypothetical / projected semesterly grades in the input section → </div>
+                                <div class="sub-text"> 
+                                    Input your hypothetical / projected semesterly grades in the input section.
+                                    You can use the other tab to help calculate your weighted individual course grades.
+                                    The keep grade checkbox will exclude a class from the pass/fail optimization if you know
+                                    you want to keep the course for a grade. The retake calculation is done as grade replacement.
+                                </div>
                             </div>
 
                             <div class="about-section">
@@ -52,8 +62,9 @@
                                     DISCLAIMER
                                 </div>
                                 <div class="disclaimer-text">
-                                    This app is not meant to be the basis of ANY decisions made about one's academic career. 
-                                    It is simply a tool meant to aid students in projecting their grades.
+                                    This app is simply meant to be a tool for calculating one's gpa. 
+                                    It is not meant to be the ultimate dictator of any decisions made about one's academic career.
+                                    No data is being collected or sent about any users.
                                 </div>
                             </div>
                         </div>
@@ -64,23 +75,29 @@
                         <div class="input-box">
         
                                 <div class="input-wrap2">
-                                    <label for ="curr-GPA">Total Credit Hours:</label>
+                                    <label for ="curr-GPA">Total GPA Hours:</label>
                                     <input type="text" id="curr-GPA" placeholder="100">
                                 </div>
                                 <div class="input-wrap2">
-                                    <label for ="curr-QP">Total Grade Points:</label>
+                                    <label for ="curr-QP">Total Quality Points:</label>
                                     <input type="text" id="curr-QP" placeholder="400">
                                 </div>
                             
                                 <table style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="th-class">Course</th>
-                                            <th class="th-class">Grade</th>
-                                            <th class="th-class">Credits</th>
+                                            <th class="th-class">Course
+                                            </th>
+                                            <th class="th-class">Grade
+                                                <!-- <div class="requiredField">*</div> -->
+                                            </th>
+                                            <th class="th-class">Credits
+                                                <!-- <div class="requiredField">*</div> -->
+                                            </th>
                                             <th class="th-class keepGradeCell" id="th">Keep Grade?</th>
                                             <th class="th-class retakeCell">Retake?</th>
-                                            <th class="th-class oldGradeCell" id="th">Old Grade</th>
+                                            <th class="th-class oldGradeCell" id="th">Old Grade
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody id="passFailForm-tbody">
