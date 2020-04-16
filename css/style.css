@@ -467,13 +467,13 @@ that have a width less or equal than 500px*/
        text-align: left;
    }
 
-   .input-wrap2 {
+   /* .input-wrap2 {
         padding: 0 2vh;
         margin-left: -2%;
-    }
+    } */
 
     .instructions {
-        padding: 0 2vh;
+        padding: 0 1vh;
     }
 
     label {
