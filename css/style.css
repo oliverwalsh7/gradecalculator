@@ -499,7 +499,7 @@ that have a width less or equal than 500px*/
     }
 
     .input-form2::placeholder { /* Chrome/Opera/Safari */
-        font-size: 12px;
+        font-size: 16px;
         /* transform: scale(0.45);
         transform-origin: 0% 100%; */
     }
