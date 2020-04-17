@@ -327,6 +327,8 @@ Navbar stuff
 ::placeholder {
     color: black;
     opacity: 0.5;
+    transform: scale(0.45);
+    transform-origin: 0% 50%;
 }
 
 
@@ -498,16 +500,24 @@ that have a width less or equal than 500px*/
     }
 
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        font-size: 16px;
+        font-size: 12px;
+        transform: scale(0.45);
+        transform-origin: 0% 50%;
     }
     ::-moz-placeholder { /* Firefox 19+ */
-        font-size: 16px;
+        font-size: 12px;
+        transform: scale(0.45);
+        transform-origin: 0% 50%;
     }
     :-ms-input-placeholder { /* IE 10+ */
-        font-size: 16px;
+        font-size: 12px;
+        transform: scale(0.45);
+        transform-origin: 0% 50%;
     }
     :-moz-placeholder { /* Firefox 18- */
-        font-size: 16px;
+        font-size: 12px;
+        transform: scale(0.45);
+        transform-origin: 0% 50%;
     }
 
 
