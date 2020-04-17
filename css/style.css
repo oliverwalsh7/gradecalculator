@@ -435,6 +435,8 @@ button {
     font-size: 2em;
     font-style: italic;
     text-align: center;
+    letter-spacing: .5vw;
+    color: rgb(212, 187, 122);
 }
 
 
