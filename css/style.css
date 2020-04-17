@@ -116,6 +116,7 @@ Navbar stuff
     /* display: flex; */
     
     flex: 10;
+    overflow-y: hidden;
     /* width: 100%; */
     /* height: 100%; */
     /* align-items: stretch; */
@@ -127,10 +128,12 @@ Navbar stuff
     /* position: absolute; */
     /* display: flex; */
     min-height: 100%;
+    max-height: 100%;
     background: var(--ocean2);
     flex: 1;
     align-items: center;
     overflow-x: hidden;
+
 }
 
 .input-wrap {
@@ -213,25 +216,6 @@ Navbar stuff
 
 }
 
-.about-header {
-    font-size: 14px;
-    font-style: italic;
-    margin-bottom: 1vh;
-    margin-right: 2vw;
-    line-height: 1.25em;
-    margin-left: 1vw;
-    color: rgb(212, 187, 122);
-}
-
-.about-text {
-    font-size: 11px;
-    margin-bottom: 3.5vh;
-    margin-right: 2vw;
-    line-height: 1.25em;
-    margin-left: 1vw;
-    color: var(--pearl);
-}
-
 .disclaimer-header {
     font-size: 9px;
     font-style: italic;
@@ -282,7 +266,10 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px;
     height: 30px;
-    text-align: center;
+}
+
+#classGradeCalc-container .input-form2 {
+    height: 35px;
 }
 
 
@@ -317,8 +304,9 @@ Navbar stuff
     display: block;
     line-height: 1;
     width: 100%;
+    min-height: 50vh;
+    max-height: 100%;
     padding: 0 .5vw;
-    height: 100%;
     color: ivory;
     margin-left: 2%;
 }
@@ -339,6 +327,11 @@ table {
     table-layout: fixed;
     width: 100%;
     margin-top: 3vh;
+}
+
+#classGradeForm-table {
+    table-layout: fixed;
+    width: 30vw;
 }
 
 .th-class {
@@ -401,32 +394,20 @@ button {
     margin-left: 0;
 }
 
-/* No matching HTML element
-   Left in here in case we go back to an output box view
-*/
-/* .output-box-view {
-    font-size: 1em;
-    color: var(--pearl);
-    margin-top: 3vh;
-    background-color: #131831;
-    border: 1px solid;
-    border-color: ivory;
-    width: 92%;
-    display: block;
-} */
-
 #out {
     padding: 2.5vh 0vh;
+    width: 95%;
+    margin-bottom: 1vw;
 }
 
-#submit-btn {
+/* .submit-btn {
     margin-top: 5vh;
-}
+} */
 
-#addRow-btn {
+.form-btn {
     margin-right: 0vw;
-    margin-top: 5vh;
-
+    margin-top: 4vh;
+    margin-bottom: 2vw;
 }
 
 .flex-container::-webkit-scrollbar {
@@ -442,18 +423,51 @@ button {
     display: none;
 }
 
+#classGradeDisclaimer {
+    margin-top: 3.5vh;
+}
+
+#about-container {
+    display: none;
+}
+
+.about-text-header {
+    margin-top: 5vh;
+    font-size: 2em;
+    font-style: italic;
+    text-align: center;
+    letter-spacing: .5vw;
+    color: rgb(212, 187, 122);
+}
+
+
+.about-text {
+    margin-top: 5vh;
+    font-size: 1em;
+    line-height: 25px;
+    width: 95%;
+}
+
+
+.grade {
+    font-size: 20px;
+    margin-top: 3.5vh;
+    margin-bottom: 2.5vh;
+    margin-left: 1.5vw;
+}
+
 /*change the layout of the navigation bar for all the screens 
 that have a width less or equal than 500px*/
 
 
-@media screen and (min-width: 700px) and (max-width: 1050px) {
+@media screen and (min-width: 850px) and (max-width: 1050px) {
     .th-class {
         font-size: .8em;
     }
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
 
     /*shows elements in a column*/
     .topnav div:not(:first-child) {
@@ -523,6 +537,7 @@ that have a width less or equal than 500px*/
     .page-wrap {
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
     }
 
     body {
@@ -535,13 +550,26 @@ that have a width less or equal than 500px*/
     .retakeCell {
         width: 13.5%;
     }
-    
+
+    /*
+    * Class Grade Page
+    */
+    #classGradeForm-table {
+        width: 50vw;
+    }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 850px) {
     .page-wrap {  
         display: flex;
         overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #logo {
+        font-size: 18px;
+        padding-top: 18px;
     }
 }
 

@@ -115,15 +115,18 @@ export default class PassFailCalculator {
         var convertedGrade;
         var convertedCredit;
         var convertedOldGrade;
-        var forceKeepGrade = false;
+        var isRetaking = false;
         var courseName;
         for (var i = 1; i <= classCount; i++) {
             convertedGrade = this.convertGrade($('#grade-'+i).val());
             convertedCredit = Number($('#credit-'+i).val());
             convertedOldGrade = this.convertGrade($('#oldGrade-'+i).val());
-            //forceKeepGrade = $('#keepGrade-'+i).is(':checked');
-            console.log("Converted credit: " + convertedCredit);
+            isRetaking = $('#'+i).is(':checked');
             if (convertedGrade === -1 || isNaN(convertedCredit)) {
+                if (isRetaking == true && convertedOldGrade === -1) {
+                        this.errorDisplay();
+                        return;
+                }
                 this.errorDisplay();
                 return;
             }
@@ -140,7 +143,7 @@ export default class PassFailCalculator {
                     grade: convertedGrade, 
                     credits: convertedCredit,
                     oldGrade: convertedOldGrade,
-                    isKeepingGrade: forceKeepGrade 
+                    isKeepingGrade: false 
                 });
             console.log("Is Keeping Grade: " + currentCourses[i-1].isKeepingGrade);
             console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
@@ -210,7 +213,7 @@ export default class PassFailCalculator {
         console.log("Recalculation 1 (newQP / newQPAHours): " + (newQualityPoints / newGPAHours));
         if (upperBoundForClassesToTake < classCount) {
             for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
-                var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');;
+                var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
                 console.log("i in recalculation check:" + i);
                 console.log("Is Force Keep Grade Checked: " + isForceKeepingGrade);
                 if (isForceKeepingGrade == true) {
