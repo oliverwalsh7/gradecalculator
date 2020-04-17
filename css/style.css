@@ -499,7 +499,7 @@ that have a width less or equal than 500px*/
     }
 
     ::placeholder { /* Chrome/Opera/Safari */
-        margin: 0 auto;
+        margin: auto 0;
         font-size: 16px;
         /* transform: scale(0.45);
         transform-origin: 0% 100%; */
