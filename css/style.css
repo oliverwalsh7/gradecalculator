@@ -498,7 +498,8 @@ that have a width less or equal than 500px*/
         margin-bottom: 20px;
     }
 
-    .input-form2::placeholder { /* Chrome/Opera/Safari */
+    ::placeholder { /* Chrome/Opera/Safari */
+        margin: 0 auto;
         font-size: 16px;
         /* transform: scale(0.45);
         transform-origin: 0% 100%; */
