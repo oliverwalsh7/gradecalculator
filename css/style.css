@@ -445,6 +445,13 @@ button {
 that have a width less or equal than 500px*/
 
 
+@media screen and (min-width: 700px) and (max-width: 1050px) {
+    .th-class {
+        font-size: .8em;
+    }
+}
+
+
 @media screen and (max-width: 700px) {
 
     /*shows elements in a column*/
