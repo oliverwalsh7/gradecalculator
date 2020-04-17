@@ -1,7 +1,7 @@
 import Utils from './Utils.js';
 
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-const credits = ['N/A','1','2','3','4'];
+const credits = ['N/A','1', '1.5', '2','3','4'];
 const startingClassCount = 5;
 var currentCourses = [];
 var currCumGPA;
@@ -17,7 +17,7 @@ export default class PassFailCalculator {
 
     constructor() {
         // const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-        // const credits = ['N/A','1','2','3','4'];
+        // const credits = ['N/A','1', 2','3','4'];
         // const startingClassCount = 5;
         // var currentCourses = [];
         // var newMaxGPA;
@@ -119,7 +119,7 @@ export default class PassFailCalculator {
         var courseName;
         for (var i = 1; i <= classCount; i++) {
             convertedGrade = this.convertGrade($('#grade-'+i).val());
-            convertedCredit = parseInt($('#credit-'+i).val());
+            convertedCredit = Number($('#credit-'+i).val());
             convertedOldGrade = this.convertGrade($('#oldGrade-'+i).val());
             //forceKeepGrade = $('#keepGrade-'+i).is(':checked');
             console.log("Converted credit: " + convertedCredit);
