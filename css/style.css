@@ -109,7 +109,6 @@ Navbar stuff
 .flex-container {
     display: flex;
     min-height: 100%;
-    height: 100vh;
     flex-direction: column;
 }
 
@@ -267,7 +266,6 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px;
     height: 30px;
-    text-align: center;
 }
 
 #classGradeCalc-container .input-form2 {
@@ -336,10 +334,6 @@ table {
     width: 30vw;
 }
 
-/* #classGradeForm-table th, td  {
-    width: 10vw;
-} */
-
 .th-class {
     font-size: 1em;
     /* text-decoration: underline; */
@@ -402,6 +396,8 @@ button {
 
 #out {
     padding: 2.5vh 0vh;
+    width: 95%;
+    margin-bottom: 1vw;
 }
 
 /* .submit-btn {
@@ -464,14 +460,14 @@ button {
 that have a width less or equal than 500px*/
 
 
-@media screen and (min-width: 700px) and (max-width: 1050px) {
+@media screen and (min-width: 850px) and (max-width: 1050px) {
     .th-class {
         font-size: .8em;
     }
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
 
     /*shows elements in a column*/
     .topnav div:not(:first-child) {
@@ -563,10 +559,17 @@ that have a width less or equal than 500px*/
     }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 850px) {
     .page-wrap {  
         display: flex;
         overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #logo {
+        font-size: 18px;
+        padding-top: 18px;
     }
 }
 
