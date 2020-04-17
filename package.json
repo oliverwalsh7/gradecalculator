@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/oliverwalsh7/gradecalculator/issues"
   },
-  "homepage": "https://github.com/oliverwalsh7/gradecalculator/html/index.html",
+  "homepage": "https://github.com/oliverwalsh7/gradecalculator/",
   "dependencies": {
     "node": "^13.12.0"
   },
