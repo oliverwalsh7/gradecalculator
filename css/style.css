@@ -327,8 +327,6 @@ Navbar stuff
 ::placeholder {
     color: black;
     opacity: 0.5;
-    transform: scale(0.45);
-    transform-origin: 0% 50%;
 }
 
 
