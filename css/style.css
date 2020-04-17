@@ -109,7 +109,6 @@ Navbar stuff
 .flex-container {
     display: flex;
     min-height: 100%;
-    height: 100vh;
     flex-direction: column;
 }
 
@@ -117,6 +116,7 @@ Navbar stuff
     /* display: flex; */
     
     flex: 10;
+    overflow-y: hidden;
     /* width: 100%; */
     /* height: 100%; */
     /* align-items: stretch; */
@@ -266,7 +266,10 @@ Navbar stuff
     border-radius: 3px;
     padding: 0px 2px;
     height: 30px;
-    text-align: center;
+}
+
+#classGradeCalc-container .input-form2 {
+    height: 35px;
 }
 
 
@@ -324,6 +327,11 @@ table {
     table-layout: fixed;
     width: 100%;
     margin-top: 3vh;
+}
+
+#classGradeForm-table {
+    table-layout: fixed;
+    width: 30vw;
 }
 
 .th-class {
@@ -386,32 +394,20 @@ button {
     margin-left: 0;
 }
 
-/* No matching HTML element
-   Left in here in case we go back to an output box view
-*/
-/* .output-box-view {
-    font-size: 1em;
-    color: var(--pearl);
-    margin-top: 3vh;
-    background-color: #131831;
-    border: 1px solid;
-    border-color: ivory;
-    width: 92%;
-    display: block;
-} */
-
 #out {
     padding: 2.5vh 0vh;
+    width: 95%;
+    margin-bottom: 1vw;
 }
 
-#submit-btn {
+/* .submit-btn {
     margin-top: 5vh;
-}
+} */
 
-#addRow-btn {
+.form-btn {
     margin-right: 0vw;
-    margin-top: 5vh;
-
+    margin-top: 4vh;
+    margin-bottom: 2vw;
 }
 
 .flex-container::-webkit-scrollbar {
@@ -425,6 +421,10 @@ button {
 */
 #classGradeCalc-container {
     display: none;
+}
+
+#classGradeDisclaimer {
+    margin-top: 3.5vh;
 }
 
 #about-container {
@@ -460,14 +460,14 @@ button {
 that have a width less or equal than 500px*/
 
 
-@media screen and (min-width: 700px) and (max-width: 1050px) {
+@media screen and (min-width: 850px) and (max-width: 1050px) {
     .th-class {
         font-size: .8em;
     }
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
 
     /*shows elements in a column*/
     .topnav div:not(:first-child) {
@@ -537,6 +537,7 @@ that have a width less or equal than 500px*/
     .page-wrap {
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
     }
 
     body {
@@ -549,13 +550,26 @@ that have a width less or equal than 500px*/
     .retakeCell {
         width: 13.5%;
     }
-    
+
+    /*
+    * Class Grade Page
+    */
+    #classGradeForm-table {
+        width: 50vw;
+    }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 850px) {
     .page-wrap {  
         display: flex;
         overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #logo {
+        font-size: 18px;
+        padding-top: 18px;
     }
 }
 
