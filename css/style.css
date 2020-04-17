@@ -498,7 +498,7 @@ that have a width less or equal than 500px*/
     }
 
     ::placeholder { /* Chrome/Opera/Safari */
-        font-size: 16px;
+        font-size: 30px;
         /* transform: scale(0.45);
         transform-origin: 0% 100%; */
     }
