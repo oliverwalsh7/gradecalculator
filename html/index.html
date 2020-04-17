@@ -89,10 +89,10 @@
                                             <th class="th-class">Course
                                             </th>
                                             <th class="th-class">Grade
-                                                <!-- <div class="requiredField">*</div> -->
+                                                <div class="requiredField">*</div>
                                             </th>
                                             <th class="th-class">Credits
-                                                <!-- <div class="requiredField">*</div> -->
+                                                <div class="requiredField">*</div>
                                             </th>
                                             <th class="th-class keepGradeCell" id="th">Keep Grade?</th>
                                             <th class="th-class retakeCell">Retake?</th>
@@ -103,9 +103,9 @@
                                     <tbody id="passFailForm-tbody">
                                     </tbody>
                                 </table> 
-                            <button type="submit" id="submit-btn">Submit</button>
-                            <button type="submit" id="addRow-btn">Add Class</button>
-                            <button type="submit" id="removeRow-btn">Remove Class</button>
+                            <button type="submit" id="passFail-submit-btn" class="form-btn">Submit</button>
+                            <button type="submit" id="passFail-addRow-btn" class="form-btn">Add Class</button>
+                            <button type="submit" id="passFail-removeRow-btn" class="form-btn">Remove Class</button>
                             <div class="output-box" id="out">
                                 <!--DISPLAY OUTPUTS-->
                             </div>
@@ -122,12 +122,25 @@
                         <div class="instructions">
                             <div class="step-box">
                                 <div class="header"> Step One </div>
-                                <div class="sub-text"> Input grades for each section as a percentage 
+                                <div class="sub-text"> 
+                                    This serves as a simple weighted average calculator.
+                                    Input your the grade earned for each section as a percentage.
                                 </div>
                             </div>
                             <div class="step-box">
                                 <div class="header"> Step Two </div>
-                                <div class="sub-text"> Input weights for each grade section </div>
+                                <div class="sub-text"> 
+                                    Input the weight associated for each grade section. Press submit for knowledge.
+                                </div>
+                            </div>
+
+                            <div class="disclaimer-header" id="classGradeDisclaimer">
+                                DISCLAIMER
+                            </div>
+                            <div class="disclaimer-text">
+                                This app is simply meant to be a tool for calculating one's gpa. 
+                                It is not meant to be the ultimate dictator of any decisions made about one's academic career.
+                                No data is being collected or sent about any users.
                             </div>
                         </div>
                     </div>
@@ -135,7 +148,7 @@
                     <div class="input-wrap">
                         <div class="input-box">
                             
-                            <table style="width:100%">
+                            <table id="classGradeForm-table">
                                 <thead>
                                     <tr>
                                         <th class="th-class">Grade (%)</th>
@@ -145,9 +158,9 @@
                                 <tbody id="classGradeForm-tbody">
                                 </tbody>
                             </table> 
-                            <button type="submit" id="classGradeCalc-submit-btn">Submit</button>
-                            <button type="submit" id="classGradeCalc-addRow-btn">Add Row</button>
-                            <button type="submit" id="classGradeCalc-removeRow-btn">Remove Row</button>
+                            <button type="submit" id="classGradeCalc-submit-btn" class="form-btn">Submit</button>
+                            <button type="submit" id="classGradeCalc-addRow-btn" class="form-btn">Add Row</button>
+                            <button type="submit" id="classGradeCalc-removeRow-btn" class="form-btn">Remove Row</button>
                             <div class="output-box" id="classGradeCalc-out">
                                 <!--DISPLAY OUTPUTS-->
                             </div>

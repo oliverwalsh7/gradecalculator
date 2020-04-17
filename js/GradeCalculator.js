@@ -43,12 +43,12 @@ export default class GradeCalculator {
         rowCount++;
 
         var gradesColm = $('<div class="grade-colm"></div>');
-        var gradeInput = $('<input class="input-form2"/>').attr("id","classGradeCalc-grade-"+rowCount).appendTo(gradesColm);
+        var gradeInput = $('<input class="input-form2" placeholder="100"/>').attr("id","classGradeCalc-grade-"+rowCount).appendTo(gradesColm);
         $(gradesColm).append(gradeInput);
         var gradesCellMarkup = '<td class="td-class">' + gradesColm.html() + "</td>";
 
         var weightsColm = $('<div class="weights-colm"></div>');
-        var weightInput = $('<input class="input-form2"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo(weightsColm);
+        var weightInput = $('<input class="input-form2" placeholder="20"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo(weightsColm);
         console.log(weightInput);
         $(weightsColm).append(weightInput.html());
         var weightsCellMarkup = "<td>" + weightsColm.html() + "</td>";

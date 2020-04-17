@@ -18,17 +18,17 @@ $(document).ready(function() {
 
     passFailCalcPage.show();
 
-    $('#submit-btn').click(function() {
+    $('#passFail-submit-btn').click(function() {
         passFailCalcPage.submit();
     });
 
-    $('#addRow-btn').click(function() {
+    $('#passFail-addRow-btn').click(function() {
         
         if (passFailCalcPage.getClassCount() < passFailCalcPage.getMaxClassCount()) passFailCalcPage.addNewRow();
     
     });
 
-    $('#removeRow-btn').click(function() {
+    $('#passFail-removeRow-btn').click(function() {
         passFailCalcPage.removeRow();
     });
 

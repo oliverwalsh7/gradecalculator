@@ -123,7 +123,7 @@ export default class PassFailCalculator {
             convertedOldGrade = this.convertGrade($('#oldGrade-'+i).val());
             //forceKeepGrade = $('#keepGrade-'+i).is(':checked');
             console.log("Converted credit: " + convertedCredit);
-            if (convertedGrade === -1 || isNaN(convertedCredit)) {
+            if (convertedGrade === -1 || isNaN(convertedCredit) || convertedOldGrade === -1) {
                 this.errorDisplay();
                 return;
             }
