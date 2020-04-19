@@ -322,7 +322,6 @@ table {
 
 .input-button:checked:after {
     content: '\2714';
-    padding-top: 3px;
     font-size: 18px;
     position: absolute;
     top: 0px;

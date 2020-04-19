@@ -7,23 +7,14 @@ var currentCourses = [];
 var currCumGPA;
 var newMaxGPA;
 var semesterGPA;
+var passFailSemesterGPA;
 var cumGPAWithoutPassFail;
 var classCount = 0;
 var maxClass = 8;
 
 export default class PassFailCalculator {
 
-    //isInit = false;
-
     constructor() {
-        // const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-        // const credits = ['N/A','1', 2','3','4'];
-        // const startingClassCount = 5;
-        // var currentCourses = [];
-        // var newMaxGPA;
-        // var semesterGPA;
-        // var classCount = 0;
-        // var maxClass = 8;
         this.isInit = false;
     }
 
@@ -94,7 +85,6 @@ export default class PassFailCalculator {
         $(passFailColm).append(passFailInput);
         var passFailCellMarkup = "<td class='keepGradeCell'>" + passFailColm.html() + "</td>";
         
-        console.log("Class Count after adding row: " + classCount);
         var rowMarkup = "<tr id='passFailCalc-row-" + classCount + "'>"  
                             + coursesCellMarkup + gradesCellMarkup + creditsCellMarkup + passFailCellMarkup + retakeCellMarkup + oldGradeCellMarkup + 
                         + "</tr>";
@@ -104,10 +94,8 @@ export default class PassFailCalculator {
 
     removeRow() {
         if (classCount == 0) {return; }
-        console.log("Before hiding: " + classCount);
         $('#passFailCalc-row-'+classCount).remove();
         classCount--;
-        console.log("After hiding: " + classCount);
     }
     
     submit() {
@@ -120,13 +108,13 @@ export default class PassFailCalculator {
         for (var i = 1; i <= classCount; i++) {
             convertedGrade = this.convertGrade($('#grade-'+i).val());
             convertedCredit = Number($('#credit-'+i).val());
+            if (convertedGrade === -1 || isNaN(convertedCredit)) {
+                this.errorDisplay();
+                return;
+            }
             convertedOldGrade = this.convertGrade($('#oldGrade-'+i).val());
             isRetaking = $('#'+i).is(':checked');
-            if (convertedGrade === -1 || isNaN(convertedCredit)) {
-                if (isRetaking == true && convertedOldGrade === -1) {
-                        this.errorDisplay();
-                        return;
-                }
+            if (isRetaking == true && convertedOldGrade === -1) {
                 this.errorDisplay();
                 return;
             }
@@ -145,15 +133,16 @@ export default class PassFailCalculator {
                     oldGrade: convertedOldGrade,
                     isKeepingGrade: false 
                 });
-            console.log("Is Keeping Grade: " + currentCourses[i-1].isKeepingGrade);
-            console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
         }
-        var gpaHours = parseInt($('#curr-GPA').val());
-        var qualityPoints = parseInt($('#curr-QP').val());
+        var gpaHours = Number($('#curr-GPA').val());
+        var qualityPoints = Number($('#curr-QP').val());
+        if (isNaN(gpaHours) || isNaN(qualityPoints)) {
+            this.errorDisplay();
+            return;
+        }
         this.calculateOptimalPassFail(gpaHours, qualityPoints);
-        this.calculateNonOptimizedGPAs(gpaHours, qualityPoints);
+        this.calculateSemesterGPAs(gpaHours, qualityPoints);
         this.displayOut();
-        console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
     }
     
     
@@ -162,46 +151,35 @@ export default class PassFailCalculator {
         currentCourses.sort(function(a, b) {
             return b.grade - a.grade;
         });
-        for (var i = 0; i < currentCourses.length; i++) {
-            console.log("Current Course " + i + ": " + currentCourses[i].grade);
-        }
         // Initial cumulative GPA
         var maxGPA = qualityPoints / gpaHours;
         currCumGPA = maxGPA;
 
+        // For optimized cumulative GPA calculation
         var newGPAHours = gpaHours;
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
         for (var i = 0; i < classCount; i++) {
             var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
-            console.log("Is class retake: " + isClassRetake);
             if (isClassRetake == true) {
                 var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
                                             - (currentCourses[i].credits * currentCourses[i].oldGrade);
-                console.log(retakeNewQualityPoints);
                 newQualityPoints += retakeNewQualityPoints;
             }
             else {
                 newGPAHours += currentCourses[i].credits;
                 newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
             }
-            console.log("maxGPA1 " + maxGPA);
             newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
-            console.log("maxGPA2 " + newMaxGPA);
-            console.log("(newQualityPoints / newGPAHours) " + (newQualityPoints / newGPAHours));
             if (newMaxGPA > maxGPA || (newMaxGPA == 4 && maxGPA == 4)) {
                 maxGPA = newMaxGPA;
-                console.log("upperBound1 " + upperBoundForClassesToTake);
                 upperBoundForClassesToTake = i;
-                console.log("i before setting keeping grade:" + i);
                 currentCourses[i].isKeepingGrade = true;
-                console.log("Keep course " + i + "name: " + currentCourses[i].name);
                 continue;
             }
             break;
         }
         newMaxGPA = maxGPA;
-        console.log("Upper bound: " + upperBoundForClassesToTake);
         this.recalculateGPAWhenKeepingGrades(upperBoundForClassesToTake, newGPAHours, newQualityPoints);
     }
 
@@ -214,18 +192,14 @@ export default class PassFailCalculator {
         if (upperBoundForClassesToTake < classCount) {
             for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
                 var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
-                console.log("i in recalculation check:" + i);
-                console.log("Is Force Keep Grade Checked: " + isForceKeepingGrade);
                 if (isForceKeepingGrade == true) {
                     var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
-                    console.log("Is class retake: " + isClassRetake);
                     // This is done because when we exit the optimization calculation the new GPA hours
                     // and new QP are already calculated, as that class is what caused it to leave the optimization loop
                     if (i > (upperBoundForClassesToTake+1)) {
                         if (isClassRetake == true) {
                             var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
                                                         - (currentCourses[i].credits * currentCourses[i].oldGrade);
-                            console.log(retakeNewQualityPoints);
                             newQualityPoints += retakeNewQualityPoints;
                         }
                         else {
@@ -233,43 +207,46 @@ export default class PassFailCalculator {
                             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
                         }
                     }
-                    console.log("Recalculation 2 (newQP / newQPAHours): " + (newQualityPoints / newGPAHours));
                     newGPA = newQualityPoints / newGPAHours; 
                     newMaxGPA = newGPA;
                     currentCourses[i].isKeepingGrade = true;
-                    console.log("Keep course " + i + "name: " + currentCourses[i].name);
                 }
             }
         }
         console.log(newGPA);
     }  
     
-    calculateNonOptimizedGPAs(gpaHours, qualityPoints) {
+    calculateSemesterGPAs(gpaHours, qualityPoints) {
         var newGPAHours = 0;
         var newQualityPoints = 0;
+
+        var optimizedSemGPAHours = 0;
+        var optimizedSemQualityPoints = 0;
+
         for (var i = 0; i < classCount; i++) {
             newGPAHours += currentCourses[i].credits;
             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            if (currentCourses[i].isKeepingGrade == true) {
+                optimizedSemGPAHours += currentCourses[i].credits;
+                optimizedSemQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            }
         }
         semesterGPA = newQualityPoints / newGPAHours;
 
+        passFailSemesterGPA = optimizedSemQualityPoints / optimizedSemGPAHours;
+
         newGPAHours += gpaHours;
         newQualityPoints += qualityPoints; 
-        console.log("new gpa hours: " + newGPAHours + " new quality points: " + newQualityPoints);
         cumGPAWithoutPassFail = newQualityPoints / newGPAHours;
-        console.log("cum gpa: " + cumGPAWithoutPassFail);
     }
 
     isChecked(id) {
-        console.log("id is: " + id);
         // Get the checkbox
         var checkBox = document.getElementById(id);
         // Get the output text
         var text = document.getElementById("oldGrade-"+ id);
-        var col = document.getElementById("th");
     
         if (id == undefined) {
-            console.log("it is undefined");
             //col.style.display = "none";
             return;
         }
@@ -289,7 +266,7 @@ export default class PassFailCalculator {
 
     errorDisplay() {
         $('#out').empty();
-        $('#out').append("Please fill in all required options");
+        $('#out').append("Please fill in all required options correctly");
     }
     
     displayOut() {
@@ -297,13 +274,16 @@ export default class PassFailCalculator {
 
         var currGPAText = "Your current cumulative GPA is " + Utils.truncateDecimals(currCumGPA, 2).toFixed(2) + "<br>";
 
-        var semesterGPAText = "<br>Your semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
+        var semesterGPAText = "Your normal semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
 
-        var newNotOptmiziedGPAText = "<br>Your new cumulative GPA without pass fail optimization is " 
+        var newNotOptmiziedGPAText = "Your new cumulative GPA without pass fail optimization is " 
                                         + Utils.truncateDecimals(cumGPAWithoutPassFail, 2).toFixed(2) + "<br>";
 
-        var optimizedGPAText = "<br>Your new cumulative GPA with P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
+        var optimizedSemGPAText = "Your semester GPA after P/F optimization is " + Utils.truncateDecimals(passFailSemesterGPA, 2).toFixed(2) + "<br>";
+
+        var optimizedGPAText = "Your new cumulative GPA after P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
                       " when keeping these classes for a grade: ";
+
                  
         var isKeepingAnyClasses = false;
         for (var i = 0; i < classCount; i++) {
@@ -319,8 +299,7 @@ export default class PassFailCalculator {
         else {
             optimizedGPAText += "none";
         }
-        var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedGPAText;
-        console.log(outText);
+        var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedSemGPAText + optimizedGPAText;
         $('#out').append(outText);
     }
     
