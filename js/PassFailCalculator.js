@@ -121,13 +121,13 @@ export default class PassFailCalculator {
         for (var i = 1; i <= classCount; i++) {
             convertedGrade = this.convertGrade($('#grade-'+i).val());
             convertedCredit = Number($('#credit-'+i).val());
+            if (convertedGrade === -1 || isNaN(convertedCredit)) {
+                this.errorDisplay();
+                return;
+            }
             convertedOldGrade = this.convertGrade($('#oldGrade-'+i).val());
             isRetaking = $('#'+i).is(':checked');
-            if (convertedGrade === -1 || isNaN(convertedCredit)) {
-                if (isRetaking == true && convertedOldGrade === -1) {
-                        this.errorDisplay();
-                        return;
-                }
+            if (isRetaking == true && convertedOldGrade === -1) {
                 this.errorDisplay();
                 return;
             }
