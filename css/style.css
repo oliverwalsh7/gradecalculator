@@ -381,9 +381,9 @@ button {
     color: rgb(212, 187, 122);
 }
 
-input::-webkit-input-placeholder {
+/* input::-webkit-input-placeholder {
     line-height:normal!important;
-}
+} */
 
 .about-text {
     margin-top: 5vh;
