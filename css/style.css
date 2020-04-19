@@ -460,9 +460,10 @@ input::-webkit-input-placeholder {
         font-size: 16px;
     } */
 
-    /* .input-form {
-        font-size: 12px;
-    } */
+    .input-form {
+        /* font-size: 12px; */
+        line-height: 30px;
+    }
     
     .input-form2 {
         font-size: 12px;
@@ -486,7 +487,7 @@ input::-webkit-input-placeholder {
     table {
         font-size: .6em;
     }
-    
+
     .retakeCell {
         width: 13.5%;
     }
