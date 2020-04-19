@@ -7,6 +7,7 @@ var currentCourses = [];
 var currCumGPA;
 var newMaxGPA;
 var semesterGPA;
+var passFailSemesterGPA;
 var cumGPAWithoutPassFail;
 var classCount = 0;
 var maxClass = 8;
@@ -155,7 +156,7 @@ export default class PassFailCalculator {
             return;
         }
         this.calculateOptimalPassFail(gpaHours, qualityPoints);
-        this.calculateNonOptimizedGPAs(gpaHours, qualityPoints);
+        this.calculateSemesterGPAs(gpaHours, qualityPoints);
         this.displayOut();
         console.log("GPA Hours: " + gpaHours + ", QP: " + qualityPoints);
     }
@@ -171,11 +172,9 @@ export default class PassFailCalculator {
         }
         // Initial cumulative GPA
         var maxGPA = qualityPoints / gpaHours;
-        console.log("Quality Points:" + qualityPoints);
-        console.log("GPA Hours: " + gpaHours);
         currCumGPA = maxGPA;
-        console.log("Current cum gpa: " + currCumGPA);
 
+        // For optimized cumulative GPA calculation
         var newGPAHours = gpaHours;
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
@@ -251,16 +250,26 @@ export default class PassFailCalculator {
         console.log(newGPA);
     }  
     
-    calculateNonOptimizedGPAs(gpaHours, qualityPoints) {
+    calculateSemesterGPAs(gpaHours, qualityPoints) {
         var newGPAHours = 0;
         var newQualityPoints = 0;
+
+        var optimizedSemGPAHours = 0;
+        var optimizedSemQualityPoints = 0;
+
         for (var i = 0; i < classCount; i++) {
             newGPAHours += currentCourses[i].credits;
             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            if (currentCourses[i].isKeepingGrade == true) {
+                optimizedSemGPAHours += currentCourses[i].credits;
+                optimizedSemQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+            }
         }
         console.log("new gpa hours: " + newGPAHours + " new quality points: " + newQualityPoints);
         semesterGPA = newQualityPoints / newGPAHours;
         console.log("cum gpa: " + cumGPAWithoutPassFail);
+
+        passFailSemesterGPA = optimizedSemQualityPoints / optimizedSemGPAHours;
 
         newGPAHours += gpaHours;
         newQualityPoints += qualityPoints; 
@@ -306,13 +315,16 @@ export default class PassFailCalculator {
 
         var currGPAText = "Your current cumulative GPA is " + Utils.truncateDecimals(currCumGPA, 2).toFixed(2) + "<br>";
 
-        var semesterGPAText = "<br>Your semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
+        var semesterGPAText = "Your normal semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
 
-        var newNotOptmiziedGPAText = "<br>Your new cumulative GPA without pass fail optimization is " 
+        var newNotOptmiziedGPAText = "Your new cumulative GPA without pass fail optimization is " 
                                         + Utils.truncateDecimals(cumGPAWithoutPassFail, 2).toFixed(2) + "<br>";
 
-        var optimizedGPAText = "<br>Your new cumulative GPA with P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
+        var optimizedSemGPAText = "Your semester GPA after P/F optimization is " + Utils.truncateDecimals(passFailSemesterGPA, 2).toFixed(2) + "<br>";
+
+        var optimizedGPAText = "Your new cumulative GPA after P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
                       " when keeping these classes for a grade: ";
+
                  
         var isKeepingAnyClasses = false;
         for (var i = 0; i < classCount; i++) {
@@ -328,7 +340,7 @@ export default class PassFailCalculator {
         else {
             optimizedGPAText += "none";
         }
-        var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedGPAText;
+        var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedSemGPAText + optimizedGPAText;
         console.log(outText);
         $('#out').append(outText);
     }
