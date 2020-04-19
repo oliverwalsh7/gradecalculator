@@ -14,16 +14,6 @@ html * {
    font-family: 'Roboto Mono', monospace;
 }
 
-/* header {
-    background-color: var(--ocean);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 35px;
-    color: white;
-    text-align: center;
-    width: 100%;
-    height: 61px;
-    margin: 0px;
-} */
 
 /*
 Navbar stuff
@@ -44,8 +34,6 @@ Navbar stuff
 .topnav .nav-item {
     text-decoration: none;
     margin-top: 0;
-    /* margin-left: 2vw;
-    margin-right: 2vw; */
     padding: 21.5px 2.5vw;
     font-size: 14px;
     color: ivory;
@@ -57,14 +45,8 @@ Navbar stuff
 }
 
 .topnav {
-    /* height: 61px;
-    width: calc(100vw - 1.5%);
-    margin-left: 1.5%; */
     background-color: var(--ocean);
     overflow: hidden;
-    /* display: flex;
-    align-items: center; */
-    /* flex: 1; */
 }
 
 .topnav div {
@@ -90,13 +72,9 @@ Navbar stuff
     font-size: 15px;
     color: white;
     text-align: center;
-    /* height: 50px; */
     margin: 0px;
-    /* position: absolute; */
     bottom: 0;
     width: 100%;
-    /* flex: none; */
-    /* flex: 1; */
 }
 
 .footer-text{
@@ -113,20 +91,11 @@ Navbar stuff
 }
 
 .page-wrap {
-    /* display: flex; */
-    
     flex: 10;
     overflow-y: hidden;
-    /* width: 100%; */
-    /* height: 100%; */
-    /* align-items: stretch; */
-    /* justify-content: flex-start; */
-    /* background: var(--ocean3); */
 }
 
 .instruct-wrap {
-    /* position: absolute; */
-    /* display: flex; */
     min-height: 100%;
     max-height: 100%;
     background: var(--ocean2);
@@ -137,9 +106,6 @@ Navbar stuff
 }
 
 .input-wrap {
-    /* position: absolute; */
-    /* display: flex; */
-    /* margin-left: 25%; */
     min-height: 100%;
     background: var(--ocean3);
     flex: 3;
@@ -147,20 +113,16 @@ Navbar stuff
     background-repeat: no-repeat, repeat;
     background-position: center; 
     background-size: 50vw cover; 
-    /* justify-content: center; */
-    /* overflow-x: hidden; */
 }
 
 .input-wrap2 {
     display: inline-block;
     position: relative;
-    /* width: 45%; */
     color: ivory;
 }
 
 .instructions {
     margin-top: 0px;
-    /* margin-left: 1vw; */
     margin-right: 1vw;
     display: block;
     line-height: 1;
@@ -174,7 +136,6 @@ Navbar stuff
     align-content: center;
     align-items: center;
     color: var(--pearl);
-    /* padding: 0 2vh; */
 }
 
 .header {
@@ -182,7 +143,6 @@ Navbar stuff
     margin-top: 2vh;
     margin-left: 1vw;
     margin-bottom: 1vh;
-    /* text-decoration: underline; */
     color: rgb(212, 187, 122);
 }
 
@@ -212,8 +172,6 @@ Navbar stuff
     margin-top: 2.5vh;
     margin-right: 2vw;
     border-color: var(--pearl);
-    /* padding: 0 1.5vh; */
-
 }
 
 .disclaimer-header {
@@ -225,8 +183,6 @@ Navbar stuff
     margin-bottom: 1vh;
     color: rgb(212, 187, 122);
     letter-spacing: .35vw;
-    /* text-decoration: underline; */
-    
 }
 
 .disclaimer-text {
@@ -272,10 +228,6 @@ Navbar stuff
     height: 35px;
 }
 
-
-/* #th {
-    display: none;
-} */
 .grade-form {
     background: rgb(199, 173, 107, .8);
     width: 9.5vw;
@@ -297,9 +249,6 @@ Navbar stuff
     height: 30px;
 }
 
-/* input {
-    padding: 3.5px;
-} */
 .input-box {
     display: block;
     /* line-height: 1; */
@@ -318,7 +267,6 @@ Navbar stuff
     opacity: 0.5;
 }
 
-
 label {
     margin-top: 4vh;
 }
@@ -336,7 +284,6 @@ table {
 
 .th-class {
     font-size: 1em;
-    /* text-decoration: underline; */
 }
 
 .requiredField {
@@ -366,7 +313,6 @@ table {
     margin-top: 2.75vh;
     width: 25px;
     height: 25px;
-    /* margin-left: 1.75vw; */
     outline: 0;
 }
 
@@ -395,14 +341,9 @@ button {
 }
 
 #out {
-    /* padding: 2.5vh 0vh; */
     width: 95%;
     margin-bottom: 1vw;
 }
-
-/* .submit-btn {
-    margin-top: 5vh;
-} */
 
 .form-btn {
     margin-right: 0vw;
@@ -463,10 +404,6 @@ input::-webkit-input-placeholder {
     margin-bottom: 20px;
 }
 
-/*change the layout of the navigation bar for all the screens 
-that have a width less or equal than 500px*/
-
-
 @media screen and (min-width: 850px) and (max-width: 1050px) {
     .th-class {
         font-size: .8em;
@@ -490,26 +427,21 @@ that have a width less or equal than 500px*/
         display: block;
     } 
    
-   .topnav.responsive {
-       position: relative;
-   }
+    .topnav.responsive {
+        position: relative;
+    }
 
-   .topnav.responsive .mobile-nav-icon {
-       position: absolute;
-       right: 0;
-       top: 0;
-   }
+    .topnav.responsive .mobile-nav-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
 
-   .topnav.responsive .nav-item {
-       float: none;
-       display: block;
-       text-align: left;
-   }
-
-   /* .input-wrap2 {
-        padding: 0 2vh;
-        margin-left: -2%;
-    } */
+    .topnav.responsive .nav-item {
+        float: none;
+        display: block;
+        text-align: left;
+    }
 
     .instructions {
         padding: 0 1vh;
@@ -528,11 +460,9 @@ that have a width less or equal than 500px*/
         font-size: 16px;
     } */
 
-
-
-    .input-form {
+    /* .input-form {
         font-size: 12px;
-    }
+    } */
     
     .input-form2 {
         font-size: 12px;
@@ -556,6 +486,7 @@ that have a width less or equal than 500px*/
     table {
         font-size: .6em;
     }
+    
     .retakeCell {
         width: 13.5%;
     }
