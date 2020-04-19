@@ -456,6 +456,10 @@ button {
     margin-left: 1.5vw;
 }
 
+#bottom-text {
+    margin-bottom: 20px;
+}
+
 /*change the layout of the navigation bar for all the screens 
 that have a width less or equal than 500px*/
 
@@ -556,6 +560,14 @@ that have a width less or equal than 500px*/
     */
     #classGradeForm-table {
         width: 50vw;
+    }
+
+    #curr-GPA {
+        display: block;
+    }
+
+    #curr-QP {
+        display: block;
     }
 }
 
