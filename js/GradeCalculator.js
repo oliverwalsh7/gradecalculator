@@ -75,6 +75,7 @@ export default class GradeCalculator {
     }
 
     submit() {
+        gradesWithWeights = [];
         var gradePercentage;
         var weight;
         for (var i = 1; i <= rowCount; i++) {

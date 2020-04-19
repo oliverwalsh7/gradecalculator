@@ -148,8 +148,12 @@ export default class PassFailCalculator {
             console.log("Is Keeping Grade: " + currentCourses[i-1].isKeepingGrade);
             console.log("Current Course " + i + ": " + currentCourses[i-1].credits + " " + currentCourses[i-1].grade);
         }
-        var gpaHours = parseInt($('#curr-GPA').val());
-        var qualityPoints = parseInt($('#curr-QP').val());
+        var gpaHours = Number($('#curr-GPA').val());
+        var qualityPoints = Number($('#curr-QP').val());
+        if (isNan(gpaHours) || isNaN(qualityPoints)) {
+            this.errorDisplay();
+            return;
+        }
         this.calculateOptimalPassFail(gpaHours, qualityPoints);
         this.calculateNonOptimizedGPAs(gpaHours, qualityPoints);
         this.displayOut();
@@ -167,7 +171,10 @@ export default class PassFailCalculator {
         }
         // Initial cumulative GPA
         var maxGPA = qualityPoints / gpaHours;
+        console.log("Quality Points:" + qualityPoints);
+        console.log("GPA Hours: " + gpaHours);
         currCumGPA = maxGPA;
+        console.log("Current cum gpa: " + currCumGPA);
 
         var newGPAHours = gpaHours;
         var newQualityPoints = qualityPoints;
@@ -289,7 +296,7 @@ export default class PassFailCalculator {
 
     errorDisplay() {
         $('#out').empty();
-        $('#out').append("Please fill in all required options");
+        $('#out').append("Please fill in all required options correctly");
     }
     
     displayOut() {
