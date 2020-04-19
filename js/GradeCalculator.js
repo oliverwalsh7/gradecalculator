@@ -1,6 +1,6 @@
 import Utils from "./Utils.js";
 
-const startingClassCount = 5;
+const startingClassCount = 4;
 const maxRows = 10;
 var rowCount = 0;
 var gradesWithWeights = [];
