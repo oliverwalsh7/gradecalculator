@@ -48,7 +48,7 @@ export default class GradeCalculator {
         var gradesCellMarkup = '<td class="td-class">' + gradesColm.html() + "</td>";
 
         var weightsColm = $('<div class="weights-colm"></div>');
-        var weightInput = $('<input class="input-form2" placeholder="20"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo(weightsColm);
+        var weightInput = $('<input class="input-form2" placeholder="25"/>').attr("id","classGradeCalc-weight-"+rowCount).appendTo(weightsColm);
         console.log(weightInput);
         $(weightsColm).append(weightInput.html());
         var weightsCellMarkup = "<td>" + weightsColm.html() + "</td>";
