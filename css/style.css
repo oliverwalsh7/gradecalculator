@@ -395,7 +395,7 @@ button {
 }
 
 #out {
-    padding: 2.5vh 0vh;
+    /* padding: 2.5vh 0vh; */
     width: 95%;
     margin-bottom: 1vw;
 }
@@ -473,6 +473,10 @@ that have a width less or equal than 500px*/
 
 @media screen and (max-width: 850px) {
 
+    #out {
+        padding: 2.5vh 0vh;
+    }
+
     /*shows elements in a column*/
     .topnav div:not(:first-child) {
         display: none;
@@ -515,13 +519,11 @@ that have a width less or equal than 500px*/
     .disclaimer-text {
         margin-bottom: 20px;
     }
-
-    ::placeholder { /* Chrome/Opera/Safari */
+/* 
+    ::placeholder { 
         margin: auto 0;
         font-size: 16px;
-        /* transform: scale(0.45);
-        transform-origin: 0% 100%; */
-    }
+    } */
 
 
 
