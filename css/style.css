@@ -461,8 +461,8 @@ button {
     } */
 
     .input-form {
-        /* font-size: 12px; */
-        line-height: 30px;
+        font-size: 12px;
+        /* line-height: 30px; */
     }
     
     .input-form2 {
