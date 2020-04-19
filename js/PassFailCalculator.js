@@ -150,7 +150,7 @@ export default class PassFailCalculator {
         }
         var gpaHours = Number($('#curr-GPA').val());
         var qualityPoints = Number($('#curr-QP').val());
-        if (isNan(gpaHours) || isNaN(qualityPoints)) {
+        if (isNaN(gpaHours) || isNaN(qualityPoints)) {
             this.errorDisplay();
             return;
         }
@@ -258,7 +258,9 @@ export default class PassFailCalculator {
             newGPAHours += currentCourses[i].credits;
             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
         }
+        console.log("new gpa hours: " + newGPAHours + " new quality points: " + newQualityPoints);
         semesterGPA = newQualityPoints / newGPAHours;
+        console.log("cum gpa: " + cumGPAWithoutPassFail);
 
         newGPAHours += gpaHours;
         newQualityPoints += qualityPoints; 
