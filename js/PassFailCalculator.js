@@ -2,7 +2,7 @@ import Utils from './Utils.js';
 
 const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1', '1.5', '2','3','4'];
-const startingClassCount = 5;
+const startingClassCount = 4;
 var currentCourses = [];
 var currCumGPA;
 var newMaxGPA;
