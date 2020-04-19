@@ -395,7 +395,7 @@ button {
 }
 
 #out {
-    padding: 2.5vh 0vh;
+    /* padding: 2.5vh 0vh; */
     width: 95%;
     margin-bottom: 1vw;
 }
@@ -407,6 +407,7 @@ button {
 .form-btn {
     margin-right: 0vw;
     margin-top: 4vh;
+    margin-bottom: 2vw;
 }
 
 .flex-container::-webkit-scrollbar {
