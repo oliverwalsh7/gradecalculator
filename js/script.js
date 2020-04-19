@@ -5,7 +5,6 @@ import About from './About.js';
 let passFailCalcPage = new PassFailCalculator();
 let classGradeCalcPage = new GradeCalculator();
 let about = new About();
-console.log(about);
 
 classGradeCalcPage.hide();
 about.hide();
@@ -35,10 +34,6 @@ $(document).ready(function() {
     $('#passFail-removeRow-btn').click(function() {
         passFailCalcPage.removeRow();
     });
-
-    // $('.input-button').click(function() {
-    //     passFailCalcPage.isChecked($(this).attr('id'));
-    // });
 
     $('#about-btn').click(function () {
         classGradeCalcPage.hide();
