@@ -557,6 +557,14 @@ that have a width less or equal than 500px*/
     #classGradeForm-table {
         width: 50vw;
     }
+
+    #curr-GPA {
+        display: block;
+    }
+
+    #curr-QP {
+        display: block;
+    }
 }
 
 @media screen and (min-width: 850px) {
