@@ -188,7 +188,6 @@ export default class PassFailCalculator {
         // Must be done after initial gpa calculation in case it decreases the gpa
         var newGPA;
         
-        console.log("Recalculation 1 (newQP / newQPAHours): " + (newQualityPoints / newGPAHours));
         if (upperBoundForClassesToTake < classCount) {
             for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
                 var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
@@ -213,7 +212,6 @@ export default class PassFailCalculator {
                 }
             }
         }
-        console.log(newGPA);
     }  
     
     calculateSemesterGPAs(gpaHours, qualityPoints) {
@@ -253,12 +251,10 @@ export default class PassFailCalculator {
     
         // If the checkbox is checked, display the output text
         if (checkBox.checked == true){
-            console.log("Checkbox is checked");
             text.style.display = "block";
             text.style.position = "inherit";
             //col.style.display = "block";
         } else {
-            console.log("Checkbox is unchecked");
             text.style.display = "none";
             // /col.style.display = "none";
         }
@@ -289,7 +285,6 @@ export default class PassFailCalculator {
         for (var i = 0; i < classCount; i++) {
             if (currentCourses[i].isKeepingGrade == true) {
                 optimizedGPAText += currentCourses[i].name + ", ";
-                console.log(currentCourses[i].name);
                 isKeepingAnyClasses = true;
             }
         }
