@@ -23,7 +23,6 @@ export default class GradeCalculator {
     show() {
         this.init();
         $('#classGradeCalc-container').css("display", "flex");
-        console.log($('#classGradeCalc-container').css("display"));
     }
 
     hide() {
