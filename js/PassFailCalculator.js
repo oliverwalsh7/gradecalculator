@@ -213,12 +213,12 @@ export default class PassFailCalculator {
         var newGPA;
         var recalculatedGPAHoursAndQPs;
         
-        if (upperBoundForClassesToTake < classCount) {
-            for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
+        for (var i = upperBoundForClassesToTake; i < classCount; i++) {
+            // This check makes sure that the we do not double count a grade towards the gpa
+            if (currentCourses[i].isKeepingGrade == false) {
                 // This check is necessary in case the grade for a retaken course would by itself lower the cumulative GPA
-                // thus exiting the first optimization loop. However, as a retake which acts as a grade replacement 
+                // thus exiting the first optimization loop. However, because a retake acts as a grade replacement 
                 // it might still increase the cumulative GPA and needs to be accounted for.
-                //var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
                 var isClassRetake = currentCourses[i].isRetaking;
                 if (isClassRetake == true) {
                     var recalculatedGPAValues = this.doesClassIncreaseGPA(newMaxGPA, newGPAHours, newQualityPoints, i);
