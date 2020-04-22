@@ -277,7 +277,7 @@ export default class PassFailCalculator {
             recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(cumGPAHours, cumQualityPoints, i);
             cumGPAHours = recalculatedGPAHoursAndQPs.gpaHours;
             cumQualityPoints = recalculatedGPAHoursAndQPs.qualityPoints;
-            
+
             if (currentCourses[i].isKeepingGrade == true) {
                 optimizedSemGPAHours += currentCourses[i].credits;
                 optimizedSemQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
@@ -322,14 +322,14 @@ export default class PassFailCalculator {
 
         var currGPAText = "Your current cumulative GPA is " + Utils.truncateDecimals(currCumGPA, 2).toFixed(2) + "<br>";
 
-        var semesterGPAText = "Your normal semester GPA is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
+        var semesterGPAText = "Your normal semester GPA without pass fail optimization is " + Utils.truncateDecimals(semesterGPA, 2).toFixed(2) + "<br>";
 
         var newNotOptmiziedGPAText = "Your new cumulative GPA without pass fail optimization is " 
                                         + Utils.truncateDecimals(cumGPAWithoutPassFail, 2).toFixed(2) + "<br>";
 
-        var optimizedSemGPAText = "Your semester GPA after P/F optimization is " + Utils.truncateDecimals(passFailSemesterGPA, 2).toFixed(2) + "<br>";
+        var optimizedSemGPAText = "Your semester GPA with P/F optimization is " + Utils.truncateDecimals(passFailSemesterGPA, 2).toFixed(2) + "<br>";
 
-        var optimizedGPAText = "Your new cumulative GPA after P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
+        var optimizedGPAText = "Your new cumulative GPA with P/F optimization is " + Utils.truncateDecimals(newMaxGPA, 2).toFixed(2) + 
                       " when keeping these classes for a grade: ";
 
                  
