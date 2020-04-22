@@ -160,20 +160,17 @@ export default class PassFailCalculator {
         var newQualityPoints = qualityPoints;
         var upperBoundForClassesToTake = 0;
         for (var i = 0; i < classCount; i++) {
-            var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
-            if (isClassRetake == true) {
-                var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
-                                            - (currentCourses[i].credits * currentCourses[i].oldGrade);
-                newQualityPoints += retakeNewQualityPoints;
-            }
-            else {
-                newGPAHours += currentCourses[i].credits;
-                newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
-            }
-            newMaxGPA = Math.max(maxGPA, (newQualityPoints / newGPAHours));
-            if (newMaxGPA > maxGPA || (newMaxGPA == 4 && maxGPA == 4)) {
-                maxGPA = newMaxGPA;
+            var recalculatedGPAValues = this.doesClassIncreaseGPA(maxGPA, newGPAHours, newQualityPoints, i);
+            console.log("Temp max gpa: " + recalculatedGPAValues.maxGPA);
+            console.log("Current max GPA" + maxGPA);
+            if (recalculatedGPAValues !== -1) {
+                newGPAHours = recalculatedGPAValues.gpaHours;
+                console.log("New GPA Hours: " + newGPAHours);
+                newQualityPoints = recalculatedGPAValues.qualityPoints;
+                console.log("New Quality Points: " + newQualityPoints);
+                maxGPA = recalculatedGPAValues.maxGPA;
                 upperBoundForClassesToTake = i;
+                console.log("upper bound for first loop: " + upperBoundForClassesToTake);
                 currentCourses[i].isKeepingGrade = true;
                 continue;
             }
@@ -183,36 +180,80 @@ export default class PassFailCalculator {
         this.recalculateGPAWhenKeepingGrades(upperBoundForClassesToTake, newGPAHours, newQualityPoints);
     }
 
+    doesClassIncreaseGPA(maxGPA, newGPAHours, newQualityPoints, index) {
+        var isClassRetake = $('#'+currentCourses[index].courseNum).is(":checked");
+        var recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, isClassRetake, index);
+        console.dir(recalculatedGPAHoursAndQPs);
+        newMaxGPA = Math.max(maxGPA, (recalculatedGPAHoursAndQPs.qualityPoints / recalculatedGPAHoursAndQPs.gpaHours));
+        if (newMaxGPA > maxGPA || (newMaxGPA == 4 && maxGPA == 4)) {
+            return {
+                maxGPA: newMaxGPA,
+                gpaHours: recalculatedGPAHoursAndQPs.gpaHours,
+                qualityPoints: recalculatedGPAHoursAndQPs.qualityPoints
+            };
+        }
+        return -1;
+    }
+
+    recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, isClassRetake, index) {
+        if (isClassRetake == true) {
+            var retakeNewQualityPoints = (currentCourses[index].credits * currentCourses[index].grade) 
+                                        - (currentCourses[index].credits * currentCourses[index].oldGrade);
+            newQualityPoints += retakeNewQualityPoints;
+        }
+        else {
+            newGPAHours += currentCourses[index].credits;
+            newQualityPoints += (currentCourses[index].credits * currentCourses[index].grade);
+        }
+        console.log(newGPAHours);
+        console.log(newQualityPoints);
+
+        return {
+            gpaHours: newGPAHours,
+            qualityPoints: newQualityPoints
+        };
+    }
+
     recalculateGPAWhenKeepingGrades(upperBoundForClassesToTake, newGPAHours, newQualityPoints) {
         // Check that if a class must be taken for a grade and what the new gpa will be
         // Must be done after initial gpa calculation in case it decreases the gpa
         var newGPA;
+        var recalculatedGPAHoursAndQPs;
         
         if (upperBoundForClassesToTake < classCount) {
             for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
+                // This check is necessary in case the grade for a retaken course would by itself lower the cumulative GPA
+                // thus exiting the first optimization loop. However, as a retake it might still increase the cumulative GPA
+                // and needs to be accounted for.
+                var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
+                if (isClassRetake == true) {
+                    var recalculatedGPAValues = this.doesClassIncreaseGPA(newMaxGPA, newGPAHours, newQualityPoints, i);
+                    if (recalculatedGPAValues.maxGPA !== -1) {
+                        newGPAHours = recalculatedGPAValues.gpaHours;
+                        newQualityPoints = recalculatedGPAValues.qualityPoints;
+                        newGPA = recalculatedGPAValues.maxGPA;
+                        currentCourses[i].isKeepingGrade = true;
+                        continue;
+                    }
+                }
+
                 var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
                 if (isForceKeepingGrade == true) {
-                    var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
-                    // This is done because when we exit the optimization calculation the new GPA hours
-                    // and new QP are already calculated, as that class is what caused it to leave the optimization loop
-                    if (i > (upperBoundForClassesToTake+1)) {
-                        if (isClassRetake == true) {
-                            var retakeNewQualityPoints = (currentCourses[i].credits * currentCourses[i].grade) 
-                                                        - (currentCourses[i].credits * currentCourses[i].oldGrade);
-                            newQualityPoints += retakeNewQualityPoints;
-                        }
-                        else {
-                            newGPAHours += currentCourses[i].credits;
-                            newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
-                        }
-                    }
+                    // This is done because when now the gpa hours and quality points must be set
+                    // to the new values now matter what
+                    recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, isClassRetake, i);
+                    newGPAHours = recalculatedGPAHoursAndQPs.gpaHours;
+                    newQualityPoints = recalculatedGPAHoursAndQPs.qualityPoints;
+
+                    console.log("Force keep grade: " + newQualityPoints);
+                    console.log("Force gpa hours: " + newGPAHours);
                     newGPA = newQualityPoints / newGPAHours; 
                     newMaxGPA = newGPA;
                     currentCourses[i].isKeepingGrade = true;
                 }
             }
         }
-    }  
+    }
     
     calculateSemesterGPAs(gpaHours, qualityPoints) {
         var newGPAHours = 0;
