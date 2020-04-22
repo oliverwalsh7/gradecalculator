@@ -131,7 +131,8 @@ export default class PassFailCalculator {
                     grade: convertedGrade, 
                     credits: convertedCredit,
                     oldGrade: convertedOldGrade,
-                    isKeepingGrade: false 
+                    isKeepingGrade: false,
+                    isRetaking: isRetaking 
                 });
         }
         var gpaHours = Number($('#curr-GPA').val());
@@ -181,8 +182,8 @@ export default class PassFailCalculator {
     }
 
     doesClassIncreaseGPA(maxGPA, newGPAHours, newQualityPoints, index) {
-        var isClassRetake = $('#'+currentCourses[index].courseNum).is(":checked");
-        var recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, isClassRetake, index);
+        //var isClassRetake = $('#'+currentCourses[index].courseNum).is(":checked");
+        var recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, index);
         console.dir(recalculatedGPAHoursAndQPs);
         newMaxGPA = Math.max(maxGPA, (recalculatedGPAHoursAndQPs.qualityPoints / recalculatedGPAHoursAndQPs.gpaHours));
         if (newMaxGPA > maxGPA || (newMaxGPA == 4 && maxGPA == 4)) {
@@ -195,7 +196,9 @@ export default class PassFailCalculator {
         return -1;
     }
 
-    recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, isClassRetake, index) {
+    recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, index) {
+        var isClassRetake = currentCourses[index].isRetaking;
+        console.log("Is class retake: " + isClassRetake);
         if (isClassRetake == true) {
             var retakeNewQualityPoints = (currentCourses[index].credits * currentCourses[index].grade) 
                                         - (currentCourses[index].credits * currentCourses[index].oldGrade);
@@ -223,9 +226,10 @@ export default class PassFailCalculator {
         if (upperBoundForClassesToTake < classCount) {
             for (var i = upperBoundForClassesToTake+1; i < classCount; i++) {
                 // This check is necessary in case the grade for a retaken course would by itself lower the cumulative GPA
-                // thus exiting the first optimization loop. However, as a retake it might still increase the cumulative GPA
-                // and needs to be accounted for.
-                var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
+                // thus exiting the first optimization loop. However, as a retake which acts as a grade replacement 
+                // it might still increase the cumulative GPA and needs to be accounted for.
+                //var isClassRetake = $('#'+currentCourses[i].courseNum).is(":checked");
+                var isClassRetake = currentCourses[i].isRetaking;
                 if (isClassRetake == true) {
                     var recalculatedGPAValues = this.doesClassIncreaseGPA(newMaxGPA, newGPAHours, newQualityPoints, i);
                     if (recalculatedGPAValues.maxGPA !== -1) {
@@ -241,7 +245,7 @@ export default class PassFailCalculator {
                 if (isForceKeepingGrade == true) {
                     // This is done because when now the gpa hours and quality points must be set
                     // to the new values now matter what
-                    recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, isClassRetake, i);
+                    recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, i);
                     newGPAHours = recalculatedGPAHoursAndQPs.gpaHours;
                     newQualityPoints = recalculatedGPAHoursAndQPs.qualityPoints;
 
@@ -262,9 +266,18 @@ export default class PassFailCalculator {
         var optimizedSemGPAHours = 0;
         var optimizedSemQualityPoints = 0;
 
+        var cumGPAHours = gpaHours;
+        var cumQualityPoints = qualityPoints;
+
+        var recalculatedGPAHoursAndQPs;
         for (var i = 0; i < classCount; i++) {
             newGPAHours += currentCourses[i].credits;
             newQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
+
+            recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(cumGPAHours, cumQualityPoints, i);
+            cumGPAHours = recalculatedGPAHoursAndQPs.gpaHours;
+            cumQualityPoints = recalculatedGPAHoursAndQPs.qualityPoints;
+            
             if (currentCourses[i].isKeepingGrade == true) {
                 optimizedSemGPAHours += currentCourses[i].credits;
                 optimizedSemQualityPoints += (currentCourses[i].credits * currentCourses[i].grade);
@@ -274,9 +287,7 @@ export default class PassFailCalculator {
 
         passFailSemesterGPA = optimizedSemQualityPoints / optimizedSemGPAHours;
 
-        newGPAHours += gpaHours;
-        newQualityPoints += qualityPoints; 
-        cumGPAWithoutPassFail = newQualityPoints / newGPAHours;
+        cumGPAWithoutPassFail = cumQualityPoints / cumGPAHours;
     }
 
     isChecked(id) {
