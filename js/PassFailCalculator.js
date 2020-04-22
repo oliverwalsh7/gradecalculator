@@ -218,7 +218,7 @@ export default class PassFailCalculator {
             // thus exiting the first optimization loop. However, because a retake acts as a grade replacement 
             // it might still increase the cumulative GPA and needs to be accounted for.
             var isClassRetake = currentCourses[i].isRetaking;
-            if (isClassRetake == true && currentCourses[i].isKeepingGrade !== true) {
+            if (isClassRetake == true && currentCourses[i].isKeepingGrade == false) {
                 var recalculatedGPAValues = this.doesClassIncreaseGPA(newMaxGPA, newGPAHours, newQualityPoints, i);
                 if (recalculatedGPAValues.maxGPA !== -1) {
                     newGPAHours = recalculatedGPAValues.gpaHours;
@@ -230,7 +230,7 @@ export default class PassFailCalculator {
             }
 
             var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
-            if (isForceKeepingGrade == true) {
+            if (isForceKeepingGrade == true && currentCourses[i].isKeepingGrade == false) {
                 // This is done because when now the gpa hours and quality points must be set
                 // to the new values now matter what
                 recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, i);
