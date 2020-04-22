@@ -344,6 +344,11 @@ button {
     margin-bottom: 1vw;
 }
 
+#classGradeCalc-out{
+    width: 95%;
+    margin-bottom: 1vw;
+}
+
 .form-btn {
     margin-right: 0vw;
     margin-top: 4vh;
