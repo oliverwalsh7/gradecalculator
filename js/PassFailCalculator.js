@@ -214,32 +214,35 @@ export default class PassFailCalculator {
         var recalculatedGPAHoursAndQPs;
         
         for (var i = upperBoundForClassesToTake; i < classCount; i++) {
-            // This check is necessary in case the grade for a retaken course would by itself lower the cumulative GPA
-            // thus exiting the first optimization loop. However, because a retake acts as a grade replacement 
-            // it might still increase the cumulative GPA and needs to be accounted for.
-            var isClassRetake = currentCourses[i].isRetaking;
-            if (isClassRetake == true && currentCourses[i].isKeepingGrade == false) {
-                var recalculatedGPAValues = this.doesClassIncreaseGPA(newMaxGPA, newGPAHours, newQualityPoints, i);
-                if (recalculatedGPAValues.maxGPA !== -1) {
-                    newGPAHours = recalculatedGPAValues.gpaHours;
-                    newQualityPoints = recalculatedGPAValues.qualityPoints;
-                    newGPA = recalculatedGPAValues.maxGPA;
-                    currentCourses[i].isKeepingGrade = true;
-                    continue;
+            // This check makes sure that the we do not double count a grade towards the gpa
+            if (currentCourses[i].isKeepingGrade == false) {
+                // This check is necessary in case the grade for a retaken course would by itself lower the cumulative GPA
+                // thus exiting the first optimization loop. However, because a retake acts as a grade replacement 
+                // it might still increase the cumulative GPA and needs to be accounted for.
+                var isClassRetake = currentCourses[i].isRetaking;
+                if (isClassRetake == true) {
+                    var recalculatedGPAValues = this.doesClassIncreaseGPA(newMaxGPA, newGPAHours, newQualityPoints, i);
+                    if (recalculatedGPAValues.maxGPA !== -1) {
+                        newGPAHours = recalculatedGPAValues.gpaHours;
+                        newQualityPoints = recalculatedGPAValues.qualityPoints;
+                        newGPA = recalculatedGPAValues.maxGPA;
+                        currentCourses[i].isKeepingGrade = true;
+                        continue;
+                    }
                 }
-            }
 
-            var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
-            if (isForceKeepingGrade == true && currentCourses[i].isKeepingGrade == false) {
-                // This is done because when now the gpa hours and quality points must be set
-                // to the new values now matter what
-                recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, i);
-                newGPAHours = recalculatedGPAHoursAndQPs.gpaHours;
-                newQualityPoints = recalculatedGPAHoursAndQPs.qualityPoints;
+                var isForceKeepingGrade = $('#keepGrade-'+currentCourses[i].courseNum).is(':checked');
+                if (isForceKeepingGrade == true) {
+                    // This is done because when now the gpa hours and quality points must be set
+                    // to the new values now matter what
+                    recalculatedGPAHoursAndQPs = this.recalculateGPAHoursAndQualityPoints(newGPAHours, newQualityPoints, i);
+                    newGPAHours = recalculatedGPAHoursAndQPs.gpaHours;
+                    newQualityPoints = recalculatedGPAHoursAndQPs.qualityPoints;
 
-                newGPA = newQualityPoints / newGPAHours; 
-                newMaxGPA = newGPA;
-                currentCourses[i].isKeepingGrade = true;
+                    newGPA = newQualityPoints / newGPAHours; 
+                    newMaxGPA = newGPA;
+                    currentCourses[i].isKeepingGrade = true;
+                }
             }
         }
     }

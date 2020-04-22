@@ -100,6 +100,7 @@ Navbar stuff
     max-height: 100%;
     background: var(--ocean2);
     flex: 1;
+    min-width: 25vw;
     align-items: center;
     overflow-x: hidden;
 
