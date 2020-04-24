@@ -1,6 +1,6 @@
 import Utils from './Utils.js';
 
-const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
+const grades = ['N/A','A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
 const credits = ['N/A','1', '1.5', '2','3','4'];
 const startingClassCount = 4;
 var currentCourses = [];
@@ -342,6 +342,9 @@ export default class PassFailCalculator {
     convertGrade(grade) {
         let newGrade = 0;
         switch (grade) {
+            case 'A+':
+                newGrade = 4.3;
+                break;
             case 'A': 
                 newGrade = 4; 
                 break;

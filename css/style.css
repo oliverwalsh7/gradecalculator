@@ -665,3 +665,9 @@ button {
     }
 }
 
+@media (max-width: 400px) and (min-height: 800px) {
+    .topnav .mobile-nav-icon {
+        height: 8vh;
+    }
+}
+
