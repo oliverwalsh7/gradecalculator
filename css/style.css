@@ -7,10 +7,12 @@ body {
     --ocean: #0b0c11;
     --ocean2: #1d1f2b;
     --ocean3: #36384b;
+    --ocean4: #191b25;
+    --ocean5:#06070e;
 
     --helptip: #14183d;
     --helptip2: #626899;
-    height: 100vh;
+    height: 120vh;
 }
 
 html * {
@@ -22,13 +24,17 @@ html * {
 Navbar stuff
 */
 
+img {
+    height: 35px;
+}
+
 .topnav .mobile-nav-icon {
     display: none;
     color: ivory;
     background-color: var(--ocean1);
     border: none;
     outline: 0;
-    height: 8.5vh;
+    height: 9vh;
     text-align: center;
     padding: 0 3vh;
     font-size: 3vw;
@@ -49,6 +55,7 @@ Navbar stuff
 
 .topnav {
     background-color: var(--ocean);
+    /* background-color: var(--ocean5); */
     overflow: hidden;
 }
 
@@ -95,13 +102,15 @@ Navbar stuff
 
 .page-wrap {
     flex: 10;
+    /* background: linear-gradient(to bottom,var(--ocean2) 0%, var(--ocean3) 100%); */
     overflow-y: hidden;
 }
 
 .instruct-wrap {
     min-height: 100%;
     max-height: 100%;
-    background: var(--ocean2);
+    background: var(--ocean4);
+    /* background: linear-gradient(to bottom,var(--ocean2) 100%, var(--ocean3) 0%); */
     flex: 1;
     min-width: 25vw;
     align-items: center;
@@ -111,12 +120,19 @@ Navbar stuff
 
 .input-wrap {
     min-height: 100%;
-    background: var(--ocean3);
+    /* background: var(--ocean3); */
+    background: rgb(25,27,37);
+    background: -moz-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 62.5%);
+    background: -webkit-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 62.5%);
+    background-image: url("../assets/wizardhat.png"), linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 62.5%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#191b25",endColorstr="#3f3d58",GradientType=1);
     flex: 3;
-    background-image: url("../assets/wizardhat.png");
-    background-repeat: no-repeat, repeat;
-    background-position: center; 
+    /* background-image: url("../assets/wizardhat.png"); */
+    background-repeat: no-repeat no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
     background-size: 50vw cover; 
+    background-position-x: 70%;
 }
 
 .input-wrap2 {
@@ -147,6 +163,7 @@ Navbar stuff
     margin-top: 2vh;
     margin-left: 1vw;
     margin-bottom: 1vh;
+    font-weight: bold;
     color: rgb(212, 187, 122);
 }
 
@@ -419,7 +436,7 @@ button {
     /* right: 18px; */
     /* left: 65vw; */
     text-align: center;
-    background-color: var(--helptip);
+    background-color: var(--helptip2);
     /* background-color: #BCDBEA; */
     border-radius: 50%;
     width: 24px;
@@ -617,6 +634,10 @@ button {
     .help-tip {
         left: 82vw;
     }
+    /* Note this for showing the boys*/
+    .input-wrap {
+        background-attachment: initial;
+    }
 }
 
 @media screen and (min-width: 850px) {
@@ -630,6 +651,12 @@ button {
     #logo {
         font-size: 18px;
         padding-top: 18px;
+    }
+}
+
+@media (max-width: 400px) and (max-height: 700px) {
+    .topnav .mobile-nav-icon {
+        height: 10vh;
     }
 }
 
