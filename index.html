@@ -45,9 +45,9 @@
                             <div class="step-box">
                                 <div class="header"> Step Two </div>
                                 <div class="sub-text"> 
-                                    Retrieve your total gpa hours & total quality points. Total gpa hours are only credit hours that 
-                                    have gone towards your gpa and exclude credits from things such as AP classes, failed classes, and transfer credits. 
-                                    Total quality points is the value of a grade (ex. A = 4.0) times the credit hours of that course
+                                    Retrieve your <strong><em>total gpa hours</em></strong> & <strong><em>total quality points</em></strong>. <strong><em>Total gpa hours</em></strong> are only credit hours that 
+                                    have gone towards your gpa and exclude credits from things such as AP classes, classes you have withdrawn from, and transfer credits. 
+                                    <strong><em>Total quality points</em></strong> is the value of a grade (ex. A = 4.0) times the credit hours of that course
                                     for every course you have taken. 
                                 </div>
                             </div>
@@ -55,8 +55,8 @@
                                 <div class="header"> Step Three </div>
                                 <div class="sub-text"> 
                                     Input your hypothetical / projected semesterly grades in the input section.
-                                    The keep grade checkbox will exclude a class from the pass/fail optimization if you know
-                                    you want to keep the course for a grade. The retake calculation is done as a grade replacement.
+                                    The <strong><em>keep grade</em></strong> checkbox will exclude a class from the pass/fail optimization if you know
+                                    you want to keep the course for a grade. The <strong><em>retake</em></strong> calculation is done as a grade replacement.
                                 </div>
                             </div>
 
@@ -76,16 +76,26 @@
                     <!--INPUT BOX-->
                     <div class="input-wrap">
                         <div class="input-box">
-        
-                                <div class="input-wrap2">
-                                    <label for ="curr-GPA">Total GPA Hours:</label>
-                                    <input type="text" id="curr-GPA" placeholder="100">
+                                <div class="input-wrap-with-tooltip">
+                                    <div class="input-wrap2">
+                                        <label for ="curr-GPA">Total GPA Hours:</label>
+                                        <input type="text" id="curr-GPA" placeholder="100">
+                                    </div>
+                                    <div class="input-wrap2">
+                                        <label for ="curr-QP">Total Quality Points:</label>
+                                        <input type="text" id="curr-QP" placeholder="400">
+                                        <!-- <abbr>Tooltip<span><b>Most Light-weight Tooltip</b><br>This is the easy-to-use Tooltip driven purely by CSS.</span></abbr> -->
+                                        
+
+                                    </div>
+                                    <div class="help-tip">
+                                        <p>Total quality points can be found by multiplying <strong><em>total gpa points</em></strong> and <strong><em>cumulative gpa</em></strong>.
+                                            However, this could be slightly less accurate than finding the total quality points on your transcript as schools round/cut off gpa decimals.
+                                            Quality points are also referred to as grade points at some schools.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="input-wrap2">
-                                    <label for ="curr-QP">Total Quality Points:</label>
-                                    <input type="text" id="curr-QP" placeholder="400">
-                                </div>
-                            
+                                
                                 <table style="width:100%">
                                     <thead>
                                         <tr>

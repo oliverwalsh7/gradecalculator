@@ -7,6 +7,8 @@ body {
     --ocean: #0b0c11;
     --ocean2: #1d1f2b;
     --ocean3: #36384b;
+
+    --helptip: #626899;
     height: 100vh;
 }
 
@@ -409,11 +411,111 @@ button {
     margin-bottom: 20px;
 }
 
+.help-tip{
+    display: inline-block;
+    /* position: absolute; */
+    /* top: 18px; */
+    /* right: 18px; */
+    /* left: 65vw; */
+    text-align: center;
+    background-color: var(--helptip);
+    /* background-color: #BCDBEA; */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 23px;
+    cursor: default;
+    margin-left: 2vw;
+}
+
+.help-tip:before{
+    content:'?';
+    font-weight: bold;
+    color:#fff;
+}
+
+.help-tip:hover p{
+    display:block;
+    transform-origin: 100% 0%;
+
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+
+}
+
+/* The tooltip */
+.help-tip p{    
+    display: none;
+    text-align: left;
+    background-color: #1E2021;
+    padding: 25px;
+    margin-top: 10px;
+    margin-right: 10vw;
+    width: 300px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    right: 2vw;
+    color: #FFF;
+    font-size: 13px;
+    line-height: 1.4;
+    z-index: 69;
+}
+
+/* .help-tip p:before{ 
+    position: absolute;
+    content: '';
+    width:0;
+    height: 0;
+    border:6px solid transparent;
+    border-bottom-color:#1E2021;
+    right:78%;
+    top:-12px;
+} */
+
+/* Prevents the tooltip from being hidden */
+/* .help-tip p:after{ 
+    width:100%;
+    height:40px;
+    content:'';
+    position: absolute;
+    display: inline-block;
+    top:-40px;
+    left:0;
+} */
+
+/* CSS animation */
+
+@-webkit-keyframes fadeIn {
+    0% { 
+        opacity:0; 
+        transform: scale(0.6);
+    }
+
+    100% {
+        opacity:100%;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity:0; }
+    100% { opacity:100%; }
+}
+
+
 @media screen and (min-width: 850px) and (max-width: 1050px) {
     .th-class {
         font-size: .8em;
     }
 }
+
+/* @media screen and (min-width: 1050px) and (max-width: 1250px) {
+    .input-wrap2 {
+        width: 70%;
+    }
+} */
 
 
 @media screen and (max-width: 850px) {
@@ -510,6 +612,9 @@ button {
 
     #curr-QP {
         display: block;
+    }
+    .help-tip {
+        left: 82vw;
     }
 }
 
