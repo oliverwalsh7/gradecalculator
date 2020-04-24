@@ -122,9 +122,9 @@ img {
     min-height: 100%;
     /* background: var(--ocean3); */
     background: rgb(25,27,37);
-    background: -moz-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 62.5%);
-    background: -webkit-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 62.5%);
-    background-image: url("../assets/wizardhat.png"), linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 62.5%);
+    background: -moz-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
+    background: -webkit-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
+    background-image: url("../assets/wizardhatnotasdark.png"), linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#191b25",endColorstr="#3f3d58",GradientType=1);
     flex: 3;
     /* background-image: url("../assets/wizardhat.png"); */
