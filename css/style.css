@@ -590,7 +590,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-
 @media screen and (min-width: 850px) and (max-width: 1050px) {
     .th-class {
         font-size: .8em;

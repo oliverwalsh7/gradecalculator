@@ -64,7 +64,9 @@
                                     Input your hypothetical / projected semesterly grades in the input section. <br>
                                     <br>The <strong><em>keep grade</em></strong> checkbox will exclude a class from the pass/fail optimization if you know
                                     you want to keep the course for a grade. <br>
-                                    <br>The <strong><em>retake</em></strong> calculation is done as a grade replacement.
+                                    <br>The <strong><em>retake</em></strong> calculation is done as a grade replacement. <br>
+
+                                    <br> The gpa scale used can be found on the about page
                                 </div>
                             </div>
 
@@ -201,49 +203,16 @@
                     <!--INSTRUCTIONS BOX-->
                     <div class="instruct-wrap">
                         <div class="instructions">
+                            <div class="step-box gpa-switch-box">
+                                <div class="header">Switch GPA scales: </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="gpa-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                             <div class="step-box gpa-scale-box">
                                 <div class="header"> GPA SCALE: </div>
-                                <div class="sub-text"> 
-                                    <div class="grade">
-                                    A+ = 4.3
-                                    </div>
-                                    <div class="grade">
-                                    A = 4
-                                    </div>
-                                    <div class="grade">
-                                    A- = 3.7
-                                    </div>
-                                    <div class="grade">
-                                    B+ = 3.3
-                                    </div>
-                                    <div class="grade">
-                                    B = 3
-                                    </div>
-                                    <div class="grade">
-                                    B- = 2.7
-                                    </div>
-                                    <div class="grade">
-                                    C+ = 2.3
-                                    </div>
-                                    <div class="grade">
-                                    C = 2
-                                    </div>
-                                    <div class="grade">
-                                    C- = 1.7
-                                    </div>
-                                    <div class="grade">
-                                    D+ = 1.3
-                                    </div>
-                                    <div class="grade">
-                                    D = 1
-                                    </div>
-                                    <div class="grade">
-                                    D- = 0.7
-                                    </div>
-                                    <div class="grade">
-                                    F = 0
-                                    </div>
-                                </div>
+                                <!-- GPA scale goes here, done in JS -->
                             </div>
                             
                         </div>
