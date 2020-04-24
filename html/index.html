@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GPA Optimizer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <link rel="stylesheet" type = "text/css" href="../css/style.css">       
+    </head>
+    <body>
+        <div class="flex-container">
+            <div class="topnav" id="navBar"> 
+                <div class="topbar-text nav-item" id="logo">◐ grade wizard ◑</div>
+
+                <div class="nav-button nav-item" id="passFailCalc-page-btn"> p/f gpa calc </div>
+                <div class="nav-button nav-item" id="classGradeCalc-page-btn"> course grade </div>
+                <div class="nav-button nav-item" id="about-btn"> about </div>
+
+
+                <button class="nav-button mobile-nav-icon" id="mobile-nav-options-btn"> <i class="fa fa-bars" aria-hidden="true"></i> </button>
+            </div>
+
+            <div class="page-wrap" id="passFailCalc-container">
+                <!-- <div class="view-container"> -->
+                    <!--INSTRUCTIONS BOX-->
+                    <div class="instruct-wrap">
+                        <div class="instructions">
+                            <div class="step-box">
+                                <div class="header"> Step One </div>
+                                <div class="sub-text"> Obtain your unofficial academic transcript</div>
+                            </div>
+                            <div class="step-box">
+                                <div class="header"> Step Two </div>
+                                <div class="sub-text"> 
+                                    Retrieve your total gpa hours & total quality points. Total gpa hours are only credit hours that 
+                                    have gone towards your gpa and exclude credits from things such as AP classes or failed classes. 
+                                    Total quality points is the value of a grade (ex. A = 4.0) times the credit hours of that course
+                                    for every course you have taken. 
+                                </div>
+                            </div>
+                            <div class="step-box">
+                                <div class="header"> Step Three </div>
+                                <div class="sub-text"> 
+                                    Input your hypothetical / projected semesterly grades in the input section.
+                                    You can use the other tab to help calculate your weighted individual course grades.
+                                    The keep grade checkbox will exclude a class from the pass/fail optimization if you know
+                                    you want to keep the course for a grade. The retake calculation is done as grade replacement.
+                                </div>
+                            </div>
+
+                            <div class="about-section">
+                                <div class="disclaimer-header">
+                                    DISCLAIMER
+                                </div>
+                                <div class="disclaimer-text">
+                                    This app is simply meant to be a tool for calculating one's gpa. 
+                                    It is not meant to be the ultimate dictator of any decisions made about one's academic career.
+                                    No data is being collected or sent about any users.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--INPUT BOX-->
+                    <div class="input-wrap">
+                        <div class="input-box">
+        
+                                <div class="input-wrap2">
+                                    <label for ="curr-GPA">Total GPA Hours:</label>
+                                    <input type="text" id="curr-GPA" placeholder="100">
+                                </div>
+                                <div class="input-wrap2">
+                                    <label for ="curr-QP">Total Quality Points:</label>
+                                    <input type="text" id="curr-QP" placeholder="400">
+                                </div>
+                            
+                                <table style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-class">Course
+                                            </th>
+                                            <th class="th-class">Grade
+                                                <!-- <div class="requiredField">*</div> -->
+                                            </th>
+                                            <th class="th-class">Credits
+                                                <!-- <div class="requiredField">*</div> -->
+                                            </th>
+                                            <th class="th-class keepGradeCell" id="th">Keep Grade?</th>
+                                            <th class="th-class retakeCell">Retake?</th>
+                                            <th class="th-class oldGradeCell" id="th">Old Grade
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="passFailForm-tbody">
+                                    </tbody>
+                                </table> 
+                            <button type="submit" id="submit-btn">Submit</button>
+                            <button type="submit" id="addRow-btn">Add Class</button>
+                            <button type="submit" id="removeRow-btn">Remove Class</button>
+                            <div class="output-box" id="out">
+                                <!--DISPLAY OUTPUTS-->
+                            </div>
+                        </div>  
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <div class="page-wrap" id="classGradeCalc-container">
+                <!-- <div class="view-container"> -->
+
+                    <!--INSTRUCTIONS BOX-->
+                    <div class="instruct-wrap">
+                        <div class="instructions">
+                            <div class="step-box">
+                                <div class="header"> Step One </div>
+                                <div class="sub-text"> Input grades for each section as a percentage 
+                                </div>
+                            </div>
+                            <div class="step-box">
+                                <div class="header"> Step Two </div>
+                                <div class="sub-text"> Input weights for each grade section </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-wrap">
+                        <div class="input-box">
+                            
+                            <table style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="th-class">Grade (%)</th>
+                                        <th class="th-class">Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="classGradeForm-tbody">
+                                </tbody>
+                            </table> 
+                            <button type="submit" id="classGradeCalc-addRow-btn">Add Row</button>
+                            <button type="submit" id="classGradeCalc-removeRow-btn">Remove Row</button>
+                            <button type="submit" id="classGradeCalc-submit-btn">Submit</button>
+                            <div class="output-box" id="classGradeCalc-out">
+                                <!--DISPLAY OUTPUTS-->
+                            </div>
+                        </div>  
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <div class="page-wrap" id="about-container">
+                <!-- <div class="view-container"> -->
+
+                    <!--INSTRUCTIONS BOX-->
+                    <div class="instruct-wrap">
+                        <div class="instructions">
+                            <div class="step-box">
+                                <div class="header"> GPA SCALE: </div>
+                                <div class="sub-text"> 
+                                    <div class="grade">
+                                    A = 4
+                                    </div>
+                                    <div class="grade">
+                                    A- = 3.7
+                                    </div>
+                                    <div class="grade">
+                                    B+ = 3.3
+                                    </div>
+                                    <div class="grade">
+                                    B = 3
+                                    </div>
+                                    <div class="grade">
+                                    B- = 2.7
+                                    </div>
+                                    <div class="grade">
+                                    C+ = 2.3
+                                    </div>
+                                    <div class="grade">
+                                    C = 2
+                                    </div>
+                                    <div class="grade">
+                                    C- = 1.7
+                                    </div>
+                                    <div class="grade">
+                                    D+ = 1.3
+                                    </div>
+                                    <div class="grade">
+                                    D = 1
+                                    </div>
+                                    <div class="grade">
+                                    D- = 0.7
+                                    </div>
+                                    <div class="grade">
+                                    F = 0
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="input-wrap">
+                        <div class="input-box">
+                            
+                            <div class="about-text-header">The Gandalf Algorithm</div>
+                            <div class="about-text">The Grade Wizard was implemented in order to automate the process of determining 
+                                which classes a student should count for credit in order to optimize their cumulative GPA.
+                            </div>
+                            <div class="about-text">Through the use of a magical algorithm, Gandalf deduces which classes will positively impact one's cumulative GPA, 
+                                through the use of quality points and GPA hours. 
+                            </div>
+                            <div class="about-text">First, one's cumulative GPA is calculated by dividing the quality points 
+                                obtained from a transcript by the total amount of GPA hours one has accumulated.
+                            </div>
+
+                        </div>  
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <div class="footer">
+                <div class="footer-text">
+                    for any issues or inquiries email us at gradewizardcalc@gmail.com
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="../js/ClickFunctions.js"></script>
+        <script type="module" src = "../js/script.js"></script>
+        
+    </body>
+</html>

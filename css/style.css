@@ -196,12 +196,12 @@ img {
 }
 
 .disclaimer-header {
-    font-size: 9px;
+    font-size: 11.555px;
     font-style: italic;
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 1vw;
-    margin-bottom: 1vh;
+    margin-bottom: .5vh;
     color: rgb(212, 187, 122);
     letter-spacing: .35vw;
 }
