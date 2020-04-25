@@ -347,17 +347,14 @@ export default class PassFailCalculator {
             if (grade == grades[i] && isGpaScaleSwitched == false) {
                 // The difference in indexing is due to the N/A that is used for display purposes
                 newGrade = gpaScaleUnchecked[i-1];
-                console.log(newGrade);
                 return newGrade;
             }
             else if (grade == grades[i] && isGpaScaleSwitched == true) {
                 newGrade = gpaScaleChecked[i-1];
-                console.log(newGrade);
                 return newGrade;
             }
         }
         newGrade = -1;
-        console.log(newGrade);
         return newGrade;
     }
 

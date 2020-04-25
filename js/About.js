@@ -48,7 +48,6 @@ export default class About {
         this.init();
         this.displayGPAScale();
         $('#about-container').css("display", "flex");
-        console.log($('#about-container').css("display"));
     }
 
     hide() {
