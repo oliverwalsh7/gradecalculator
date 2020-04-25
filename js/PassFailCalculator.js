@@ -337,55 +337,6 @@ export default class PassFailCalculator {
         var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedSemGPAText + optimizedGPAText;
         $('#out').append(outText);
     }
-    
-    // Converts the dropdown select options into integers 
-    // convertGrade(grade) {
-    //     let newGrade = 0;
-    //     switch (grade) {
-    //         case 'A+':
-    //             newGrade = 4.3;
-    //             break;
-    //         case 'A': 
-    //             newGrade = 4; 
-    //             break;
-    //         case 'A-': 
-    //             newGrade = 3.7; 
-    //             break;
-    //         case 'B+': 
-    //             newGrade = 3.3; 
-    //             break;
-    //         case 'B': 
-    //             newGrade = 3; 
-    //             break;
-    //         case 'B-': 
-    //             newGrade = 2.7; 
-    //             break;
-    //         case 'C+': 
-    //             newGrade = 2.3; 
-    //             break;
-    //         case 'C': 
-    //             newGrade = 2; 
-    //             break;
-    //         case 'C-': 
-    //             newGrade = 1.7; 
-    //             break;
-    //         case 'D+': 
-    //             newGrade = 1.3; 
-    //             break;
-    //         case 'D': 
-    //             newGrade = 1; 
-    //             break;
-    //         case 'D-': 
-    //             newGrade = .7; 
-    //             break;
-    //         case 'F': 
-    //             newGrade = 0; 
-    //             break;
-    //         default:
-    //             newGrade = -1;
-    //     } 
-    //     return newGrade;
-    // }
 
     convertGrade(grade) {
         let newGrade = 0;

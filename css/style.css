@@ -523,6 +523,10 @@ button {
     100% { opacity:100%; }
 }
 
+.gpa-scales {
+    text-align: center;
+}
+
 .gpa-switch-box {
     display: block;
 }
@@ -713,6 +717,7 @@ input:checked + .slider:before {
     }
     /* Note this for showing the boys*/
     .input-wrap {
+        background-image: linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
         background-attachment: initial;
     }
 }
@@ -737,6 +742,7 @@ input:checked + .slider:before {
     }
 }
 
+/* iPhone X */
 @media (max-width: 400px) and (min-height: 800px) {
     .topnav .mobile-nav-icon {
         height: 8vh;
