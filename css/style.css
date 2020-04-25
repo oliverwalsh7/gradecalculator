@@ -13,6 +13,7 @@ body {
     --helptip: #14183d;
     --helptip2: #626899;
     height: 120vh;
+    background-color: var(--ocean);
 }
 
 html * {
@@ -31,7 +32,7 @@ img {
 .topnav .mobile-nav-icon {
     display: none;
     color: ivory;
-    background-color: var(--ocean1);
+    background-color: var(--ocean);
     border: none;
     outline: 0;
     height: 9vh;
@@ -55,7 +56,6 @@ img {
 
 .topnav {
     background-color: var(--ocean);
-    /* background-color: var(--ocean5); */
     overflow: hidden;
 }
 
