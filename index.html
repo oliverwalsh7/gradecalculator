@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164027711-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-164027711-1', { 'anonymize_ip': true });
-        </script>
-
         <title>thegradewizard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,11 +10,17 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link rel="stylesheet" type = "text/css" href="./css/style.css">       
+        <link rel="icon" 
+                type="image/png" 
+                href="assets/wizardhat.png">
     </head>
     <body>
         <div class="flex-container">
             <div class="topnav" id="navBar"> 
-                <div class="topbar-text nav-item" id="logo">◐ grade wizard ◑</div>
+                <div class="topbar-text nav-item" id="logo">
+                    <!-- <img icon="69" src="assets/wizardhat.png" alt="◑"/>  -->
+                    ◐ grade wizard ◑
+                </div>
 
                 <div class="nav-button nav-item" id="passFailCalc-page-btn"> p/f gpa calc </div>
                 <div class="nav-button nav-item" id="classGradeCalc-page-btn"> course grade </div>
@@ -40,23 +37,27 @@
                         <div class="instructions">
                             <div class="step-box">
                                 <div class="header"> Step One </div>
-                                <div class="sub-text"> Obtain your unofficial academic transcript</div>
+                                <div class="sub-text"> Obtain your unofficial academic transcript.</div>
                             </div>
                             <div class="step-box">
                                 <div class="header"> Step Two </div>
                                 <div class="sub-text"> 
-                                    Retrieve your total gpa hours & total quality points. Total gpa hours are only credit hours that 
-                                    have gone towards your gpa and exclude credits from things such as AP classes, failed classes, and transfer credits. 
-                                    Total quality points is the value of a grade (ex. A = 4.0) times the credit hours of that course
+                                    Retrieve your <strong><em>total gpa hours</em></strong> & <strong><em>total quality points</em></strong>.<br>
+                                    <br><strong><em>Total gpa hours</em></strong> are only credit hours that 
+                                    have gone towards your gpa and exclude credits from things such as AP classes, classes you have withdrawn from, and transfer credits. <br>
+                                    <br><strong><em>Total quality points</em></strong> is the value of a grade (ex. A = 4.0) times the credit hours of that course
                                     for every course you have taken. 
                                 </div>
                             </div>
                             <div class="step-box">
                                 <div class="header"> Step Three </div>
                                 <div class="sub-text"> 
-                                    Input your hypothetical / projected semesterly grades in the input section.
-                                    The keep grade checkbox will exclude a class from the pass/fail optimization if you know
-                                    you want to keep the course for a grade. The retake calculation is done as a grade replacement.
+                                    Input your hypothetical / projected semesterly grades in the input section. <br>
+                                    <br>The <strong><em>keep grade</em></strong> checkbox will exclude a class from the pass/fail optimization if you know
+                                    you want to keep the course for a grade. <br>
+                                    <br>The <strong><em>retake</em></strong> calculation is done as a grade replacement. <br>
+
+                                    <br> The <strong><em></em>gpa scale</em></strong> used can be found on the about page
                                 </div>
                             </div>
 
@@ -76,16 +77,24 @@
                     <!--INPUT BOX-->
                     <div class="input-wrap">
                         <div class="input-box">
-        
-                                <div class="input-wrap2">
-                                    <label for ="curr-GPA">Total GPA Hours:</label>
-                                    <input type="text" id="curr-GPA" placeholder="100">
+                                <div class="input-wrap-with-tooltip">
+                                    <div class="input-wrap2 gpa-hours">
+                                        <label for ="curr-GPA">Total GPA Hours:</label>
+                                        <input type="text" id="curr-GPA" placeholder="100">
+                                    </div>
+                                    <div class="input-wrap2">
+                                        <label for ="curr-QP">Total Quality Points:</label>
+                                        <input type="text" id="curr-QP" placeholder="400">
+                                    </div>
+
+                                    <div class="help-tip">
+                                        <p>Total quality points can be found by multiplying <strong><em>total gpa hours</em></strong> and <strong><em>cumulative gpa</em></strong>.
+                                            However, this could be slightly less accurate than finding the total quality points on your transcript as schools round/cut off gpa decimals.
+                                            Quality points are also referred to as grade points at some schools.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="input-wrap2">
-                                    <label for ="curr-QP">Total Quality Points:</label>
-                                    <input type="text" id="curr-QP" placeholder="400">
-                                </div>
-                            
+                                
                                 <table style="width:100%">
                                     <thead>
                                         <tr>
@@ -128,8 +137,8 @@
                             <div class="step-box">
                                 <div class="header"> Step One </div>
                                 <div class="sub-text">
-                                    This serves as a simple weighted average calculator.
-                                    Input your the grade earned for each section as a percentage.
+                                    This serves as a simple weighted average calculator for a single course.
+                                    Input your the grade earned for each weighted section as a percentage.
                                 </div>
                             </div>
                             <div class="step-box">
@@ -181,48 +190,18 @@
                 <!-- <div class="view-container"> -->
 
                     <!--INSTRUCTIONS BOX-->
-                    <div class="instruct-wrap">
+                    <div class="instruct-wrap gpa-scales">
                         <div class="instructions">
-                            <div class="step-box">
+                            <div class="step-box gpa-switch-box">
+                                <div class="header">Switch GPA scales: </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="gpa-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="step-box gpa-scale-box">
                                 <div class="header"> GPA SCALE: </div>
-                                <div class="sub-text"> 
-                                    <div class="grade">
-                                    A = 4
-                                    </div>
-                                    <div class="grade">
-                                    A- = 3.7
-                                    </div>
-                                    <div class="grade">
-                                    B+ = 3.3
-                                    </div>
-                                    <div class="grade">
-                                    B = 3
-                                    </div>
-                                    <div class="grade">
-                                    B- = 2.7
-                                    </div>
-                                    <div class="grade">
-                                    C+ = 2.3
-                                    </div>
-                                    <div class="grade">
-                                    C = 2
-                                    </div>
-                                    <div class="grade">
-                                    C- = 1.7
-                                    </div>
-                                    <div class="grade">
-                                    D+ = 1.3
-                                    </div>
-                                    <div class="grade">
-                                    D = 1
-                                    </div>
-                                    <div class="grade">
-                                    D- = 0.7
-                                    </div>
-                                    <div class="grade">
-                                    F = 0
-                                    </div>
-                                </div>
+                                <!-- GPA scale goes here, done in JS -->
                             </div>
                             
                         </div>
@@ -231,14 +210,23 @@
                     <div class="input-wrap">
                         <div class="input-box">
                             
-                            <div class="about-text-header">The Grade Wizard Algorithm</div>
-                            <div class="about-text">The Grade Wizard was implemented in order to automate the process of determining 
-                                which classes a student should count for credit in order to optimize their cumulative GPA.
+                            <div class="about-text-header">The Grade Wizard</div>
+                            <div class="about-text">
+                                The Grade Wizard was implemented in order to automate the process of determining 
+                                which classes a student should count for a grade or pass/fail in order to optimize their cumulative GPA.
                             </div>
-                            <div class="about-text">Through the use of a magical algorithm, the Grade Wizard deduces which classes will positively impact one's cumulative GPA, 
-                                through the use of quality points and GPA hours. 
+                            <div class="about-text">
+                                GPA is found from dividing quality points by gpa hours. GPA hours are credit hours that exclude credits from things such as AP classes
+                                and transfer credits. Quality points are the value of a grade (ex. A = 4.0) times the credits for that course. Finding your cumulative GPA
+                                is then done by adding all quality points for every course and dividing it by the GPA hours for all those courses.
                             </div>
-                            <div class="about-text" id="bottom-text">We also provide a course grade calculator as a supplemental tool that one can use to project their grade in a specific class.</div>
+                            <div class="about-text">
+                                The Grade Wizard will tell you which classes you should pass/fail in order to get the highest cumulative GPA. It also will tell you your normal
+                                cumulative GPA without pass/fail optimization for comparison.
+                            </div>
+                            <div class="about-text" id="bottom-text">
+                                We also provide a course grade calculator as a supplemental tool that one can use to project their grade in a specific class.
+                            </div>
 
                         </div>  
                     </div>

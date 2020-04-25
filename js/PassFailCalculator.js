@@ -1,6 +1,6 @@
 import Utils from './Utils.js';
 
-const grades = ['N/A','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
+const grades = Utils.getAppGrades();
 const credits = ['N/A','1', '1.5', '2','3','4'];
 const startingClassCount = 4;
 var currentCourses = [];
@@ -337,50 +337,24 @@ export default class PassFailCalculator {
         var outText = currGPAText + semesterGPAText + newNotOptmiziedGPAText + optimizedSemGPAText + optimizedGPAText;
         $('#out').append(outText);
     }
-    
-    // Converts the dropdown select options into integers 
+
     convertGrade(grade) {
         let newGrade = 0;
-        switch (grade) {
-            case 'A': 
-                newGrade = 4; 
-                break;
-            case 'A-': 
-                newGrade = 3.7; 
-                break;
-            case 'B+': 
-                newGrade = 3.3; 
-                break;
-            case 'B': 
-                newGrade = 3; 
-                break;
-            case 'B-': 
-                newGrade = 2.7; 
-                break;
-            case 'C+': 
-                newGrade = 2.3; 
-                break;
-            case 'C': 
-                newGrade = 2; 
-                break;
-            case 'C-': 
-                newGrade = 1.7; 
-                break;
-            case 'D+': 
-                newGrade = 1.3; 
-                break;
-            case 'D': 
-                newGrade = 1; 
-                break;
-            case 'D-': 
-                newGrade = .7; 
-                break;
-            case 'F': 
-                newGrade = 0; 
-                break;
-            default:
-                newGrade = -1;
-        } 
+        var isGpaScaleSwitched = $('#gpa-switch').is(':checked');
+        var gpaScaleUnchecked = Utils.getGpaScaleUnchecked();
+        var gpaScaleChecked = Utils.getGpaScaleChecked();
+        for (var i = 1; i < grades.length; i++) {
+            if (grade == grades[i] && isGpaScaleSwitched == false) {
+                // The difference in indexing is due to the N/A that is used for display purposes
+                newGrade = gpaScaleUnchecked[i-1];
+                return newGrade;
+            }
+            else if (grade == grades[i] && isGpaScaleSwitched == true) {
+                newGrade = gpaScaleChecked[i-1];
+                return newGrade;
+            }
+        }
+        newGrade = -1;
         return newGrade;
     }
 

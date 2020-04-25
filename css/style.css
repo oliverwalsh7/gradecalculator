@@ -7,7 +7,12 @@ body {
     --ocean: #0b0c11;
     --ocean2: #1d1f2b;
     --ocean3: #36384b;
-    height: 100vh;
+    --ocean4: #191b25;
+    --ocean5:#06070e;
+
+    --helptip: #14183d;
+    --helptip2: #626899;
+    height: 120vh;
 }
 
 html * {
@@ -19,13 +24,17 @@ html * {
 Navbar stuff
 */
 
+img {
+    height: 35px;
+}
+
 .topnav .mobile-nav-icon {
     display: none;
     color: ivory;
     background-color: var(--ocean1);
     border: none;
     outline: 0;
-    height: 8.5vh;
+    height: 9vh;
     text-align: center;
     padding: 0 3vh;
     font-size: 3vw;
@@ -46,6 +55,7 @@ Navbar stuff
 
 .topnav {
     background-color: var(--ocean);
+    /* background-color: var(--ocean5); */
     overflow: hidden;
 }
 
@@ -75,6 +85,7 @@ Navbar stuff
     margin: 0px;
     bottom: 0;
     width: 100%;
+    position: fixed;
 }
 
 .footer-text{
@@ -92,13 +103,15 @@ Navbar stuff
 
 .page-wrap {
     flex: 10;
+    /* background: linear-gradient(to bottom,var(--ocean2) 0%, var(--ocean3) 100%); */
     overflow-y: hidden;
 }
 
 .instruct-wrap {
     min-height: 100%;
     max-height: 100%;
-    background: var(--ocean2);
+    background: var(--ocean4);
+    /* background: linear-gradient(to bottom,var(--ocean2) 100%, var(--ocean3) 0%); */
     flex: 1;
     min-width: 25vw;
     align-items: center;
@@ -108,12 +121,19 @@ Navbar stuff
 
 .input-wrap {
     min-height: 100%;
-    background: var(--ocean3);
+    /* background: var(--ocean3); */
+    background: rgb(25,27,37);
+    background: -moz-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
+    background: -webkit-linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
+    background-image: url("../assets/wizardhatnotasdark.png"), linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#191b25",endColorstr="#3f3d58",GradientType=1);
     flex: 3;
-    background-image: url("../assets/wizardhat.png");
-    background-repeat: no-repeat, repeat;
-    background-position: center; 
+    /* background-image: url("../assets/wizardhat.png"); */
+    background-repeat: no-repeat no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
     background-size: 50vw cover; 
+    background-position-x: 70%;
 }
 
 .input-wrap2 {
@@ -144,11 +164,12 @@ Navbar stuff
     margin-top: 2vh;
     margin-left: 1vw;
     margin-bottom: 1vh;
+    font-weight: bold;
     color: rgb(212, 187, 122);
 }
 
 .sub-text {
-    font-size: 13px;
+    font-size: 11px;
     margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -176,12 +197,12 @@ Navbar stuff
 }
 
 .disclaimer-header {
-    font-size: 9px;
+    font-size: 11.555px;
     font-style: italic;
     margin-right: 2vw;
     line-height: 1.25em;
     margin-left: 1vw;
-    margin-bottom: 1vh;
+    margin-bottom: .5vh;
     color: rgb(212, 187, 122);
     letter-spacing: .35vw;
 }
@@ -400,13 +421,154 @@ button {
 
 .grade {
     font-size: 20px;
-    margin-top: 3.5vh;
-    margin-bottom: 2.5vh;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
     margin-left: 1.5vw;
 }
 
 #bottom-text {
     margin-bottom: 20px;
+}
+
+.help-tip{
+    display: inline-block;
+    /* position: absolute; */
+    /* top: 18px; */
+    /* right: 18px; */
+    /* left: 65vw; */
+    text-align: center;
+    background-color: var(--helptip2);
+    /* background-color: #BCDBEA; */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 23px;
+    cursor: default;
+    margin-left: 2vw;
+}
+
+.help-tip:before{
+    content:'?';
+    font-weight: bold;
+    color:#fff;
+}
+
+.help-tip:hover p{
+    display:block;
+    transform-origin: 100% 0%;
+
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+
+}
+
+/* The tooltip */
+.help-tip p{    
+    display: none;
+    text-align: left;
+    background-color: #1E2021;
+    padding: 25px;
+    margin-top: 10px;
+    margin-right: 5vw;
+    width: 300px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    right: 2vw;
+    color: #FFF;
+    font-size: 13px;
+    line-height: 1.4;
+    z-index: 69;
+}
+
+/* CSS animation */
+
+@-webkit-keyframes fadeIn {
+    0% { 
+        opacity:0; 
+        transform: scale(0.6);
+    }
+
+    100% {
+        opacity:100%;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity:0; }
+    100% { opacity:100%; }
+}
+
+.gpa-scales {
+    text-align: center;
+}
+
+.gpa-switch-box {
+    display: block;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    padding-top: 1vh;
+    margin-left: 1vw;
+    margin-top: 1.5vh;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: var(--helptip2);
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--helptip2);
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
 }
 
 @media screen and (min-width: 850px) and (max-width: 1050px) {
@@ -415,6 +577,23 @@ button {
     }
 }
 
+@media screen and (min-width: 1050px) and (max-width: 1250px) {
+    .gpa-hours {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 450px) and (max-width: 525px) {
+    .gpa-hours {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .footer {
+        position: static;
+    }
+}
 
 @media screen and (max-width: 850px) {
 
@@ -511,6 +690,14 @@ button {
     #curr-QP {
         display: block;
     }
+    .help-tip {
+        left: 82vw;
+    }
+    /* Note this for showing the boys*/
+    .input-wrap {
+        background-image: linear-gradient(180deg, rgba(25,27,37,1) 0%, rgba(63,61,88,1) 80%);
+        background-attachment: initial;
+    }
 }
 
 @media screen and (min-width: 850px) {
@@ -524,6 +711,19 @@ button {
     #logo {
         font-size: 18px;
         padding-top: 18px;
+    }
+}
+
+@media (max-width: 400px) and (max-height: 700px) {
+    .topnav .mobile-nav-icon {
+        height: 10vh;
+    }
+}
+
+/* iPhone X */
+@media (max-width: 400px) and (min-height: 800px) {
+    .topnav .mobile-nav-icon {
+        height: 8vh;
     }
 }
 

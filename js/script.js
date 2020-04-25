@@ -68,4 +68,8 @@ $(document).ready(function() {
         classGradeCalcPage.removeRow();
     });
 
+    $('#gpa-switch').click(function() {
+        about.displayGPAScale();
+    });
+
 });
