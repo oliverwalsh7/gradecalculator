@@ -73,7 +73,8 @@ img {
     font-size: 24px;
     letter-spacing: .6vw;
     padding: 12.5px;
-    padding-left: 2vh;
+    margin-left: 2.2vw;
+    margin-right: 2.8vw;
 }
 
 .footer {
