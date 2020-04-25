@@ -85,6 +85,7 @@ img {
     margin: 0px;
     bottom: 0;
     width: 100%;
+    position: fixed;
 }
 
 .footer-text{
@@ -168,7 +169,7 @@ img {
 }
 
 .sub-text {
-    font-size: 13px;
+    font-size: 11px;
     margin-bottom: 1vh;
     margin-right: 2vw;
     line-height: 1.25em;
@@ -567,12 +568,10 @@ button {
 }
   
 input:checked + .slider {
-    /* background-color: #2196F3; */
     background-color: var(--helptip2);
 }
   
 input:focus + .slider {
-    /* box-shadow: 0 0 1px #2196F3; */
     box-shadow: 0 0 1px var(--helptip2);
 }
   
@@ -602,11 +601,11 @@ input:checked + .slider:before {
     }
 } */
 
-/* @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
     .footer {
         position: static;
     }
-} */
+}
 
 @media screen and (max-width: 850px) {
 
