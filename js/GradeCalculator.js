@@ -26,7 +26,6 @@ export default class GradeCalculator {
     }
 
     hide() {
-        this.clearForm();
         $('#classGradeCalc-container').hide();
     }
 
@@ -98,13 +97,6 @@ export default class GradeCalculator {
         }
         return totalCourseGrade;
     }
-
-    clearForm() {
-        for (var i = 1; i <= rowCount; i++) {
-            $('#classGradeCalc-grade-'+i).val('');
-            $('#classGradeCalc-weight-'+i).val('');
-        }
-    } 
     
     getRowCount() {
         return rowCount;

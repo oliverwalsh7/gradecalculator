@@ -1,6 +1,8 @@
-const grades = ['N/A','A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
-const gpaScaleUnchecked = ['4.3', '4.0', '3.7','3.3','3.0','2.7','2.3','2.0','1.7','1.3','1.0','0.7','0'];
-const gpaScaleChecked =  ['4.33', '4.0', '3.67','3.33','3.0','2.67','2.33','2.0','1.67','1.33','1.0','0.67','0'];
+import Utils from './Utils.js';
+
+const grades = Utils.getAppGrades();
+const gpaScaleUnchecked = Utils.getGpaScaleUnchecked();
+const gpaScaleChecked =  Utils.getGpaScaleChecked();
 
 export default class About {
 
@@ -11,23 +13,41 @@ export default class About {
     init() {
 
         if (!this.isInit) {
-            this.isInit = true; 
+            this.isInit = true;     
         }
         
     }
 
     displayGPAScale() {
+        $('#gpa-text').remove();
         var isChecked = $('#gpa-switch').is(':checked');
-        var textWrapper = $('<div class="sub-text"></div>')
+        var subTextWrapper = $('<div class="sub-text" id="gpa-text"></div>');
+        var gpaScaleWrapper = $('.gpa-scale-box');
+        var gradeWrapper;
         if (isChecked == false) {
-
+            grades.map((val, index) => {
+                // To account for N/A used for display purposes
+                if (index !== 0) {  
+                    gradeWrapper = $('<div class="grade">' + val + ' = ' + gpaScaleUnchecked[index-1] + '</div>');
+                    subTextWrapper.append(gradeWrapper);
+                }
+            });
         }
+        else {
+            grades.map((val, index) => {
+                if (index !== 0) {  
+                    gradeWrapper = $('<div class="grade">' + val + ' = ' + gpaScaleChecked[index-1] + '</div>');
+                    subTextWrapper.append(gradeWrapper);
+                }
+            });
+        }
+        gpaScaleWrapper.append(subTextWrapper);
     }
 
     show() {
         this.init();
+        this.displayGPAScale();
         $('#about-container').css("display", "flex");
-        console.log($('#about-container').css("display"));
     }
 
     hide() {
