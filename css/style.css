@@ -595,11 +595,17 @@ input:checked + .slider:before {
     }
 }
 
-/* @media screen and (min-width: 1050px) and (max-width: 1250px) {
-    .input-wrap2 {
+@media screen and (min-width: 1050px) and (max-width: 1250px) {
+    .gpa-hours {
         width: 70%;
     }
-} */
+}
+
+@media screen and (min-width: 450px) and (max-width: 525px) {
+    .gpa-hours {
+        width: 70%;
+    }
+}
 
 @media screen and (max-width: 1100px) {
     .footer {
