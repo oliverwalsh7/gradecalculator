@@ -620,7 +620,13 @@ input:checked + .slider:before {
         position: absolute;
         right: 0;
         top: 0;
+        height: 8vh;
     }
+
+    .topnav .topbar-text {
+        height: 8vh;
+    }
+
 
     .topnav.responsive .nav-item {
         float: none;
@@ -711,19 +717,26 @@ input:checked + .slider:before {
 @media screen and (max-width: 400px) {
     #logo {
         font-size: 18px;
-        padding-top: 18px;
+        /* padding-top: 18px; */
     }
 }
 
 @media (max-width: 400px) and (max-height: 700px) {
     .topnav .mobile-nav-icon {
-        height: 10vh;
+        height: 8vh;
+    }
+    .topnav .topbar-text {
+        height: 8vh;
     }
 }
 
 /* iPhone X */
 @media (max-width: 400px) and (min-height: 800px) {
     .topnav .mobile-nav-icon {
+        height: 8vh;
+    }
+
+    .topnav .topbar-text {
         height: 8vh;
     }
 }
