@@ -35,7 +35,7 @@ img {
     background-color: var(--ocean);
     border: none;
     outline: 0;
-    height: 9vh;
+    height: 8vh;
     text-align: center;
     padding: 0 3vh;
     font-size: 3vw;
@@ -44,10 +44,12 @@ img {
 .topnav .nav-item {
     text-decoration: none;
     margin-top: 0;
-    padding: 21.5px 2.5vw;
+    /* padding: 15px 2.5vw; */
     font-size: 14px;
     color: ivory;
     letter-spacing: .5vh;
+    height: 8vh;
+    padding: calc(4vh - 11px) 2.5%;
 }
 
 .nav-button:hover {
@@ -64,7 +66,7 @@ img {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    /* padding: 14px 16px; */
     text-decoration: none;
     font-size: 17px;
 }
@@ -72,9 +74,12 @@ img {
 .topnav .topbar-text {
     font-size: 24px;
     letter-spacing: .6vw;
-    padding: 12.5px;
-    margin-left: 2.2vw;
-    margin-right: 2.8vw;
+    /* padding: 12.5px; */
+    /* margin-left: 2.2vw;
+    margin-right: 2.8vw; */
+    height: 8vh;
+    margin: 0 auto;
+    padding: calc(4vh - 17px) 2.5vw;
 }
 
 .footer {
@@ -620,7 +625,13 @@ input:checked + .slider:before {
         position: absolute;
         right: 0;
         top: 0;
+        height: 8vh;
     }
+
+    .topnav .topbar-text {
+        height: 8vh;
+    }
+
 
     .topnav.responsive .nav-item {
         float: none;
@@ -710,20 +721,32 @@ input:checked + .slider:before {
 
 @media screen and (max-width: 400px) {
     #logo {
-        font-size: 18px;
-        padding-top: 18px;
+        /* font-size: 18px; */
+        /* padding-top: 18px; */
+    }
+
+    .topnav .nav-item {
+        /* padding: calc(4vh - 17px) 2.5vw; */
+        /* font-size: 14px; */
     }
 }
 
 @media (max-width: 400px) and (max-height: 700px) {
     .topnav .mobile-nav-icon {
-        height: 10vh;
+        height: 8vh;
+    }
+    .topnav .topbar-text {
+        height: 8vh;
     }
 }
 
 /* iPhone X */
 @media (max-width: 400px) and (min-height: 800px) {
     .topnav .mobile-nav-icon {
+        height: 8vh;
+    }
+
+    .topnav .topbar-text {
         height: 8vh;
     }
 }
